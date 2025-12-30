@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e3a5f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Plan d'Action 2026 - Réalisation et Constance</title>
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUGxhbiBkJ0FjdGlvbiAyMDI2Iiwic2hvcnRfbmFtZSI6IlBBMjAyNiIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMWUzYTVmIiwidGhlbWVfY29sb3IiOiIjMWUzYTVmIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnPjxyZWN0IGZpbGw9JyMxZTNhNWYnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMjAnLz48dGV4dCB4PSc1MCUnIHk9JzUwJScgZG9taW5hbnQtYmFzZWxpbmU9J21pZGRsZScgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1zaXplPSc1MCcgZmlsbD0nd2hpdGUnPvCfjq88L3RleHQ+PC9zdmc+Iiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    * { font-family: 'Poppins', sans-serif; box-sizing: border-box; }
+    
+    /* Light Theme */
+    :root {
+      --bg-primary: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      --bg-card: rgba(255,255,255,0.95);
+      --bg-card-solid: #ffffff;
+      --text-primary: #1e3a5f;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    
+    /* Dark Theme */
+    .dark {
+      --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --bg-card: rgba(30,41,59,0.95);
+      --bg-card-solid: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    
+    body { background: var(--bg-primary); min-height: 100vh; transition: all 0.3s ease; }
+    .glass { background: var(--bg-card); backdrop-filter: blur(10px); }
+    .glass-solid { background: var(--bg-card-solid); }
+    .text-theme { color: var(--text-primary); }
+    .text-theme-secondary { color: var(--text-secondary); }
+    .text-theme-muted { color: var(--text-muted); }
+    .border-theme { border-color: var(--border-color); }
+    .card-shadow { box-shadow: var(--shadow); }
+    
+    .progress-ring { transform: rotate(-90deg); }
+    .fade-in { animation: fadeIn 0.3s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    .pulse { animation: pulse 2s infinite; }
+    .shake { animation: shake 0.5s ease; }
+    .modal-overlay { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+    input, select, textarea { font-size: 16px !important; background: var(--bg-card-solid); color: var(--text-primary); border-color: var(--border-color); }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    .notif-badge { position: absolute; top: -4px; right: -4px; background: #e76f51; color: white; border-radius: 50%; min-width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
+    .toggle-switch { width: 48px; height: 24px; border-radius: 12px; position: relative; cursor: pointer; transition: all 0.3s; }
+    .toggle-switch::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: white; top: 2px; left: 2px; transition: all 0.3s; }
+    .toggle-switch.active { background: #2a9d8f; }
+    .toggle-switch.active::after { left: 26px; }
+    .transaction-add { border-left: 4px solid #2a9d8f; }
+    .transaction-remove { border-left: 4px solid #e76f51; }
+  </style>
+</head>
+<body class="text-theme">
+  <div id="root"></div>
+  
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useCallback, createContext, useContext } = React;
+
+    // ========== FIREBASE CONFIG ==========
+    const FIREBASE_CONFIG = {
+      apiKey: "AIzaSyC95DA-qs6sgwUoasoFq-U-Z-PHBKHxS58",
+      authDomain: "plan-action-2026.firebaseapp.com",
+      databaseURL: "https://plan-action-2026-default-rtdb.firebaseio.com",
+      projectId: "plan-action-2026",
+      storageBucket: "plan-action-2026.firebasestorage.app",
+      messagingSenderId: "410100763878",
+      appId: "1:410100763878:web:d9cbc0323f86717dc9bf27"
+    };
+
+    // ========== THEME CONTEXT ==========
+    const ThemeContext = createContext();
+    const useTheme = () => useContext(ThemeContext);
+
+    // ========== NOTIFICATION SOUNDS ==========
+    const NotificationSounds = {
+      success: 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH2JkZiYl5GOgXVqZWl0gImRl5mXko2Dd2xoaXB8h5CWmJaTjYN4bmtscn6Ij5SXlZGLgndtamtxfYeOk5aUkYuCd21qa3F9h46TlpSRi4J3bWprcX2HjpOWlJGLgndtamtxfYeOk5aUkYuCd21qa3F9h46TlpSRi4J3bWprcX2HjpOWlJGLgg==',
+      alert: 'data:audio/wav;base64,UklGRl9vT19teleQkpORjoeCd21qaXF8h46TlpSRi4J3bWprcX2HjpOWlJGLgndtamtxfYeOk5aUkYuCd21qa3F9h46TlpSRi4J3bWprcX2HjpOWlJGLgndtamtxfYeOk5aUkYuCd21qa3F9h46TlpSRi4J3bWprcX2HjpOWlJGLgndtamtx',
+      celebration: 'data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YU9vT18AgICAgICAgICAgICAgICAgICAf3+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6A='
+    };
+
+    const playSound = (type) => {
+      try {
+        const audio = new Audio(NotificationSounds[type] || NotificationSounds.success);
+        audio.volume = 0.5;
+        audio.play().catch(() => {});
+      } catch(e) {}
+    };
+
+    // ========== ICONS ==========
+    const Icons = {
+      home: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>,
+      users: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
+      target: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+      eval: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>,
+      settings: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
+      admin: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>,
+      plus: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>,
+      minus: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" /></svg>,
+      check: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>,
+      x: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>,
+      edit: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>,
+      trash: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>,
+      fire: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2Z"/></svg>,
+      download: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>,
+      ai: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>,
+      logout: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>,
+      eye: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>,
+      eyeOff: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>,
+      bell: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>,
+      sun: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>,
+      moon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>,
+      trendUp: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>,
+      trendDown: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" /></svg>,
+      gift: <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>,
+      book: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
+      heart: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
+      brain: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
+      wallet: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>,
+      custom: <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>,
+      copy: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>,
+    };
+
+    // ========== UTILITIES ==========
+    const genId = () => Math.random().toString(36).substr(2, 9);
+    const fmtDate = (d) => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    const fmtNum = (n) => new Intl.NumberFormat('fr-FR').format(n);
+    const hashPwd = (p) => btoa(p + '_pa2026_v3');
+    const unhashPwd = (h) => { try { return atob(h).replace('_pa2026_v3', ''); } catch { return '***'; } };
+
+    // ========== DEFAULT DATA ==========
+    const defDomains = [
+      { id: 'spiritual', name: 'Spirituel', icon: 'book', color: '#6366f1' },
+      { id: 'physical', name: 'Physique', icon: 'heart', color: '#ef4444' },
+      { id: 'intellectual', name: 'Intellectuel', icon: 'brain', color: '#f59e0b' },
+      { id: 'financial', name: 'Financier', icon: 'wallet', color: '#10b981' },
+      { id: 'custom', name: 'Personnalisé', icon: 'custom', color: '#8b5cf6' },
+    ];
+
+    const defGoals = [
+      { id: 'g1', domainId: 'spiritual', title: 'Lecture Ancien Testament (NIV)', description: '3 lectures minimum par semaine', target: 156, unit: 'chapitres', frequency: 'weekly', isFinancial: false },
+      { id: 'g2', domainId: 'physical', title: 'Journées de détox', description: '2 jours par mois', target: 24, unit: 'jours', frequency: 'monthly', isFinancial: false },
+      { id: 'g3', domainId: 'intellectual', title: 'Anglais niveau intermédiaire', description: 'Via Duolingo et Praktika', target: 365, unit: 'jours', frequency: 'daily', isFinancial: false },
+      { id: 'g4', domainId: 'intellectual', title: 'Chinois HSK 1-4', description: 'Via HelloChinese', target: 4, unit: 'niveaux', frequency: 'quarterly', isFinancial: false },
+      { id: 'g5', domainId: 'intellectual', title: 'Publications scientifiques', description: '3 papers ranking A', target: 3, unit: 'papers', frequency: 'semester', isFinancial: false },
+      { id: 'g6', domainId: 'financial', title: 'Épargne annuelle', description: '2 000 000 XAF', target: 2000000, unit: 'XAF', frequency: 'monthly', isFinancial: true },
+      { id: 'g7', domainId: 'financial', title: 'Projet Aquacam', description: 'Visibilité Cameroun & Chine', target: 100, unit: '%', frequency: 'quarterly', isFinancial: false },
+    ];
+
+    const defCelebrations = [
+      { id: 'c1', title: 'Fin Trimestre 1', date: '2026-03-31', reward: 'Dîner spécial', completed: false },
+      { id: 'c2', title: 'Fin Trimestre 2', date: '2026-06-30', reward: 'Weekend détente', completed: false },
+      { id: 'c3', title: 'Fin Trimestre 3', date: '2026-09-30', reward: 'Cadeau personnel', completed: false },
+      { id: 'c4', title: 'Fin Année 2026', date: '2026-12-31', reward: 'Grande célébration', completed: false },
+    ];
+
+    const adminUser = {
+      id: 'admin_fabien', username: 'Fabien', password: hashPwd('fabien'), role: 'admin',
+      vision: 'Administrateur - Plan d\'Action 2026', createdAt: new Date().toISOString(), approved: true,
+      domains: defDomains, goals: defGoals, entries: [], transactions: [], evaluations: [], celebrations: defCelebrations,
+      notifications: { enabled: true, sound: true, daily: '08:00', weekly: true, achievements: true }
+    };
+
+    // ========== DATA SERVICE ==========
+    class DataService {
+      constructor() {
+        this.db = null;
+        this.listeners = [];
+        this.data = this.loadLocal();
+        this.initFirebase();
+      }
+
+      loadLocal() {
+        try {
+          const d = localStorage.getItem('pa2026_v3');
+          if (d) return JSON.parse(d);
+        } catch {}
+        return { users: { [adminUser.id]: adminUser }, pending: {} };
+      }
+
+      saveLocal() {
+        try { localStorage.setItem('pa2026_v3', JSON.stringify(this.data)); } catch {}
+      }
+
+      notify() {
+        this.saveLocal();
+        this.listeners.forEach(l => l(this.data));
+      }
+
+      subscribe(cb) {
+        this.listeners.push(cb);
+        return () => { this.listeners = this.listeners.filter(l => l !== cb); };
+      }
+
+      async initFirebase() {
+        try {
+          firebase.initializeApp(FIREBASE_CONFIG);
+          this.db = firebase.database();
+          
+          this.db.ref('users').on('value', s => {
+            const fbUsers = s.val() || {};
+            this.data.users = { ...this.data.users, ...fbUsers };
+            this.notify();
+          });
+
+          this.db.ref('pending').on('value', s => {
+            this.data.pending = s.val() || {};
+            this.notify();
+          });
+
+          const snap = await this.db.ref('users/admin_fabien').get();
+          if (!snap.exists()) {
+            await this.db.ref('users/admin_fabien').set(adminUser);
+          }
+        } catch (e) {
+          console.log('Firebase init error:', e);
+        }
+      }
+
+      async saveUser(u) {
+        this.data.users[u.id] = u;
+        this.notify();
+        if (this.db) {
+          await this.db.ref(`users/${u.id}`).set(u);
+        }
+      }
+
+      async delUser(id) {
+        delete this.data.users[id];
+        this.notify();
+        if (this.db) await this.db.ref(`users/${id}`).remove();
+      }
+
+      async addPending(u) {
+        this.data.pending[u.id] = u;
+        this.notify();
+        if (this.db) await this.db.ref(`pending/${u.id}`).set(u);
+      }
+
+      async approve(id) {
+        const u = this.data.pending[id];
+        if (!u) return;
+        u.approved = true;
+        delete this.data.pending[id];
+        this.data.users[id] = u;
+        this.notify();
+        if (this.db) {
+          await this.db.ref(`pending/${id}`).remove();
+          await this.db.ref(`users/${id}`).set(u);
+        }
+      }
+
+      async reject(id) {
+        delete this.data.pending[id];
+        this.notify();
+        if (this.db) await this.db.ref(`pending/${id}`).remove();
+      }
+
+      login(usr, pwd) {
+        const h = hashPwd(pwd);
+        for (const u of Object.values(this.data.users)) {
+          if (u.username.toLowerCase() === usr.toLowerCase() && u.password === h) {
+            if (!u.approved) return { error: 'Compte en attente d\'approbation par l\'administrateur' };
+            return { user: u };
+          }
+        }
+        return { error: 'Nom d\'utilisateur ou mot de passe incorrect' };
+      }
+
+      forceRefresh() {
+        this.notify();
+      }
+    }
+
+    const dataSvc = new DataService();
+
+    // ========== AI SERVICE ==========
+    const AIService = {
+      categorizeGoal(title, description) {
+        const text = (title + ' ' + description).toLowerCase();
+        if (text.match(/prière|bible|méditation|spirituel|foi|église|dieu|lecture.*testament/i)) return 'spiritual';
+        if (text.match(/sport|exercice|santé|gym|course|détox|physique|musculation|yoga/i)) return 'physical';
+        if (text.match(/apprendre|étude|livre|formation|langue|anglais|chinois|publication|recherche/i)) return 'intellectual';
+        if (text.match(/argent|épargne|investir|budget|salaire|économie|finance|projet.*business|xaf|fcfa/i)) return 'financial';
+        return 'custom';
+      },
+
+      generateQuestions(goal, type) {
+        const domain = goal.domainId;
+        const questions = {
+          spiritual: {
+            before: [
+              { q: "Combien de fois par semaine pratiquez-vous actuellement ?", type: "scale", min: 0, max: 7 },
+              { q: "Comment évaluez-vous votre engagement spirituel actuel ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous une routine spirituelle établie ?", type: "boolean" },
+            ],
+            after: [
+              { q: "Combien de fois avez-vous pratiqué cette semaine ?", type: "scale", min: 0, max: 7 },
+              { q: "Avez-vous ressenti une amélioration de votre bien-être ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous maintenu votre routine ?", type: "boolean" },
+            ]
+          },
+          physical: {
+            before: [
+              { q: "Combien de séances d'exercice faites-vous par semaine ?", type: "scale", min: 0, max: 7 },
+              { q: "Comment évaluez-vous votre niveau d'énergie ?", type: "scale", min: 1, max: 10 },
+              { q: "Suivez-vous un régime alimentaire particulier ?", type: "boolean" },
+            ],
+            after: [
+              { q: "Combien de séances avez-vous faites ce mois ?", type: "number" },
+              { q: "Votre niveau d'énergie s'est-il amélioré ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous atteint vos objectifs physiques du mois ?", type: "boolean" },
+            ]
+          },
+          intellectual: {
+            before: [
+              { q: "Combien d'heures consacrez-vous à l'apprentissage par semaine ?", type: "number" },
+              { q: "Quel est votre niveau actuel (auto-évaluation) ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous un plan d'apprentissage structuré ?", type: "boolean" },
+            ],
+            after: [
+              { q: "Combien d'heures avez-vous étudié ce mois ?", type: "number" },
+              { q: "Comment évaluez-vous votre progression ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous complété les objectifs prévus ?", type: "boolean" },
+            ]
+          },
+          financial: {
+            before: [
+              { q: "Quel est votre taux d'épargne actuel (% du revenu) ?", type: "scale", min: 0, max: 100 },
+              { q: "Suivez-vous un budget mensuel ?", type: "boolean" },
+              { q: "Comment évaluez-vous votre santé financière ?", type: "scale", min: 1, max: 10 },
+            ],
+            after: [
+              { q: "Quel montant avez-vous épargné ce mois ?", type: "number" },
+              { q: "Avez-vous respecté votre budget ?", type: "boolean" },
+              { q: "Votre situation financière s'est-elle améliorée ?", type: "scale", min: 1, max: 10 },
+            ]
+          },
+          custom: {
+            before: [
+              { q: "Comment évaluez-vous votre situation actuelle ?", type: "scale", min: 1, max: 10 },
+              { q: "Avez-vous un plan d'action défini ?", type: "boolean" },
+              { q: "Quel est votre niveau de motivation ?", type: "scale", min: 1, max: 10 },
+            ],
+            after: [
+              { q: "Avez-vous progressé vers votre objectif ?", type: "scale", min: 1, max: 10 },
+              { q: "Les actions prévues ont-elles été réalisées ?", type: "boolean" },
+              { q: "Êtes-vous satisfait de votre progression ?", type: "scale", min: 1, max: 10 },
+            ]
+          }
+        };
+        return questions[domain]?.[type] || questions.custom[type];
+      },
+
+      generateSynthesis(beforeAnswers, afterAnswers, goal) {
+        let improvement = 0;
+        let totalBefore = 0;
+        let totalAfter = 0;
+
+        beforeAnswers.forEach((a, i) => {
+          if (typeof a === 'number') totalBefore += a;
+          if (typeof afterAnswers[i] === 'number') totalAfter += afterAnswers[i];
+        });
+
+        if (totalBefore > 0) {
+          improvement = Math.round(((totalAfter - totalBefore) / totalBefore) * 100);
+        }
+
+        const isPositive = improvement >= 0;
+        const messages = {
+          positive: [
+            `Excellente progression de ${improvement}% ! Continuez sur cette lancée.`,
+            `Vous avez progressé de ${improvement}%. Vos efforts portent leurs fruits !`,
+            `Belle amélioration ! +${improvement}% par rapport au mois dernier.`
+          ],
+          negative: [
+            `Légère baisse de ${Math.abs(improvement)}%. Identifiez les obstacles et ajustez votre stratégie.`,
+            `Progression de ${improvement}%. Ne vous découragez pas, analysez ce qui peut être amélioré.`,
+            `Résultats en retrait de ${Math.abs(improvement)}%. Revoyez vos priorités pour le mois prochain.`
+          ]
+        };
+
+        const msgList = isPositive ? messages.positive : messages.negative;
+        const synthesis = msgList[Math.floor(Math.random() * msgList.length)];
+
+        return { improvement, isPositive, synthesis };
+      },
+
+      suggestReward(goal, progress) {
+        const rewards = {
+          spiritual: ['Journée de retraite spirituelle', 'Nouveau livre inspirant', 'Visite d\'un lieu saint'],
+          physical: ['Massage relaxant', 'Nouveau vêtement de sport', 'Sortie nature/randonnée'],
+          intellectual: ['Nouveau livre ou cours en ligne', 'Visite d\'un musée', 'Conférence ou workshop'],
+          financial: ['Petit plaisir raisonnable', 'Investissement dans un hobby', 'Sortie restaurant modéré'],
+          custom: ['Activité de votre choix', 'Moment de détente', 'Cadeau personnel']
+        };
+        const domain = goal.domainId || 'custom';
+        const list = rewards[domain] || rewards.custom;
+        return list[Math.floor(Math.random() * list.length)];
+      },
+
+      async generatePlan(vision, objectives) {
+        const goals = [];
+        const words = objectives.toLowerCase();
+        
+        if (words.match(/sport|santé|exercice|physique/)) {
+          goals.push({ id: genId(), domainId: 'physical', title: 'Activité physique régulière', description: 'Basé sur vos objectifs santé', target: 150, unit: 'séances', frequency: 'weekly', isFinancial: false });
+        }
+        if (words.match(/lire|livre|apprendre|étude|formation/)) {
+          goals.push({ id: genId(), domainId: 'intellectual', title: 'Apprentissage continu', description: 'Développement intellectuel', target: 50, unit: 'heures', frequency: 'monthly', isFinancial: false });
+        }
+        if (words.match(/argent|épargne|économie|finance|investir/)) {
+          goals.push({ id: genId(), domainId: 'financial', title: 'Objectif financier', description: 'Épargne et gestion', target: 1000000, unit: 'XAF', frequency: 'monthly', isFinancial: true });
+        }
+        if (words.match(/prière|méditation|spirituel|foi/)) {
+          goals.push({ id: genId(), domainId: 'spiritual', title: 'Pratique spirituelle', description: 'Croissance intérieure', target: 365, unit: 'jours', frequency: 'daily', isFinancial: false });
+        }
+        
+        if (goals.length === 0) {
+          goals.push({ id: genId(), domainId: 'custom', title: 'Mon objectif principal', description: vision.substring(0, 100), target: 100, unit: '%', frequency: 'monthly', isFinancial: false });
+        }
+
+        return { domains: defDomains, goals, celebrations: defCelebrations, advice: 'La constance est la clé du succès !' };
+      }
+    };
+
+    // ========== UI COMPONENTS ==========
+    const ProgressRing = ({ progress, size = 100, stroke = 8, color = '#f4a261' }) => {
+      const r = (size - stroke) / 2;
+      const c = r * 2 * Math.PI;
+      const o = c - (Math.min(progress, 100) / 100) * c;
+      return (
+        <svg width={size} height={size} className="progress-ring">
+          <circle stroke="currentColor" className="text-gray-200 dark:text-gray-700" strokeWidth={stroke} fill="transparent" r={r} cx={size/2} cy={size/2} />
+          <circle stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="transparent" r={r} cx={size/2} cy={size/2} strokeDasharray={c} strokeDashoffset={o} style={{ transition: 'stroke-dashoffset 0.5s' }} />
+        </svg>
+      );
+    };
+
+    const Modal = ({ open, onClose, title, children, lg }) => {
+      if (!open) return null;
+      return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay" onClick={onClose}>
+          <div className={`glass rounded-2xl w-full ${lg ? 'max-w-2xl' : 'max-w-lg'} max-h-[90vh] overflow-y-auto card-shadow fade-in`} onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-4 border-b border-theme sticky top-0 glass z-10">
+              <h3 className="text-lg font-semibold text-theme">{title}</h3>
+              <button onClick={onClose} className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full text-theme-secondary">{Icons.x}</button>
+            </div>
+            <div className="p-4">{children}</div>
+          </div>
+        </div>
+      );
+    };
+
+    const DIcon = ({ icon, sz = 'w-7 h-7' }) => {
+      const m = { book: Icons.book, heart: Icons.heart, brain: Icons.brain, wallet: Icons.wallet, custom: Icons.custom };
+      return <span className={sz}>{m[icon] || Icons.custom}</span>;
+    };
+
+    const Toast = ({ msg, type = 'success', onClose }) => {
+      useEffect(() => { 
+        playSound(type === 'success' ? 'success' : 'alert');
+        const t = setTimeout(onClose, 3000); 
+        return () => clearTimeout(t); 
+      }, []);
+      const colors = { success: 'bg-green-500', error: 'bg-red-500', warning: 'bg-yellow-500', info: 'bg-blue-500' };
+      return (
+        <div className={`fixed top-4 right-4 z-50 ${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg fade-in flex items-center gap-2`}>
+          {type === 'success' ? Icons.check : Icons.bell}
+          <span>{msg}</span>
+        </div>
+      );
+    };
+
+    const PasswordInput = ({ value, onChange, placeholder, className }) => {
+      const [show, setShow] = useState(false);
+      return (
+        <div className="relative">
+          <input
+            type={show ? 'text' : 'password'}
+            value={value}
+            onChange={onChange}
+            className={`w-full p-3 border border-theme rounded-lg pr-10 ${className}`}
+            placeholder={placeholder}
+          />
+          <button
+            type="button"
+            onClick={() => setShow(!show)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-theme-secondary hover:text-theme"
+          >
+            {show ? Icons.eyeOff : Icons.eye}
+          </button>
+        </div>
+      );
+    };
+
+    // ========== LOGIN PAGE ==========
+    const LoginPage = ({ onLogin }) => {
+      const [mode, setMode] = useState('login');
+      const [usr, setUsr] = useState('');
+      const [pwd, setPwd] = useState('');
+      const [vision, setVision] = useState('');
+      const [obj, setObj] = useState('');
+      const [loading, setLoading] = useState(false);
+      const [err, setErr] = useState('');
+      const [plan, setPlan] = useState(null);
+      const { darkMode } = useTheme();
+
+      const doLogin = e => {
+        e.preventDefault();
+        setLoading(true);
+        setErr('');
+        const r = dataSvc.login(usr, pwd);
+        if (r.error) {
+          setErr(r.error);
+          setLoading(false);
+        } else {
+          playSound('success');
+          onLogin(r.user);
+        }
+      };
+
+      const doAI = async () => {
+        if (!vision.trim()) return;
+        setLoading(true);
+        setErr('');
+        const p = await AIService.generatePlan(vision, obj);
+        setPlan(p);
+        setLoading(false);
+        playSound('success');
+      };
+
+      const doRegister = async e => {
+        e.preventDefault();
+        if (!usr.trim() || !pwd.trim()) return setErr('Veuillez remplir tous les champs obligatoires');
+        if (pwd.length < 4) return setErr('Le mot de passe doit contenir au moins 4 caractères');
+        
+        setLoading(true);
+        const u = {
+          id: 'user_' + genId(),
+          username: usr.trim(),
+          password: hashPwd(pwd),
+          role: 'user',
+          vision,
+          objectives: obj,
+          createdAt: new Date().toISOString(),
+          approved: false,
+          domains: plan?.domains || defDomains,
+          goals: plan?.goals || [],
+          entries: [],
+          transactions: [],
+          evaluations: [],
+          celebrations: plan?.celebrations || defCelebrations,
+          notifications: { enabled: true, sound: true, daily: '08:00', weekly: true, achievements: true }
+        };
+        await dataSvc.addPending(u);
+        setLoading(false);
+        playSound('success');
+        alert('Inscription envoyée ! Vous recevrez une notification une fois votre compte approuvé par l\'administrateur.');
+        setMode('login');
+        setUsr('');
+        setPwd('');
+        setVision('');
+        setObj('');
+        setPlan(null);
+      };
+
+      return (
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <div className="glass rounded-2xl p-6 w-full max-w-md card-shadow fade-in">
+            <div className="text-center mb-6">
+              <div className="text-4xl mb-2">🎯</div>
+              <h1 className="text-2xl font-bold text-theme">Plan d'Action 2026</h1>
+              <p className="text-sm text-theme-secondary italic">« Réalisation et Constance »</p>
+            </div>
+
+            {err && <div className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg p-3 mb-4 text-sm shake">{err}</div>}
+
+            {mode === 'login' ? (
+              <form onSubmit={doLogin} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Nom d'utilisateur</label>
+                  <input
+                    type="text"
+                    value={usr}
+                    onChange={e => setUsr(e.target.value)}
+                    className="w-full p-3 border border-theme rounded-lg"
+                    placeholder="Entrez votre nom"
+                    autoComplete="username"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Mot de passe</label>
+                  <PasswordInput
+                    value={pwd}
+                    onChange={e => setPwd(e.target.value)}
+                    placeholder="Entrez votre mot de passe"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium disabled:opacity-50 transition-colors"
+                >
+                  {loading ? 'Connexion...' : 'Se connecter'}
+                </button>
+                <p className="text-center text-sm text-theme-secondary">
+                  Pas encore de compte ?{' '}
+                  <button type="button" onClick={() => setMode('register')} className="text-orange-500 font-medium hover:underline">
+                    S'inscrire
+                  </button>
+                </p>
+              </form>
+            ) : (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Nom d'utilisateur *</label>
+                  <input
+                    type="text"
+                    value={usr}
+                    onChange={e => setUsr(e.target.value)}
+                    className="w-full p-3 border border-theme rounded-lg"
+                    placeholder="Choisissez un nom"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Mot de passe *</label>
+                  <PasswordInput
+                    value={pwd}
+                    onChange={e => setPwd(e.target.value)}
+                    placeholder="Minimum 4 caractères"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Votre vision 2026</label>
+                  <textarea
+                    value={vision}
+                    onChange={e => setVision(e.target.value)}
+                    className="w-full p-3 border border-theme rounded-lg"
+                    rows="2"
+                    placeholder="Décrivez votre vision pour 2026..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-theme-secondary mb-1">Vos objectifs</label>
+                  <textarea
+                    value={obj}
+                    onChange={e => setObj(e.target.value)}
+                    className="w-full p-3 border border-theme rounded-lg"
+                    rows="2"
+                    placeholder="Sport, finances, apprentissage, spirituel..."
+                  />
+                </div>
+
+                {plan && (
+                  <div className="bg-green-100 dark:bg-green-900/30 border border-green-500 rounded-lg p-3 text-sm">
+                    <p className="font-medium text-green-700 dark:text-green-400">✨ {plan.goals?.length || 0} objectifs générés par l'IA</p>
+                    <p className="text-green-600 dark:text-green-500 text-xs mt-1">{plan.advice}</p>
+                  </div>
+                )}
+
+                <button
+                  type="button"
+                  onClick={doAI}
+                  disabled={loading || !vision.trim()}
+                  className="w-full py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-lg font-medium flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  {Icons.ai} {loading ? 'Génération...' : 'Générer mon plan avec l\'IA'}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={doRegister}
+                  disabled={loading}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium disabled:opacity-50 transition-colors"
+                >
+                  S'inscrire
+                </button>
+
+                <p className="text-center text-sm text-theme-secondary">
+                  Déjà inscrit ?{' '}
+                  <button type="button" onClick={() => setMode('login')} className="text-orange-500 font-medium hover:underline">
+                    Se connecter
+                  </button>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    // ========== DASHBOARD ==========
+    const Dashboard = ({ user, allUsers, onUpdate }) => {
+      const { goals = [], entries = [], transactions = [], domains = defDomains } = user;
+      
+      const calcProgress = (g) => {
+        if (g.isFinancial) {
+          const txs = (transactions || []).filter(t => t.goalId === g.id);
+          const balance = txs.reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+          return Math.min((balance / g.target) * 100, 100);
+        }
+        const ents = entries.filter(e => e.goalId === g.id);
+        return Math.min((ents.reduce((s, e) => s + (e.value || 0), 0) / g.target) * 100, 100);
+      };
+
+      const prog = goals.length ? Math.round(goals.reduce((a, g) => a + calcProgress(g), 0) / goals.length) : 0;
+      
+      const domProg = domains.map(d => {
+        const dg = goals.filter(g => g.domainId === d.id);
+        if (!dg.length) return { ...d, progress: 0 };
+        return { ...d, progress: Math.round(dg.reduce((a, g) => a + calcProgress(g), 0) / dg.length) };
+      });
+
+      const streak = (() => {
+        let c = 0, d = new Date();
+        const today = d.toISOString().split('T')[0];
+        while (c < 365) {
+          const ds = d.toISOString().split('T')[0];
+          if (!entries.some(e => e.date === ds) && ds !== today) break;
+          if (entries.some(e => e.date === ds)) c++;
+          d.setDate(d.getDate() - 1);
+        }
+        return c;
+      })();
+
+      const ranking = Object.values(allUsers).filter(u => u.approved).map(u => {
+        const uGoals = u.goals || [];
+        const uEntries = u.entries || [];
+        const uTx = u.transactions || [];
+        const p = uGoals.length ? Math.round(uGoals.reduce((a, g) => {
+          if (g.isFinancial) {
+            const txs = uTx.filter(t => t.goalId === g.id);
+            const bal = txs.reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+            return a + Math.min((bal / g.target) * 100, 100);
+          }
+          return a + Math.min((uEntries.filter(e => e.goalId === g.id).reduce((s, e) => s + (e.value || 0), 0) / g.target) * 100, 100);
+        }, 0) / uGoals.length) : 0;
+        return { ...u, prog: p };
+      }).sort((a, b) => b.prog - a.prog);
+
+      return (
+        <div className="fade-in space-y-6 pb-6">
+          <div className="text-center text-white py-4">
+            <h1 className="text-2xl font-bold">Bonjour, {user.username} 👋</h1>
+            <p className="text-white/80 text-sm italic">« Réalisation et Constance »</p>
+          </div>
+
+          <div className="glass rounded-2xl p-6 card-shadow mx-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-theme-secondary text-sm">Progression Globale</p>
+                <p className="text-4xl font-bold text-theme">{prog}%</p>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-orange-500">{Icons.fire}</span>
+                  <span className="text-sm text-theme-secondary">{streak} jours de série</span>
+                </div>
+              </div>
+              <div className="relative">
+                <ProgressRing progress={prog} />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-bold text-theme">{prog}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="px-4">
+            <h3 className="text-white font-semibold mb-3">Par domaine</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {domProg.map(d => (
+                <div key={d.id} className="glass rounded-xl p-3 card-shadow">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span style={{ color: d.color }}><DIcon icon={d.icon} sz="w-5 h-5" /></span>
+                    <span className="font-medium text-sm text-theme truncate">{d.name}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-1">
+                    <div className="h-2 rounded-full transition-all" style={{ width: `${d.progress}%`, backgroundColor: d.color }}></div>
+                  </div>
+                  <span className="text-xs text-theme-secondary">{d.progress}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {ranking.length > 1 && (
+            <div className="px-4">
+              <h3 className="text-white font-semibold mb-3">🏆 Classement</h3>
+              <div className="glass rounded-xl p-4 card-shadow">
+                {ranking.slice(0, 5).map((u, i) => (
+                  <div key={u.id} className={`flex items-center justify-between py-2 ${i > 0 ? 'border-t border-theme' : ''}`}>
+                    <div className="flex items-center gap-3">
+                      <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${i === 0 ? 'bg-yellow-400 text-yellow-900' : i === 1 ? 'bg-gray-300 text-gray-700' : i === 2 ? 'bg-orange-400 text-orange-900' : 'bg-gray-100 dark:bg-gray-700 text-theme'}`}>
+                        {i + 1}
+                      </span>
+                      <span className={`font-medium text-theme ${u.id === user.id ? 'text-orange-500' : ''}`}>
+                        {u.username} {u.id === user.id && '(vous)'}
+                      </span>
+                    </div>
+                    <span className="text-sm font-bold text-theme">{u.prog}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // ========== COMMUNITY ==========
+    const Community = ({ user, allUsers }) => {
+      const [sel, setSel] = useState(null);
+      
+      const users = Object.values(allUsers).filter(u => u.approved && u.id !== user.id).map(u => {
+        const uGoals = u.goals || [];
+        const uEntries = u.entries || [];
+        const uTx = u.transactions || [];
+        const p = uGoals.length ? Math.round(uGoals.reduce((a, g) => {
+          if (g.isFinancial) {
+            const txs = uTx.filter(t => t.goalId === g.id);
+            const bal = txs.reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+            return a + Math.min((bal / g.target) * 100, 100);
+          }
+          return a + Math.min((uEntries.filter(e => e.goalId === g.id).reduce((s, e) => s + (e.value || 0), 0) / g.target) * 100, 100);
+        }, 0) / uGoals.length) : 0;
+        return { ...u, prog: p };
+      }).sort((a, b) => b.prog - a.prog);
+
+      return (
+        <div className="fade-in pb-20 px-4 py-4">
+          <h2 className="text-xl font-bold text-white mb-4">👥 Communauté</h2>
+          <p className="text-white/70 text-sm mb-4">Consultez la progression des autres membres</p>
+          
+          <div className="space-y-3">
+            {users.length === 0 ? (
+              <div className="glass rounded-xl p-8 text-center card-shadow">
+                <span className="text-4xl">👥</span>
+                <p className="text-theme-secondary mt-2">Aucun autre utilisateur pour le moment</p>
+              </div>
+            ) : users.map(u => (
+              <div key={u.id} className="glass rounded-xl p-4 card-shadow cursor-pointer hover:scale-[1.02] transition-transform" onClick={() => setSel(u)}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-lg">
+                      {u.username.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-theme">{u.username}</p>
+                      <p className="text-xs text-theme-secondary">{u.goals?.length || 0} objectifs</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-2xl font-bold text-theme">{u.prog}%</p>
+                    <span className="text-xs text-orange-500 flex items-center gap-1">{Icons.eye} Voir</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <Modal open={!!sel} onClose={() => setSel(null)} title={`Progression de ${sel?.username}`} lg>
+            {sel && (
+              <div className="space-y-4">
+                {sel.vision && (
+                  <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-3">
+                    <p className="text-xs text-theme-secondary">Vision 2026</p>
+                    <p className="text-sm text-theme">{sel.vision}</p>
+                  </div>
+                )}
+                <div className="text-center py-4">
+                  <div className="relative inline-block">
+                    <ProgressRing progress={sel.prog} size={120} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-theme">{sel.prog}%</span>
+                    </div>
+                  </div>
+                </div>
+                <h4 className="font-semibold text-theme">Objectifs</h4>
+                {sel.goals?.map(g => {
+                  const uTx = sel.transactions || [];
+                  const uEntries = sel.entries || [];
+                  let current = 0;
+                  if (g.isFinancial) {
+                    current = uTx.filter(t => t.goalId === g.id).reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+                  } else {
+                    current = uEntries.filter(e => e.goalId === g.id).reduce((s, e) => s + (e.value || 0), 0);
+                  }
+                  const p = Math.min((current / g.target) * 100, 100);
+                  const d = (sel.domains || defDomains).find(x => x.id === g.domainId);
+                  return (
+                    <div key={g.id} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-medium text-theme">{g.title}</span>
+                        <span className="text-xs text-theme-secondary">{Math.round(p)}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                        <div className="h-1.5 rounded-full" style={{ width: `${p}%`, backgroundColor: d?.color || '#6366f1' }}></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </Modal>
+        </div>
+      );
+    };
+
+    // ========== GOALS ==========
+    const Goals = ({ user, onUpdate }) => {
+      const [addG, setAddG] = useState(false);
+      const [addE, setAddE] = useState(null);
+      const [addTx, setAddTx] = useState(null);
+      const [editG, setEditG] = useState(null);
+      const [selDom, setSelDom] = useState('all');
+      const [txHistory, setTxHistory] = useState(null);
+      
+      const domains = user.domains || defDomains;
+      const goals = user.goals || [];
+      const entries = user.entries || [];
+      const transactions = user.transactions || [];
+      const filtered = selDom === 'all' ? goals : goals.filter(g => g.domainId === selDom);
+
+      const saveGoal = async (g) => {
+        const isNew = !g.id || !goals.find(x => x.id === g.id);
+        const newGoal = isNew ? { ...g, id: genId() } : g;
+        
+        // Auto-categorize with AI
+        if (isNew && !g.domainId) {
+          newGoal.domainId = AIService.categorizeGoal(g.title, g.description);
+        }
+        
+        const newGoals = isNew ? [...goals, newGoal] : goals.map(x => x.id === g.id ? g : x);
+        await onUpdate({ ...user, goals: newGoals });
+        setAddG(false);
+        setEditG(null);
+        playSound('success');
+      };
+
+      const delGoal = async (id) => {
+        if (!confirm('Supprimer cet objectif ?')) return;
+        await onUpdate({
+          ...user,
+          goals: goals.filter(g => g.id !== id),
+          entries: entries.filter(e => e.goalId !== id),
+          transactions: transactions.filter(t => t.goalId !== id)
+        });
+        playSound('alert');
+      };
+
+      const saveEntry = async (gid, v, n) => {
+        const entry = { id: genId(), goalId: gid, value: parseFloat(v), note: n, date: new Date().toISOString().split('T')[0], createdAt: new Date().toISOString() };
+        await onUpdate({ ...user, entries: [...entries, entry] });
+        setAddE(null);
+        playSound('success');
+      };
+
+      const saveTx = async (gid, type, amount, motif) => {
+        const tx = { id: genId(), goalId: gid, type, amount: parseFloat(amount), motif, date: new Date().toISOString().split('T')[0], createdAt: new Date().toISOString() };
+        await onUpdate({ ...user, transactions: [...transactions, tx] });
+        setAddTx(null);
+        playSound('success');
+      };
+
+      return (
+        <div className="fade-in pb-20 px-4 py-4">
+          <h2 className="text-xl font-bold text-white mb-4">🎯 Mes Objectifs</h2>
+          
+          <div className="flex gap-2 overflow-x-auto pb-2 mb-4 scrollbar-hide">
+            <button onClick={() => setSelDom('all')} className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${selDom === 'all' ? 'bg-orange-500 text-white' : 'glass text-theme'}`}>
+              Tous
+            </button>
+            {domains.map(d => (
+              <button key={d.id} onClick={() => setSelDom(d.id)} className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${selDom === d.id ? 'text-white' : 'glass text-theme'}`} style={selDom === d.id ? { backgroundColor: d.color } : {}}>
+                {d.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-3">
+            {filtered.map(g => {
+              const d = domains.find(x => x.id === g.domainId);
+              let current = 0;
+              if (g.isFinancial) {
+                current = transactions.filter(t => t.goalId === g.id).reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+              } else {
+                current = entries.filter(e => e.goalId === g.id).reduce((s, e) => s + (e.value || 0), 0);
+              }
+              const p = Math.min((current / g.target) * 100, 100);
+              
+              return (
+                <div key={g.id} className="glass rounded-xl p-4 card-shadow">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: d?.color }}><DIcon icon={d?.icon} sz="w-5 h-5" /></span>
+                      <h3 className="font-semibold text-theme">{g.title}</h3>
+                      {g.isFinancial && <span className="text-xs bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 px-2 py-0.5 rounded">💰</span>}
+                    </div>
+                    <div className="flex gap-1">
+                      <button onClick={() => setEditG(g)} className="p-1 text-theme-secondary hover:text-theme">{Icons.edit}</button>
+                      <button onClick={() => delGoal(g.id)} className="p-1 text-theme-secondary hover:text-red-500">{Icons.trash}</button>
+                    </div>
+                  </div>
+                  <p className="text-xs text-theme-secondary mb-3">{g.description}</p>
+                  
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-theme">{fmtNum(Math.max(0, current))} / {fmtNum(g.target)} {g.unit}</span>
+                    <span className="text-sm font-medium" style={{ color: d?.color }}>{Math.round(p)}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-3">
+                    <div className="h-2 rounded-full transition-all" style={{ width: `${p}%`, backgroundColor: d?.color }}></div>
+                  </div>
+
+                  {g.isFinancial ? (
+                    <div className="flex gap-2">
+                      <button onClick={() => setAddTx({ goalId: g.id, type: 'add' })} className="flex-1 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg text-sm font-medium flex items-center justify-center gap-1">
+                        {Icons.plus} Ajouter
+                      </button>
+                      <button onClick={() => setAddTx({ goalId: g.id, type: 'remove' })} className="flex-1 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg text-sm font-medium flex items-center justify-center gap-1">
+                        {Icons.minus} Retirer
+                      </button>
+                      <button onClick={() => setTxHistory(g)} className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-theme-secondary rounded-lg text-sm">
+                        📋
+                      </button>
+                    </div>
+                  ) : (
+                    <button onClick={() => setAddE(g.id)} className="w-full py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-sm font-medium flex items-center justify-center gap-1">
+                      {Icons.plus} Ajouter une entrée
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <button onClick={() => setAddG(true)} className="fixed bottom-24 right-4 w-14 h-14 bg-orange-500 hover:bg-orange-600 rounded-full shadow-lg flex items-center justify-center text-white z-40 transition-colors">
+            {Icons.plus}
+          </button>
+
+          {/* Modals */}
+          <Modal open={addG} onClose={() => setAddG(false)} title="Nouvel objectif">
+            <GoalForm domains={domains} onSave={saveGoal} onCancel={() => setAddG(false)} />
+          </Modal>
+
+          <Modal open={!!editG} onClose={() => setEditG(null)} title="Modifier l'objectif">
+            {editG && <GoalForm domains={domains} goal={editG} onSave={saveGoal} onCancel={() => setEditG(null)} />}
+          </Modal>
+
+          <Modal open={!!addE} onClose={() => setAddE(null)} title="Nouvelle entrée">
+            <EntryForm goal={goals.find(g => g.id === addE)} onSave={(v, n) => saveEntry(addE, v, n)} onCancel={() => setAddE(null)} />
+          </Modal>
+
+          <Modal open={!!addTx} onClose={() => setAddTx(null)} title={addTx?.type === 'add' ? '💰 Ajouter des fonds' : '💸 Retirer des fonds'}>
+            {addTx && (
+              <TransactionForm
+                type={addTx.type}
+                goal={goals.find(g => g.id === addTx.goalId)}
+                onSave={(amt, motif) => saveTx(addTx.goalId, addTx.type, amt, motif)}
+                onCancel={() => setAddTx(null)}
+              />
+            )}
+          </Modal>
+
+          <Modal open={!!txHistory} onClose={() => setTxHistory(null)} title={`Historique: ${txHistory?.title}`} lg>
+            {txHistory && (
+              <div className="space-y-2 max-h-80 overflow-y-auto">
+                {transactions.filter(t => t.goalId === txHistory.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(t => (
+                  <div key={t.id} className={`p-3 rounded-lg ${t.type === 'add' ? 'transaction-add bg-green-50 dark:bg-green-900/20' : 'transaction-remove bg-red-50 dark:bg-red-900/20'}`}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <span className={`font-medium ${t.type === 'add' ? 'text-green-600' : 'text-red-600'}`}>
+                          {t.type === 'add' ? '+' : '-'}{fmtNum(t.amount)} {txHistory.unit}
+                        </span>
+                        <p className="text-xs text-theme-secondary mt-1">{t.motif}</p>
+                      </div>
+                      <span className="text-xs text-theme-muted">{fmtDate(t.date)}</span>
+                    </div>
+                  </div>
+                ))}
+                {transactions.filter(t => t.goalId === txHistory.id).length === 0 && (
+                  <p className="text-center text-theme-secondary py-4">Aucune transaction</p>
+                )}
+              </div>
+            )}
+          </Modal>
+        </div>
+      );
+    };
+
+    const GoalForm = ({ domains, goal, onSave, onCancel }) => {
+      const [f, setF] = useState(goal || { domainId: domains[0]?.id, title: '', description: '', target: '', unit: '', frequency: 'weekly', isFinancial: false });
+
+      const handleSubmit = e => {
+        e.preventDefault();
+        if (!f.title || !f.target) return alert('Remplissez les champs obligatoires');
+        onSave({ ...f, target: parseFloat(f.target) });
+      };
+
+      return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Domaine</label>
+            <select value={f.domainId} onChange={e => setF({ ...f, domainId: e.target.value })} className="w-full p-3 border border-theme rounded-lg">
+              {domains.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Titre *</label>
+            <input type="text" value={f.title} onChange={e => setF({ ...f, title: e.target.value })} className="w-full p-3 border border-theme rounded-lg" placeholder="Ex: Épargne mensuelle" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Description</label>
+            <textarea value={f.description} onChange={e => setF({ ...f, description: e.target.value })} className="w-full p-3 border border-theme rounded-lg" rows="2" placeholder="Décrivez votre objectif" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-theme-secondary mb-1">Cible *</label>
+              <input type="number" value={f.target} onChange={e => setF({ ...f, target: e.target.value })} className="w-full p-3 border border-theme rounded-lg" placeholder="100" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-theme-secondary mb-1">Unité</label>
+              <input type="text" value={f.unit} onChange={e => setF({ ...f, unit: e.target.value })} className="w-full p-3 border border-theme rounded-lg" placeholder="XAF, km..." />
+            </div>
+          </div>
+          <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <input type="checkbox" id="isFinancial" checked={f.isFinancial} onChange={e => setF({ ...f, isFinancial: e.target.checked })} className="w-5 h-5" />
+            <label htmlFor="isFinancial" className="text-sm text-theme">
+              💰 Objectif financier (ajout/retrait de fonds)
+            </label>
+          </div>
+          <div className="flex gap-3">
+            <button type="button" onClick={onCancel} className="flex-1 py-3 border border-theme rounded-lg text-theme">Annuler</button>
+            <button type="submit" className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-medium">{goal?.id ? 'Modifier' : 'Créer'}</button>
+          </div>
+        </form>
+      );
+    };
+
+    const EntryForm = ({ goal, onSave, onCancel }) => {
+      const [v, setV] = useState('');
+      const [n, setN] = useState('');
+      return (
+        <form onSubmit={e => { e.preventDefault(); if (v) onSave(v, n); }} className="space-y-4">
+          <p className="text-sm text-theme-secondary">{goal?.title}</p>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Valeur ({goal?.unit || 'unités'})</label>
+            <input type="number" value={v} onChange={e => setV(e.target.value)} className="w-full p-3 border border-theme rounded-lg" autoFocus />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Note (optionnel)</label>
+            <textarea value={n} onChange={e => setN(e.target.value)} className="w-full p-3 border border-theme rounded-lg" rows="2" />
+          </div>
+          <div className="flex gap-3">
+            <button type="button" onClick={onCancel} className="flex-1 py-3 border border-theme rounded-lg text-theme">Annuler</button>
+            <button type="submit" className="flex-1 py-3 bg-orange-500 text-white rounded-lg font-medium">Enregistrer</button>
+          </div>
+        </form>
+      );
+    };
+
+    const TransactionForm = ({ type, goal, onSave, onCancel }) => {
+      const [amount, setAmount] = useState('');
+      const [motif, setMotif] = useState('');
+      
+      return (
+        <form onSubmit={e => { e.preventDefault(); if (amount && motif) onSave(amount, motif); else alert('Remplissez tous les champs'); }} className="space-y-4">
+          <p className="text-sm text-theme-secondary">{goal?.title}</p>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Montant ({goal?.unit})</label>
+            <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className="w-full p-3 border border-theme rounded-lg" placeholder="0" autoFocus />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-theme-secondary mb-1">Motif *</label>
+            <textarea value={motif} onChange={e => setMotif(e.target.value)} className="w-full p-3 border border-theme rounded-lg" rows="2" placeholder={type === 'add' ? 'Ex: Salaire, bonus, vente...' : 'Ex: Achat, urgence, investissement...'} />
+          </div>
+          <div className="flex gap-3">
+            <button type="button" onClick={onCancel} className="flex-1 py-3 border border-theme rounded-lg text-theme">Annuler</button>
+            <button type="submit" className={`flex-1 py-3 text-white rounded-lg font-medium ${type === 'add' ? 'bg-green-500' : 'bg-red-500'}`}>
+              {type === 'add' ? 'Ajouter' : 'Retirer'}
+            </button>
+          </div>
+        </form>
+      );
+    };
+
+    // ========== EVALUATIONS ==========
+    const Evaluations = ({ user, onUpdate }) => {
+      const [activeEval, setActiveEval] = useState(null);
+      const [evalType, setEvalType] = useState('before');
+      const [answers, setAnswers] = useState([]);
+      const [personalNote, setPersonalNote] = useState('');
+      const [period, setPeriod] = useState('monthly');
+      
+      const goals = user.goals || [];
+      const evaluations = user.evaluations || [];
+      
+      const now = new Date();
+      const currentMonth = now.toISOString().slice(0, 7);
+      const isStartOfMonth = now.getDate() <= 7;
+      const isEndOfMonth = now.getDate() >= 24;
+
+      const startEval = (goal, type) => {
+        const questions = AIService.generateQuestions(goal, type);
+        setActiveEval({ goal, questions, type });
+        setEvalType(type);
+        setAnswers(new Array(questions.length).fill(null));
+        setPersonalNote('');
+      };
+
+      const submitEval = async () => {
+        const synthesis = evalType === 'after' ? AIService.generateSynthesis(
+          evaluations.filter(e => e.goalId === activeEval.goal.id && e.type === 'before' && e.period === currentMonth)[0]?.answers || [],
+          answers,
+          activeEval.goal
+        ) : null;
+
+        const reward = synthesis?.isPositive ? AIService.suggestReward(activeEval.goal, synthesis.improvement) : null;
+
+        const evaluation = {
+          id: genId(),
+          goalId: activeEval.goal.id,
+          type: evalType,
+          period: currentMonth,
+          periodType: period,
+          answers,
+          personalNote,
+          synthesis: synthesis?.synthesis,
+          improvement: synthesis?.improvement,
+          isPositive: synthesis?.isPositive,
+          suggestedReward: reward,
+          createdAt: new Date().toISOString()
+        };
+
+        await onUpdate({ ...user, evaluations: [...evaluations, evaluation] });
+        setActiveEval(null);
+        playSound(synthesis?.isPositive ? 'celebration' : 'success');
+      };
+
+      const getEvalStatus = (goal) => {
+        const beforeDone = evaluations.some(e => e.goalId === goal.id && e.type === 'before' && e.period === currentMonth);
+        const afterDone = evaluations.some(e => e.goalId === goal.id && e.type === 'after' && e.period === currentMonth);
+        return { beforeDone, afterDone };
+      };
+
+      return (
+        <div className="fade-in pb-20 px-4 py-4">
+          <h2 className="text-xl font-bold text-white mb-2">📋 Évaluations</h2>
+          <p className="text-white/70 text-sm mb-4">Comparez votre situation AVANT et APRÈS</p>
+
+          {/* Period selector */}
+          <div className="flex gap-2 mb-4 overflow-x-auto scrollbar-hide">
+            {[
+              { k: 'monthly', l: 'Mensuel' },
+              { k: 'quarterly', l: 'Trimestriel' },
+              { k: 'semester', l: 'Semestriel' },
+              { k: 'yearly', l: 'Annuel' }
+            ].map(p => (
+              <button key={p.k} onClick={() => setPeriod(p.k)} className={`px-4 py-2 rounded-full text-sm whitespace-nowrap ${period === p.k ? 'bg-orange-500 text-white' : 'glass text-theme'}`}>
+                {p.l}
+              </button>
+            ))}
+          </div>
+
+          {/* Info card */}
+          <div className="glass rounded-xl p-4 card-shadow mb-4">
+            <div className="flex items-center gap-2 text-theme">
+              <span className="text-2xl">💡</span>
+              <div>
+                <p className="font-medium">Période: {currentMonth}</p>
+                <p className="text-xs text-theme-secondary">
+                  {isStartOfMonth ? '📍 Début du mois - Faites votre évaluation AVANT' : 
+                   isEndOfMonth ? '📍 Fin du mois - Faites votre évaluation APRÈS' : 
+                   'Mi-mois - Continuez vos efforts !'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Goals list */}
+          <div className="space-y-3">
+            {goals.map(g => {
+              const status = getEvalStatus(g);
+              const d = (user.domains || defDomains).find(x => x.id === g.domainId);
+              const lastEval = evaluations.filter(e => e.goalId === g.id && e.type === 'after').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+
+              return (
+                <div key={g.id} className="glass rounded-xl p-4 card-shadow">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span style={{ color: d?.color }}><DIcon icon={d?.icon} sz="w-5 h-5" /></span>
+                    <span className="font-medium text-theme">{g.title}</span>
+                  </div>
+
+                  {lastEval && (
+                    <div className={`p-3 rounded-lg mb-3 ${lastEval.isPositive ? 'bg-green-50 dark:bg-green-900/20' : 'bg-red-50 dark:bg-red-900/20'}`}>
+                      <div className="flex items-center gap-2">
+                        {lastEval.isPositive ? <span className="text-green-500">{Icons.trendUp}</span> : <span className="text-red-500">{Icons.trendDown}</span>}
+                        <span className={`text-sm font-medium ${lastEval.isPositive ? 'text-green-600' : 'text-red-600'}`}>
+                          {lastEval.improvement > 0 ? '+' : ''}{lastEval.improvement}%
+                        </span>
+                      </div>
+                      <p className="text-xs text-theme-secondary mt-1">{lastEval.synthesis}</p>
+                      {lastEval.suggestedReward && (
+                        <p className="text-xs text-orange-500 mt-2">🎁 Récompense suggérée: {lastEval.suggestedReward}</p>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => startEval(g, 'before')}
+                      disabled={status.beforeDone}
+                      className={`flex-1 py-2 rounded-lg text-sm font-medium ${status.beforeDone ? 'bg-gray-100 dark:bg-gray-700 text-theme-muted' : 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'}`}
+                    >
+                      {status.beforeDone ? '✓ AVANT' : '📝 AVANT'}
+                    </button>
+                    <button
+                      onClick={() => startEval(g, 'after')}
+                      disabled={status.afterDone || !status.beforeDone}
+                      className={`flex-1 py-2 rounded-lg text-sm font-medium ${status.afterDone ? 'bg-gray-100 dark:bg-gray-700 text-theme-muted' : !status.beforeDone ? 'bg-gray-100 dark:bg-gray-700 text-theme-muted' : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'}`}
+                    >
+                      {status.afterDone ? '✓ APRÈS' : '📝 APRÈS'}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Evaluation Modal */}
+          <Modal open={!!activeEval} onClose={() => setActiveEval(null)} title={`Évaluation ${evalType === 'before' ? 'AVANT' : 'APRÈS'}: ${activeEval?.goal?.title}`} lg>
+            {activeEval && (
+              <div className="space-y-4">
+                <div className={`p-3 rounded-lg ${evalType === 'before' ? 'bg-blue-50 dark:bg-blue-900/20' : 'bg-green-50 dark:bg-green-900/20'}`}>
+                  <p className="text-sm text-theme">
+                    {evalType === 'before' ? '📍 Évaluez votre situation actuelle au début de la période' : '📍 Évaluez votre progression à la fin de la période'}
+                  </p>
+                </div>
+
+                {activeEval.questions.map((q, i) => (
+                  <div key={i} className="space-y-2">
+                    <label className="block text-sm font-medium text-theme">{q.q}</label>
+                    {q.type === 'scale' && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-theme-secondary">{q.min}</span>
+                        <input
+                          type="range"
+                          min={q.min}
+                          max={q.max}
+                          value={answers[i] || q.min}
+                          onChange={e => { const newA = [...answers]; newA[i] = parseInt(e.target.value); setAnswers(newA); }}
+                          className="flex-1"
+                        />
+                        <span className="text-xs text-theme-secondary">{q.max}</span>
+                        <span className="text-sm font-medium text-orange-500 w-8">{answers[i] || q.min}</span>
+                      </div>
+                    )}
+                    {q.type === 'boolean' && (
+                      <div className="flex gap-4">
+                        <button
+                          type="button"
+                          onClick={() => { const newA = [...answers]; newA[i] = true; setAnswers(newA); }}
+                          className={`px-4 py-2 rounded-lg ${answers[i] === true ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-theme'}`}
+                        >
+                          Oui
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => { const newA = [...answers]; newA[i] = false; setAnswers(newA); }}
+                          className={`px-4 py-2 rounded-lg ${answers[i] === false ? 'bg-red-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-theme'}`}
+                        >
+                          Non
+                        </button>
+                      </div>
+                    )}
+                    {q.type === 'number' && (
+                      <input
+                        type="number"
+                        value={answers[i] || ''}
+                        onChange={e => { const newA = [...answers]; newA[i] = parseFloat(e.target.value); setAnswers(newA); }}
+                        className="w-full p-3 border border-theme rounded-lg"
+                      />
+                    )}
+                  </div>
+                ))}
+
+                <div>
+                  <label className="block text-sm font-medium text-theme mb-1">Votre avis personnel</label>
+                  <textarea
+                    value={personalNote}
+                    onChange={e => setPersonalNote(e.target.value)}
+                    className="w-full p-3 border border-theme rounded-lg"
+                    rows="3"
+                    placeholder="Commentaires, ressenti, observations..."
+                  />
+                </div>
+
+                <div className="flex gap-3">
+                  <button onClick={() => setActiveEval(null)} className="flex-1 py-3 border border-theme rounded-lg text-theme">Annuler</button>
+                  <button onClick={submitEval} className="flex-1 py-3 bg-orange-500 text-white rounded-lg font-medium">Valider</button>
+                </div>
+              </div>
+            )}
+          </Modal>
+        </div>
+      );
+    };
+
+    // ========== ADMIN ==========
+    const Admin = ({ user, allUsers, pending }) => {
+      const [tab, setTab] = useState('pending');
+      const [showPwd, setShowPwd] = useState({});
+      const pendingList = Object.values(pending || {});
+      const usersList = Object.values(allUsers || {}).filter(u => u.approved);
+
+      const copyPwd = (pwd) => {
+        navigator.clipboard.writeText(unhashPwd(pwd));
+        playSound('success');
+      };
+
+      return (
+        <div className="fade-in pb-20 px-4 py-4">
+          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">{Icons.admin} Administration</h2>
+
+          <div className="flex gap-2 mb-4">
+            <button onClick={() => setTab('pending')} className={`flex-1 py-2 rounded-lg text-sm relative ${tab === 'pending' ? 'bg-orange-500 text-white' : 'glass text-theme'}`}>
+              En attente {pendingList.length > 0 && <span className="notif-badge">{pendingList.length}</span>}
+            </button>
+            <button onClick={() => setTab('users')} className={`flex-1 py-2 rounded-lg text-sm ${tab === 'users' ? 'bg-orange-500 text-white' : 'glass text-theme'}`}>
+              Utilisateurs ({usersList.length})
+            </button>
+          </div>
+
+          {tab === 'pending' && (
+            <div className="space-y-3">
+              {pendingList.length === 0 ? (
+                <div className="glass rounded-xl p-8 text-center card-shadow">
+                  <span className="text-4xl">✅</span>
+                  <p className="text-theme-secondary mt-2">Aucune inscription en attente</p>
+                </div>
+              ) : pendingList.map(u => (
+                <div key={u.id} className="glass rounded-xl p-4 card-shadow">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="font-semibold text-theme">{u.username}</p>
+                    <span className="text-xs text-theme-muted">{fmtDate(u.createdAt)}</span>
+                  </div>
+                  {u.vision && <p className="text-sm text-theme-secondary mb-2"><strong>Vision:</strong> {u.vision}</p>}
+                  {u.objectives && <p className="text-sm text-theme-secondary mb-3"><strong>Objectifs:</strong> {u.objectives}</p>}
+                  <div className="flex gap-2">
+                    <button onClick={() => { dataSvc.approve(u.id); playSound('success'); }} className="flex-1 py-2 bg-green-500 text-white rounded-lg text-sm font-medium">
+                      {Icons.check} Approuver
+                    </button>
+                    <button onClick={() => { if (confirm('Rejeter ?')) { dataSvc.reject(u.id); playSound('alert'); } }} className="flex-1 py-2 bg-red-500 text-white rounded-lg text-sm font-medium">
+                      {Icons.x} Rejeter
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {tab === 'users' && (
+            <div className="space-y-3">
+              {usersList.map(u => (
+                <div key={u.id} className="glass rounded-xl p-4 card-shadow">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${u.role === 'admin' ? 'bg-orange-500 text-white' : 'bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400'}`}>
+                        {u.username.charAt(0).toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-theme flex items-center gap-2">
+                          {u.username}
+                          {u.role === 'admin' && <span className="text-xs bg-orange-500 text-white px-2 py-0.5 rounded">Admin</span>}
+                        </p>
+                        <p className="text-xs text-theme-secondary">{u.goals?.length || 0} objectifs</p>
+                      </div>
+                    </div>
+                    {u.id !== user.id && u.role !== 'admin' && (
+                      <button onClick={() => { if (confirm('Supprimer ?')) { dataSvc.delUser(u.id); playSound('alert'); } }} className="p-2 text-red-500">
+                        {Icons.trash}
+                      </button>
+                    )}
+                  </div>
+                  
+                  {/* Password display for admin */}
+                  {u.role !== 'admin' && (
+                    <div className="mt-3 pt-3 border-t border-theme">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-theme-secondary">Mot de passe:</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-mono text-theme">
+                            {showPwd[u.id] ? unhashPwd(u.password) : '••••••••'}
+                          </span>
+                          <button onClick={() => setShowPwd({ ...showPwd, [u.id]: !showPwd[u.id] })} className="p-1 text-theme-secondary">
+                            {showPwd[u.id] ? Icons.eyeOff : Icons.eye}
+                          </button>
+                          <button onClick={() => copyPwd(u.password)} className="p-1 text-theme-secondary" title="Copier">
+                            {Icons.copy}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // ========== SETTINGS ==========
+    const Settings = ({ user, onUpdate, onLogout }) => {
+      const { darkMode, setDarkMode } = useTheme();
+      const [edit, setEdit] = useState(false);
+      const [f, setF] = useState({ username: user.username, email: user.email || '', password: '' });
+      const notif = user.notifications || { enabled: true, sound: true, daily: '08:00', weekly: true, achievements: true };
+
+      const save = async () => {
+        const u = { ...user, username: f.username, email: f.email };
+        if (f.password && f.password.length >= 4) {
+          u.password = hashPwd(f.password);
+        }
+        await onUpdate(u);
+        setEdit(false);
+        setF({ ...f, password: '' });
+        playSound('success');
+      };
+
+      const toggleNotif = async (k) => {
+        await onUpdate({ ...user, notifications: { ...notif, [k]: !notif[k] } });
+      };
+
+      const updateNotifTime = async (time) => {
+        await onUpdate({ ...user, notifications: { ...notif, daily: time } });
+      };
+
+      // Request notification permission
+      const requestNotifPermission = async () => {
+        if ('Notification' in window) {
+          const permission = await Notification.requestPermission();
+          if (permission === 'granted') {
+            new Notification('Plan d\'Action 2026', { body: 'Notifications activées !' });
+            playSound('success');
+          }
+        }
+      };
+
+      return (
+        <div className="fade-in pb-20 px-4 py-4">
+          <h2 className="text-xl font-bold text-white mb-4">⚙️ Paramètres</h2>
+
+          {/* Theme Toggle */}
+          <div className="glass rounded-xl p-4 card-shadow mb-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                {darkMode ? Icons.moon : Icons.sun}
+                <span className="font-medium text-theme">Mode {darkMode ? 'Sombre' : 'Clair'}</span>
+              </div>
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={`toggle-switch ${darkMode ? 'active' : 'bg-gray-300'}`}
+              />
+            </div>
+          </div>
+
+          {/* Profile */}
+          <div className="glass rounded-xl p-4 card-shadow mb-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-semibold text-theme">Mon Profil</h3>
+              <button onClick={() => setEdit(!edit)} className="text-orange-500 text-sm">{edit ? 'Annuler' : 'Modifier'}</button>
+            </div>
+            {edit ? (
+              <div className="space-y-3">
+                <input type="text" value={f.username} onChange={e => setF({ ...f, username: e.target.value })} className="w-full p-3 border border-theme rounded-lg" placeholder="Nom d'utilisateur" />
+                <input type="email" value={f.email} onChange={e => setF({ ...f, email: e.target.value })} className="w-full p-3 border border-theme rounded-lg" placeholder="Email (optionnel)" />
+                <PasswordInput value={f.password} onChange={e => setF({ ...f, password: e.target.value })} placeholder="Nouveau mot de passe (laisser vide pour ne pas changer)" />
+                <button onClick={save} className="w-full py-2 bg-blue-600 text-white rounded-lg">Enregistrer</button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <p className="font-semibold text-theme">{user.username}</p>
+                  <p className="text-xs text-theme-secondary">{user.role === 'admin' ? 'Administrateur' : 'Utilisateur'}</p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Notifications */}
+          <div className="glass rounded-xl p-4 card-shadow mb-4">
+            <h3 className="font-semibold text-theme mb-3 flex items-center gap-2">{Icons.bell} Notifications</h3>
+            
+            <div className="space-y-3">
+              {[
+                { k: 'enabled', l: 'Activer les notifications' },
+                { k: 'sound', l: 'Sons et alertes' },
+                { k: 'weekly', l: 'Résumé hebdomadaire' },
+                { k: 'achievements', l: 'Célébrations et succès' }
+              ].map(n => (
+                <div key={n.k} className="flex items-center justify-between">
+                  <span className="text-sm text-theme">{n.l}</span>
+                  <button onClick={() => toggleNotif(n.k)} className={`toggle-switch ${notif[n.k] ? 'active' : 'bg-gray-300'}`} />
+                </div>
+              ))}
+              
+              <div className="flex items-center justify-between pt-2 border-t border-theme">
+                <span className="text-sm text-theme">Rappel quotidien</span>
+                <input
+                  type="time"
+                  value={notif.daily || '08:00'}
+                  onChange={e => updateNotifTime(e.target.value)}
+                  className="p-2 border border-theme rounded-lg text-sm"
+                />
+              </div>
+            </div>
+
+            <button
+              onClick={requestNotifPermission}
+              className="w-full mt-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-sm"
+            >
+              🔔 Activer les notifications système
+            </button>
+          </div>
+
+          {/* Export */}
+          <div className="glass rounded-xl p-4 card-shadow mb-4">
+            <h3 className="font-semibold text-theme mb-3">{Icons.download} Export</h3>
+            <button
+              onClick={() => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.setFontSize(20);
+                doc.text('Plan d\'Action 2026 - ' + user.username, 20, 20);
+                doc.setFontSize(12);
+                doc.text('Exporté le ' + fmtDate(new Date()), 20, 30);
+                
+                const goals = user.goals || [];
+                const entries = user.entries || [];
+                const transactions = user.transactions || [];
+                
+                const data = goals.map(g => {
+                  let current = 0;
+                  if (g.isFinancial) {
+                    current = transactions.filter(t => t.goalId === g.id).reduce((s, t) => s + (t.type === 'add' ? t.amount : -t.amount), 0);
+                  } else {
+                    current = entries.filter(e => e.goalId === g.id).reduce((s, e) => s + (e.value || 0), 0);
+                  }
+                  const p = Math.round(Math.min((current / g.target) * 100, 100));
+                  return [g.title, `${fmtNum(current)} / ${fmtNum(g.target)} ${g.unit}`, `${p}%`];
+                });
+
+                doc.autoTable({
+                  startY: 40,
+                  head: [['Objectif', 'Progression', '%']],
+                  body: data,
+                  theme: 'striped'
+                });
+
+                doc.save(`plan-action-2026-${user.username}.pdf`);
+                playSound('success');
+              }}
+              className="w-full py-3 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg font-medium"
+            >
+              📥 Télécharger mon rapport PDF
+            </button>
+          </div>
+
+          {/* Logout */}
+          <button onClick={onLogout} className="w-full glass rounded-xl p-4 card-shadow flex items-center justify-center gap-2 text-red-500 font-medium">
+            {Icons.logout} Se déconnecter
+          </button>
+
+          {/* App info */}
+          <div className="glass rounded-xl p-4 card-shadow mt-4 text-center">
+            <p className="text-theme font-semibold">Plan d'Action 2026</p>
+            <p className="text-xs text-theme-secondary italic">« Réalisation et Constance »</p>
+            <p className="text-xs text-theme-muted mt-2">Version 3.0</p>
+          </div>
+        </div>
+      );
+    };
+
+    // ========== MAIN APP ==========
+    const App = () => {
+      const [user, setUser] = useState(null);
+      const [allUsers, setAllUsers] = useState({});
+      const [pending, setPending] = useState({});
+      const [tab, setTab] = useState('home');
+      const [toast, setToast] = useState(null);
+      const [loading, setLoading] = useState(true);
+      const [darkMode, setDarkMode] = useState(() => {
+        const saved = localStorage.getItem('pa2026_theme');
+        return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      });
+
+      useEffect(() => {
+        document.documentElement.classList.toggle('dark', darkMode);
+        localStorage.setItem('pa2026_theme', darkMode ? 'dark' : 'light');
+      }, [darkMode]);
+
+      useEffect(() => {
+        const init = () => {
+          setAllUsers(dataSvc.data.users);
+          setPending(dataSvc.data.pending);
+          const sess = localStorage.getItem('pa2026_sess');
+          if (sess && dataSvc.data.users[sess]?.approved) {
+            setUser(dataSvc.data.users[sess]);
+          }
+          setLoading(false);
+
+          dataSvc.subscribe(d => {
+            setAllUsers(d.users || {});
+            setPending(d.pending || {});
+            const sess = localStorage.getItem('pa2026_sess');
+            if (sess && d.users[sess]) {
+              setUser(d.users[sess]);
+            }
+          });
+        };
+        init();
+
+        // Schedule daily notification check
+        const checkNotifications = () => {
+          if (user?.notifications?.enabled) {
+            const now = new Date();
+            const [h, m] = (user.notifications.daily || '08:00').split(':');
+            if (now.getHours() === parseInt(h) && now.getMinutes() === parseInt(m)) {
+              if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('Plan d\'Action 2026', {
+                  body: 'N\'oubliez pas de mettre à jour vos objectifs !',
+                  icon: '🎯'
+                });
+                playSound('alert');
+              }
+            }
+          }
+        };
+        const interval = setInterval(checkNotifications, 60000);
+        return () => clearInterval(interval);
+      }, [user]);
+
+      const login = u => {
+        setUser(u);
+        localStorage.setItem('pa2026_sess', u.id);
+        setTab('home');
+      };
+
+      const logout = () => {
+        setUser(null);
+        localStorage.removeItem('pa2026_sess');
+      };
+
+      const update = async u => {
+        await dataSvc.saveUser(u);
+        setUser(u);
+        setToast({ msg: 'Sauvegardé !', type: 'success' });
+      };
+
+      if (loading) {
+        return (
+          <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="text-center text-white">
+                <div className="text-4xl mb-4 pulse">🎯</div>
+                <p>Chargement...</p>
+              </div>
+            </div>
+          </ThemeContext.Provider>
+        );
+      }
+
+      if (!user) {
+        return (
+          <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+            <LoginPage onLogin={login} />
+          </ThemeContext.Provider>
+        );
+      }
+
+      const isAdmin = user.role === 'admin';
+      const pendingCount = Object.keys(pending).length;
+      
+      const tabs = [
+        { id: 'home', icon: Icons.home, label: 'Accueil' },
+        { id: 'community', icon: Icons.users, label: 'Équipe' },
+        { id: 'goals', icon: Icons.target, label: 'Objectifs' },
+        { id: 'eval', icon: Icons.eval, label: 'Éval' },
+        ...(isAdmin ? [{ id: 'admin', icon: Icons.admin, label: 'Admin', badge: pendingCount }] : []),
+        { id: 'settings', icon: Icons.settings, label: 'Config' },
+      ];
+
+      return (
+        <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+          <div className="min-h-screen pb-20">
+            {toast && <Toast {...toast} onClose={() => setToast(null)} />}
+            
+            {tab === 'home' && <Dashboard user={user} allUsers={allUsers} onUpdate={update} />}
+            {tab === 'community' && <Community user={user} allUsers={allUsers} />}
+            {tab === 'goals' && <Goals user={user} onUpdate={update} />}
+            {tab === 'eval' && <Evaluations user={user} onUpdate={update} />}
+            {tab === 'admin' && isAdmin && <Admin user={user} allUsers={allUsers} pending={pending} />}
+            {tab === 'settings' && <Settings user={user} onUpdate={update} onLogout={logout} />}
+
+            <nav className="fixed bottom-0 left-0 right-0 glass border-t border-theme px-1 py-2">
+              <div className="flex justify-around items-center max-w-lg mx-auto">
+                {tabs.map(t => (
+                  <button
+                    key={t.id}
+                    onClick={() => { setTab(t.id); dataSvc.forceRefresh(); }}
+                    className={`flex flex-col items-center p-2 rounded-xl min-w-[48px] relative transition-colors ${tab === t.id ? 'text-orange-500' : 'text-theme-secondary'}`}
+                  >
+                    {t.icon}
+                    <span className="text-[10px] mt-1">{t.label}</span>
+                    {t.badge > 0 && <span className="notif-badge">{t.badge}</span>}
+                  </button>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </ThemeContext.Provider>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
