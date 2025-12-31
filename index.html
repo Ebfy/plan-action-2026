@@ -83,6 +83,7 @@
                 <a href="#" class="nav-item" data-page="calendrier"><span class="nav-icon">📅</span><span class="nav-text">Calendrier</span></a>
                 <a href="#" class="nav-item" data-page="alarmes"><span class="nav-icon">⏰</span><span class="nav-text">Alarmes</span></a>
                 <a href="#" class="nav-item" data-page="statistiques"><span class="nav-icon">📈</span><span class="nav-text">Statistiques</span></a>
+                <a href="#" class="nav-item" data-page="evaluations"><span class="nav-icon">📋</span><span class="nav-text">Évaluations</span></a>
                 <hr class="nav-divider">
                 <a href="#" class="nav-item" data-page="equipe"><span class="nav-icon">👥</span><span class="nav-text">Vue Équipe</span></a>
                 <a href="#" class="nav-item" data-page="admin" id="nav-admin" style="display: none;"><span class="nav-icon">⚙️</span><span class="nav-text">Administration</span></a>
@@ -252,6 +253,26 @@
                 <div id="team-grid" class="team-grid"></div>
             </section>
 
+            <!-- Page Évaluations -->
+            <section id="page-evaluations" class="page-content">
+                <div class="page-header">
+                    <h2>📋 Évaluations AVANT/APRÈS</h2>
+                </div>
+                <div class="evaluations-intro">
+                    <p>Les évaluations permettent de mesurer votre progression de manière objective. 
+                    Remplissez une évaluation <strong>AVANT</strong> au début de chaque période, 
+                    puis une évaluation <strong>APRÈS</strong> à la fin pour comparer.</p>
+                </div>
+                <div class="evaluations-tabs">
+                    <button class="tab-btn active" data-tab="pending">📝 À faire</button>
+                    <button class="tab-btn" data-tab="history">📊 Historique</button>
+                    <button class="tab-btn" data-tab="compare">📈 Comparaison</button>
+                </div>
+                <div id="evaluations-content" class="evaluations-content">
+                    <!-- Contenu chargé dynamiquement -->
+                </div>
+            </section>
+
             <!-- Page Admin -->
             <section id="page-admin" class="page-content">
                 <div class="page-header"><h2>⚙️ Administration</h2></div>
@@ -287,6 +308,7 @@
     <div id="toast-container" class="toast-container"></div>
 
     <script src="js/data.js"></script>
+    <script src="js/evaluations.js"></script>
     <script src="js/app.js"></script>
     <script>
         // Enregistrement du Service Worker pour PWA
@@ -300,3 +322,4 @@
     </script>
 </body>
 </html>
+
