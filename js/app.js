@@ -10,6 +10,7 @@ class PlanAction2026 {
         this.charts = {};
         this.currentPage = 'dashboard';
         this.currentMonth = new Date();
+        this.evaluationsManager = null; // Initialisé après chargement
         
         this.init();
     }
@@ -100,6 +101,9 @@ class PlanAction2026 {
         document.getElementById('login-page').style.display = 'none';
         document.getElementById('app').style.display = 'grid';
         
+        // Initialiser le gestionnaire d'évaluations
+        this.evaluationsManager = new EvaluationsManager(this);
+        
         this.updateUserInfo();
         this.loadDashboard();
         this.setupCharts();
@@ -108,6 +112,9 @@ class PlanAction2026 {
         if (this.currentUser.role === 'admin') {
             document.getElementById('nav-admin').style.display = 'flex';
         }
+        
+        // Vérifier les évaluations en attente
+        this.checkPendingEvaluations();
     }
 
     updateUserInfo() {
@@ -140,6 +147,7 @@ class PlanAction2026 {
             case 'calendrier': this.loadCalendrier(); break;
             case 'alarmes': this.loadAlarmes(); break;
             case 'statistiques': this.loadStatistiques(); break;
+            case 'evaluations': this.loadEvaluations(); break;
             case 'equipe': this.loadEquipe(); break;
             case 'admin': this.loadAdmin(); break;
         }
@@ -867,6 +875,272 @@ class PlanAction2026 {
         `).join('');
     }
 
+    // ============================================
+    // ÉVALUATIONS
+    // ============================================
+    
+    checkPendingEvaluations() {
+        const objectifs = this.getUserObjectifs();
+        let pendingCount = 0;
+        
+        objectifs.forEach(obj => {
+            if (this.evaluationsManager.isEvaluationDue(obj, 'avant')) pendingCount++;
+            if (this.evaluationsManager.isEvaluationDue(obj, 'apres')) pendingCount++;
+        });
+        
+        // Afficher une notification si des évaluations sont en attente
+        if (pendingCount > 0) {
+            setTimeout(() => {
+                this.showToast(`📋 ${pendingCount} évaluation(s) en attente`, 'warning');
+            }, 2000);
+        }
+    }
+    
+    loadEvaluations(tab = 'pending') {
+        const container = document.getElementById('evaluations-content');
+        
+        // Gérer les onglets
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.tab === tab);
+        });
+        
+        switch(tab) {
+            case 'pending':
+                this.renderPendingEvaluations(container);
+                break;
+            case 'history':
+                this.renderEvaluationsHistory(container);
+                break;
+            case 'compare':
+                this.renderEvaluationsComparison(container);
+                break;
+        }
+    }
+    
+    renderPendingEvaluations(container) {
+        const objectifs = this.getUserObjectifs();
+        let html = '';
+        
+        objectifs.forEach(obj => {
+            const config = this.evaluationsManager.getConfigForObjectif(obj);
+            if (!config) return;
+            
+            const needsAvant = this.evaluationsManager.isEvaluationDue(obj, 'avant');
+            const needsApres = this.evaluationsManager.isEvaluationDue(obj, 'apres');
+            
+            if (needsAvant || needsApres) {
+                html += `
+                    <div class="evaluation-card">
+                        <div class="evaluation-card-header">
+                            <h4><span>${obj.icon}</span> ${obj.titre}</h4>
+                            <div class="evaluation-actions">
+                                ${needsAvant ? `<button class="btn btn-primary btn-sm" onclick="app.openEvaluation('${obj.id}', 'avant')">📋 AVANT</button>` : ''}
+                                ${needsApres ? `<button class="btn btn-secondary btn-sm" onclick="app.openEvaluation('${obj.id}', 'apres')">📊 APRÈS</button>` : ''}
+                            </div>
+                        </div>
+                        <p>${config.titre} - Périodicité: ${config.periodicite.join(', ')}</p>
+                    </div>
+                `;
+            }
+        });
+        
+        if (!html) {
+            html = '<div class="empty-state">✅ Toutes les évaluations sont à jour !</div>';
+        }
+        
+        container.innerHTML = html;
+    }
+    
+    renderEvaluationsHistory(container) {
+        const evaluations = Object.values(this.data.evaluations || {})
+            .filter(e => e.userId === this.currentUser.id)
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        if (evaluations.length === 0) {
+            container.innerHTML = '<div class="empty-state">Aucune évaluation enregistrée</div>';
+            return;
+        }
+        
+        let html = '<div class="evaluations-history">';
+        
+        evaluations.forEach(ev => {
+            const objectif = this.data.objectifs[ev.objectifId];
+            if (!objectif) return;
+            
+            const date = new Date(ev.date).toLocaleDateString('fr-FR', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+            
+            html += `
+                <div class="evaluation-card">
+                    <div class="evaluation-card-header">
+                        <h4><span>${objectif.icon}</span> ${objectif.titre}</h4>
+                        <span class="evaluation-badge ${ev.type}">${ev.type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}</span>
+                    </div>
+                    <p><strong>Date:</strong> ${date}</p>
+                    <button class="btn btn-sm btn-secondary" onclick="app.viewEvaluation('${ev.id}')">👁️ Voir détails</button>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+    
+    renderEvaluationsComparison(container) {
+        const objectifs = this.getUserObjectifs();
+        let html = '<div class="comparison-list">';
+        
+        objectifs.forEach(obj => {
+            const report = this.evaluationsManager.generateProgressReport(obj.id);
+            
+            if (report) {
+                html += `
+                    <div class="evaluation-card">
+                        <div class="evaluation-card-header">
+                            <h4><span>${obj.icon}</span> ${obj.titre}</h4>
+                            <span class="evaluation-badge ${report.summary.overallTrend}">
+                                ${report.summary.overallTrend === 'positive' ? '📈 Progression' : 
+                                  report.summary.overallTrend === 'negative' ? '📉 Régression' : '➡️ Stable'}
+                            </span>
+                        </div>
+                        <div class="comparison-grid">
+                            ${Object.entries(report.comparison).map(([key, data]) => `
+                                <div class="comparison-item">
+                                    <span class="comparison-label">${data.label}</span>
+                                    <div class="comparison-avant">
+                                        <span>${data.avant}</span>
+                                        <small>Avant</small>
+                                    </div>
+                                    <div class="comparison-apres">
+                                        <span>${data.apres}</span>
+                                        <small>Après</small>
+                                    </div>
+                                    <div class="comparison-diff ${data.difference > 0 ? 'positive' : data.difference < 0 ? 'negative' : 'neutral'}">
+                                        ${data.difference > 0 ? '+' : ''}${data.difference}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="comparison-summary">
+                            <div class="summary-item positive">
+                                <div class="value">${report.summary.improvements}</div>
+                                <div class="label">Améliorations</div>
+                            </div>
+                            <div class="summary-item negative">
+                                <div class="value">${report.summary.declines}</div>
+                                <div class="label">Régressions</div>
+                            </div>
+                            <div class="summary-item neutral">
+                                <div class="value">${report.summary.stable}</div>
+                                <div class="label">Stables</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+        
+        if (html === '<div class="comparison-list">') {
+            html += '<div class="empty-state">Pas assez de données pour comparer. Remplissez d\'abord des évaluations AVANT et APRÈS.</div>';
+        }
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+    
+    openEvaluation(objectifId, type) {
+        const objectif = this.data.objectifs[objectifId];
+        if (!objectif) return;
+        
+        const formHtml = this.evaluationsManager.renderEvaluationForm(objectif, type);
+        
+        const content = `
+            ${formHtml}
+            <div class="evaluation-form-actions" style="margin-top: 20px; text-align: right;">
+                <button class="btn btn-primary" onclick="app.submitEvaluation('${objectifId}', '${type}')">
+                    💾 Enregistrer l'évaluation
+                </button>
+            </div>
+        `;
+        
+        this.showModal(`Évaluation ${type === 'avant' ? 'AVANT' : 'APRÈS'}`, content, null);
+        
+        // Masquer les boutons par défaut du modal
+        document.getElementById('modal-footer').style.display = 'none';
+    }
+    
+    submitEvaluation(objectifId, type) {
+        const formContainer = document.querySelector('.evaluation-form');
+        if (!formContainer) return;
+        
+        const responses = this.evaluationsManager.collectResponses(formContainer);
+        
+        // Vérifier que des réponses ont été données
+        const hasResponses = Object.values(responses).some(v => v !== '' && v !== undefined);
+        if (!hasResponses) {
+            this.showToast('Veuillez remplir au moins quelques champs', 'error');
+            return;
+        }
+        
+        // Sauvegarder
+        const evalId = this.evaluationsManager.saveEvaluation(objectifId, type, responses);
+        
+        // Fermer le modal et réafficher les boutons
+        document.getElementById('modal-footer').style.display = 'flex';
+        this.hideModal();
+        
+        this.showToast(`✅ Évaluation ${type.toUpperCase()} enregistrée !`, 'success');
+        
+        // Rafraîchir la page des évaluations si on y est
+        if (this.currentPage === 'evaluations') {
+            this.loadEvaluations('pending');
+        }
+    }
+    
+    viewEvaluation(evalId) {
+        const evaluation = this.data.evaluations[evalId];
+        if (!evaluation) return;
+        
+        const objectif = this.data.objectifs[evaluation.objectifId];
+        const config = this.evaluationsManager.getConfigForObjectif(objectif);
+        
+        const date = new Date(evaluation.date).toLocaleDateString('fr-FR', {
+            day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+        
+        let content = `
+            <div class="evaluation-view">
+                <div class="evaluation-objectif-info">
+                    <span class="icon">${objectif.icon}</span>
+                    <span>${objectif.titre}</span>
+                </div>
+                <p><strong>Date:</strong> ${date}</p>
+                <p><strong>Type:</strong> ${evaluation.type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}</p>
+                <hr>
+                <h4>Réponses:</h4>
+                <div class="evaluation-responses">
+        `;
+        
+        const questions = evaluation.type === 'avant' ? config.questionsAvant : config.questionsApres;
+        questions.forEach(q => {
+            const value = evaluation.responses[q.id];
+            if (value !== undefined && value !== '') {
+                content += `
+                    <div class="response-item" style="margin-bottom: 10px; padding: 10px; background: var(--bg-primary); border-radius: 8px;">
+                        <strong>${q.emoji || ''} ${q.label}:</strong><br>
+                        <span>${value}</span>
+                    </div>
+                `;
+            }
+        });
+        
+        content += '</div></div>';
+        
+        this.showModal('Détails de l\'évaluation', content, null);
+        document.getElementById('modal-confirm').style.display = 'none';
+    }
+
     // Modal
     showModal(title, content, onConfirm) {
         document.getElementById('modal-title').textContent = title;
@@ -1045,6 +1319,13 @@ class PlanAction2026 {
 
         // Admin
         document.getElementById('btn-reset-app')?.addEventListener('click', () => this.resetApp());
+
+        // Onglets évaluations
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.loadEvaluations(btn.dataset.tab);
+            });
+        });
 
         // Alarmes
         document.getElementById('btn-add-alarme').addEventListener('click', () => {
