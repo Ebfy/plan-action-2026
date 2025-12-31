@@ -883,15 +883,19 @@ class PlanAction2026 {
         const objectifs = this.getUserObjectifs();
         let pendingCount = 0;
         
-        objectifs.forEach(obj => {
-            if (this.evaluationsManager.isEvaluationDue(obj, 'avant')) pendingCount++;
-            if (this.evaluationsManager.isEvaluationDue(obj, 'apres')) pendingCount++;
-        });
+        // Utiliser le nouveau système avec getPendingEvaluations
+        const pending = this.evaluationsManager.getPendingEvaluations();
+        pendingCount = pending.length;
         
         // Afficher une notification si des évaluations sont en attente
         if (pendingCount > 0) {
+            const hasVictoires = pending.some(p => p.periode === 'trimestrielle');
             setTimeout(() => {
-                this.showToast(`📋 ${pendingCount} évaluation(s) en attente`, 'warning');
+                if (hasVictoires) {
+                    this.showToast(`🏆 Bilan trimestriel en attente ! Célébrez vos victoires`, 'warning');
+                } else {
+                    this.showToast(`📋 ${pendingCount} évaluation(s) en attente`, 'warning');
+                }
             }, 2000);
         }
     }
@@ -914,40 +918,123 @@ class PlanAction2026 {
             case 'compare':
                 this.renderEvaluationsComparison(container);
                 break;
+            case 'victoires':
+                this.renderVictoiresWall(container);
+                break;
         }
     }
     
     renderPendingEvaluations(container) {
-        const objectifs = this.getUserObjectifs();
-        let html = '';
+        const pending = this.evaluationsManager.getPendingEvaluations();
         
-        objectifs.forEach(obj => {
-            const config = this.evaluationsManager.getConfigForObjectif(obj);
-            if (!config) return;
-            
-            const needsAvant = this.evaluationsManager.isEvaluationDue(obj, 'avant');
-            const needsApres = this.evaluationsManager.isEvaluationDue(obj, 'apres');
-            
-            if (needsAvant || needsApres) {
-                html += `
-                    <div class="evaluation-card">
-                        <div class="evaluation-card-header">
-                            <h4><span>${obj.icon}</span> ${obj.titre}</h4>
-                            <div class="evaluation-actions">
-                                ${needsAvant ? `<button class="btn btn-primary btn-sm" onclick="app.openEvaluation('${obj.id}', 'avant')">📋 AVANT</button>` : ''}
-                                ${needsApres ? `<button class="btn btn-secondary btn-sm" onclick="app.openEvaluation('${obj.id}', 'apres')">📊 APRÈS</button>` : ''}
-                            </div>
-                        </div>
-                        <p>${config.titre} - Périodicité: ${config.periodicite.join(', ')}</p>
-                    </div>
-                `;
-            }
-        });
-        
-        if (!html) {
-            html = '<div class="empty-state">✅ Toutes les évaluations sont à jour !</div>';
+        if (pending.length === 0) {
+            container.innerHTML = '<div class="empty-state">✅ Toutes les évaluations sont à jour !</div>';
+            return;
         }
         
+        // Grouper par urgence
+        const haute = pending.filter(p => p.urgence === 'haute');
+        const moyenne = pending.filter(p => p.urgence === 'moyenne');
+        
+        let html = '';
+        
+        // Alerte pour les évaluations trimestrielles (victoires)
+        const trimestrielles = pending.filter(p => p.periode === 'trimestrielle');
+        if (trimestrielles.length > 0) {
+            html += `
+                <div class="victoires-section" style="margin-bottom: 25px;">
+                    <h4>🏆 Bilan Trimestriel - Célébrez vos Victoires !</h4>
+                    <p class="victoires-intro">C'est le moment de faire le point sur le trimestre écoulé et d'identifier vos 3 moments de victoire.</p>
+                </div>
+            `;
+        }
+        
+        // Évaluations urgentes
+        if (haute.length > 0) {
+            html += `
+                <div class="evaluations-alert">
+                    <h4>⚠️ Évaluations urgentes (${haute.length})</h4>
+                    ${haute.map(ev => this.renderPendingEvalItem(ev)).join('')}
+                </div>
+            `;
+        }
+        
+        // Autres évaluations
+        if (moyenne.length > 0) {
+            html += `
+                <div class="evaluations-list">
+                    <h4 style="margin-bottom: 15px;">📋 Évaluations à compléter</h4>
+                    ${moyenne.map(ev => this.renderPendingEvalItem(ev)).join('')}
+                </div>
+            `;
+        }
+        
+        container.innerHTML = html;
+    }
+    
+    renderPendingEvalItem(evalInfo) {
+        const { objectif, type, periode, label } = evalInfo;
+        const periodeLabel = PERIODES_EVALUATION[periode]?.nom || 'Mensuelle';
+        const periodeIcon = PERIODES_EVALUATION[periode]?.icon || '📅';
+        
+        return `
+            <div class="pending-evaluation-item ${periode === 'trimestrielle' ? 'victoire-item' : ''}">
+                <div class="pending-evaluation-info">
+                    <span class="title">${objectif.icon || '🎯'} ${objectif.titre}</span>
+                    <span class="label">${periodeIcon} ${label}</span>
+                </div>
+                <button class="btn-eval ${type}" onclick="app.openEvaluation('${objectif.id}', '${type}', '${periode}')">
+                    ${type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}
+                </button>
+            </div>
+        `;
+    }
+    
+    renderVictoiresWall(container) {
+        const victoires = this.evaluationsManager.getVictoiresReport();
+        
+        if (victoires.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <span style="font-size: 3rem;">🏆</span>
+                    <h3>Vos Moments de Victoire</h3>
+                    <p>Aucune victoire enregistrée pour l'instant.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        Les victoires sont collectées lors des bilans trimestriels.
+                    </p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '<div class="victoires-dashboard">';
+        html += '<h3>🏆 Mur des Victoires</h3>';
+        
+        // Grouper par trimestre
+        const parTrimestre = {};
+        victoires.forEach(v => {
+            const key = `T${v.trimestre} ${new Date(v.date).getFullYear()}`;
+            if (!parTrimestre[key]) parTrimestre[key] = [];
+            parTrimestre[key].push(v);
+        });
+        
+        Object.entries(parTrimestre).forEach(([trimestre, items]) => {
+            html += `<h4 style="margin: 20px 0 15px; color: var(--text-secondary);">📅 ${trimestre}</h4>`;
+            items.forEach(v => {
+                html += `
+                    <div class="victoire-card">
+                        <span class="victoire-rank">${v.rang}</span>
+                        <div class="victoire-text">${this.escapeHtml(v.texte)}</div>
+                        <div class="victoire-meta">
+                            <span class="objectif-badge">${v.objectifIcon} ${v.objectifTitre}</span>
+                            <span class="periode-badge">${v.periode}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+        
+        html += '</div>';
         container.innerHTML = html;
     }
     
@@ -971,13 +1058,19 @@ class PlanAction2026 {
                 day: 'numeric', month: 'long', year: 'numeric'
             });
             
+            const periodeInfo = PERIODES_EVALUATION[ev.periode] || PERIODES_EVALUATION.mensuelle;
+            const hasVictoires = ev.responses?.victoire_1 || ev.responses?.victoire_semestrielle_1;
+            
             html += `
-                <div class="evaluation-card">
+                <div class="evaluation-card ${hasVictoires ? 'has-victoires' : ''}">
                     <div class="evaluation-card-header">
                         <h4><span>${objectif.icon}</span> ${objectif.titre}</h4>
-                        <span class="evaluation-badge ${ev.type}">${ev.type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}</span>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <span class="evaluation-badge ${ev.type}">${ev.type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}</span>
+                            ${hasVictoires ? '<span class="victoire-badge">🏆</span>' : ''}
+                        </div>
                     </div>
-                    <p><strong>Date:</strong> ${date}</p>
+                    <p><strong>Date:</strong> ${date} | <strong>Période:</strong> ${periodeInfo.icon} ${periodeInfo.nom}</p>
                     <button class="btn btn-sm btn-secondary" onclick="app.viewEvaluation('${ev.id}')">👁️ Voir détails</button>
                 </div>
             `;
@@ -992,50 +1085,59 @@ class PlanAction2026 {
         let html = '<div class="comparison-list">';
         
         objectifs.forEach(obj => {
-            const report = this.evaluationsManager.generateProgressReport(obj.id);
+            const progression = this.evaluationsManager.calculateProgression(obj.id);
+            const synthesis = this.evaluationsManager.generateProgressSummary(obj.id);
             
-            if (report) {
+            if (progression) {
                 html += `
                     <div class="evaluation-card">
                         <div class="evaluation-card-header">
                             <h4><span>${obj.icon}</span> ${obj.titre}</h4>
-                            <span class="evaluation-badge ${report.summary.overallTrend}">
-                                ${report.summary.overallTrend === 'positive' ? '📈 Progression' : 
-                                  report.summary.overallTrend === 'negative' ? '📉 Régression' : '➡️ Stable'}
+                            <span class="evaluation-badge ${progression.summary.overallTrend}">
+                                ${progression.summary.overallTrend === 'positive' ? '📈 Progression' : 
+                                  progression.summary.overallTrend === 'negative' ? '📉 Régression' : '➡️ Stable'}
                             </span>
                         </div>
-                        <div class="comparison-grid">
-                            ${Object.entries(report.comparison).map(([key, data]) => `
-                                <div class="comparison-item">
-                                    <span class="comparison-label">${data.label}</span>
-                                    <div class="comparison-avant">
-                                        <span>${data.avant}</span>
-                                        <small>Avant</small>
+                        
+                        <div class="progression-grid">
+                            ${Object.entries(progression.comparison).slice(0, 6).map(([key, data]) => `
+                                <div class="progression-item">
+                                    <span class="field-name">${key.replace(/_/g, ' ')}</span>
+                                    <div class="values">
+                                        <span class="value avant">${data.avant}</span>
+                                        <span class="arrow">→</span>
+                                        <span class="value apres">${data.apres}</span>
                                     </div>
-                                    <div class="comparison-apres">
-                                        <span>${data.apres}</span>
-                                        <small>Après</small>
-                                    </div>
-                                    <div class="comparison-diff ${data.difference > 0 ? 'positive' : data.difference < 0 ? 'negative' : 'neutral'}">
+                                    <div class="diff ${data.difference > 0 ? 'positive' : data.difference < 0 ? 'negative' : ''}">
                                         ${data.difference > 0 ? '+' : ''}${data.difference}
                                     </div>
                                 </div>
                             `).join('')}
                         </div>
+                        
                         <div class="comparison-summary">
                             <div class="summary-item positive">
-                                <div class="value">${report.summary.improvements}</div>
+                                <div class="value">${progression.summary.improvements}</div>
                                 <div class="label">Améliorations</div>
                             </div>
                             <div class="summary-item negative">
-                                <div class="value">${report.summary.declines}</div>
+                                <div class="value">${progression.summary.declines}</div>
                                 <div class="label">Régressions</div>
                             </div>
                             <div class="summary-item neutral">
-                                <div class="value">${report.summary.stable}</div>
+                                <div class="value">${progression.summary.stable}</div>
                                 <div class="label">Stables</div>
                             </div>
                         </div>
+                        
+                        ${synthesis ? `
+                            <div class="ai-synthesis">
+                                <h4>🤖 Synthèse IA</h4>
+                                <div class="synthesis-content">
+                                    <span>${synthesis.icon}</span> ${synthesis.message}
+                                </div>
+                            </div>
+                        ` : ''}
                     </div>
                 `;
             }
@@ -1049,28 +1151,29 @@ class PlanAction2026 {
         container.innerHTML = html;
     }
     
-    openEvaluation(objectifId, type) {
+    openEvaluation(objectifId, type, periode = 'mensuelle') {
         const objectif = this.data.objectifs[objectifId];
         if (!objectif) return;
         
-        const formHtml = this.evaluationsManager.renderEvaluationForm(objectif, type);
+        const formHtml = this.evaluationsManager.renderEvaluationForm(objectif, type, periode);
+        const periodeInfo = PERIODES_EVALUATION[periode] || PERIODES_EVALUATION.mensuelle;
         
         const content = `
             ${formHtml}
             <div class="evaluation-form-actions" style="margin-top: 20px; text-align: right;">
-                <button class="btn btn-primary" onclick="app.submitEvaluation('${objectifId}', '${type}')">
+                <button class="btn btn-primary" onclick="app.submitEvaluation('${objectifId}', '${type}', '${periode}')">
                     💾 Enregistrer l'évaluation
                 </button>
             </div>
         `;
         
-        this.showModal(`Évaluation ${type === 'avant' ? 'AVANT' : 'APRÈS'}`, content, null);
+        this.showModal(`${periodeInfo.icon} ${periodeInfo.nom} - ${type === 'avant' ? 'AVANT' : 'APRÈS'}`, content, null);
         
         // Masquer les boutons par défaut du modal
         document.getElementById('modal-footer').style.display = 'none';
     }
     
-    submitEvaluation(objectifId, type) {
+    submitEvaluation(objectifId, type, periode = 'mensuelle') {
         const formContainer = document.querySelector('.evaluation-form');
         if (!formContainer) return;
         
@@ -1083,14 +1186,27 @@ class PlanAction2026 {
             return;
         }
         
+        // Vérifier les victoires pour les évaluations trimestrielles
+        if (periode === 'trimestrielle' && type === 'apres') {
+            if (!responses.victoire_1 || !responses.victoire_2 || !responses.victoire_3) {
+                this.showToast('🏆 Veuillez renseigner vos 3 moments de victoire !', 'warning');
+                return;
+            }
+        }
+        
         // Sauvegarder
-        const evalId = this.evaluationsManager.saveEvaluation(objectifId, type, responses);
+        const evalId = this.evaluationsManager.saveEvaluation(objectifId, type, periode, responses);
         
         // Fermer le modal et réafficher les boutons
         document.getElementById('modal-footer').style.display = 'flex';
         this.hideModal();
         
-        this.showToast(`✅ Évaluation ${type.toUpperCase()} enregistrée !`, 'success');
+        // Message de succès adapté
+        if (periode === 'trimestrielle' && type === 'apres') {
+            this.showToast(`🏆 Bilan trimestriel enregistré ! Bravo pour vos victoires !`, 'success');
+        } else {
+            this.showToast(`✅ Évaluation ${type.toUpperCase()} enregistrée !`, 'success');
+        }
         
         // Rafraîchir la page des évaluations si on y est
         if (this.currentPage === 'evaluations') {
@@ -1103,36 +1219,80 @@ class PlanAction2026 {
         if (!evaluation) return;
         
         const objectif = this.data.objectifs[evaluation.objectifId];
-        const config = this.evaluationsManager.getConfigForObjectif(objectif);
+        if (!objectif) return;
+        
+        const periodeInfo = PERIODES_EVALUATION[evaluation.periode] || PERIODES_EVALUATION.mensuelle;
         
         const date = new Date(evaluation.date).toLocaleDateString('fr-FR', {
             day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
         });
         
+        // Extraire les victoires si présentes
+        const victoires = [];
+        if (evaluation.responses.victoire_1) victoires.push(evaluation.responses.victoire_1);
+        if (evaluation.responses.victoire_2) victoires.push(evaluation.responses.victoire_2);
+        if (evaluation.responses.victoire_3) victoires.push(evaluation.responses.victoire_3);
+        if (evaluation.responses.victoire_semestrielle_1) victoires.push(evaluation.responses.victoire_semestrielle_1);
+        if (evaluation.responses.victoire_semestrielle_2) victoires.push(evaluation.responses.victoire_semestrielle_2);
+        if (evaluation.responses.victoire_semestrielle_3) victoires.push(evaluation.responses.victoire_semestrielle_3);
+        if (evaluation.responses.victoire_annee_1) victoires.push(evaluation.responses.victoire_annee_1);
+        if (evaluation.responses.victoire_annee_2) victoires.push(evaluation.responses.victoire_annee_2);
+        if (evaluation.responses.victoire_annee_3) victoires.push(evaluation.responses.victoire_annee_3);
+        
         let content = `
             <div class="evaluation-view">
                 <div class="evaluation-objectif-info">
-                    <span class="icon">${objectif.icon}</span>
+                    <span class="icon">${objectif.icon || '🎯'}</span>
                     <span>${objectif.titre}</span>
                 </div>
                 <p><strong>Date:</strong> ${date}</p>
                 <p><strong>Type:</strong> ${evaluation.type === 'avant' ? '📋 AVANT' : '📊 APRÈS'}</p>
+                <p><strong>Période:</strong> ${periodeInfo.icon} ${periodeInfo.nom}</p>
                 <hr>
-                <h4>Réponses:</h4>
-                <div class="evaluation-responses">
         `;
         
-        const questions = evaluation.type === 'avant' ? config.questionsAvant : config.questionsApres;
-        questions.forEach(q => {
-            const value = evaluation.responses[q.id];
-            if (value !== undefined && value !== '') {
-                content += `
-                    <div class="response-item" style="margin-bottom: 10px; padding: 10px; background: var(--bg-primary); border-radius: 8px;">
-                        <strong>${q.emoji || ''} ${q.label}:</strong><br>
-                        <span>${value}</span>
-                    </div>
-                `;
+        // Afficher les victoires en premier si présentes
+        if (victoires.length > 0) {
+            content += `
+                <div class="victoires-section" style="margin: 15px 0;">
+                    <h4>🏆 Moments de Victoire</h4>
+                    ${victoires.map((v, i) => `
+                        <div class="victoire-card" style="margin-bottom: 10px;">
+                            <span class="victoire-rank">${i + 1}</span>
+                            <div class="victoire-text">${this.escapeHtml(v)}</div>
+                        </div>
+                    `).join('')}
+                </div>
+                <hr>
+            `;
+        }
+        
+        content += '<h4>Réponses:</h4><div class="evaluation-responses">';
+        
+        // Afficher toutes les réponses sauf les victoires
+        const skipFields = ['victoire_1', 'victoire_2', 'victoire_3', 
+                           'victoire_semestrielle_1', 'victoire_semestrielle_2', 'victoire_semestrielle_3',
+                           'victoire_annee_1', 'victoire_annee_2', 'victoire_annee_3'];
+        
+        Object.entries(evaluation.responses).forEach(([key, value]) => {
+            if (skipFields.includes(key)) return;
+            if (value === undefined || value === '' || value === null) return;
+            
+            const label = key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            let displayValue = value;
+            
+            if (typeof value === 'boolean') {
+                displayValue = value ? 'Oui ✅' : 'Non ❌';
+            } else if (typeof value === 'number') {
+                displayValue = value;
             }
+            
+            content += `
+                <div class="response-item" style="margin-bottom: 10px; padding: 10px; background: var(--bg-primary); border-radius: 8px;">
+                    <strong>${label}:</strong><br>
+                    <span>${displayValue}</span>
+                </div>
+            `;
         });
         
         content += '</div></div>';
