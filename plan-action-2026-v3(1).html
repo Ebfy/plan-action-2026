@@ -1,0 +1,3297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="description" content="Plan d'Action 2026 - Réalisation et Constance">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Plan d'Action 2026 - Réalisation et Constance</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --primary-dark: #4f46e5;
+      --primary-glow: rgba(99, 102, 241, 0.3);
+      --spiritual: #8b5cf6;
+      --spiritual-light: #a78bfa;
+      --intellectual: #3b82f6;
+      --intellectual-light: #60a5fa;
+      --financial: #10b981;
+      --financial-light: #34d399;
+      --physical: #ef4444;
+      --physical-light: #f87171;
+      --custom: #f97316;
+      --custom-light: #fb923c;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --text: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: #334155;
+      --border-light: #1e293b;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: var(--transition-slow);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ==========================================
+       LOGIN SCREEN
+    ========================================== */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-screen::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+      animation: pulse 15s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(180deg); }
+    }
+
+    .login-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: var(--shadow-xl), 0 0 60px rgba(99, 102, 241, 0.2);
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .login-logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-logo-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .login-logo h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .login-logo .motto {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .login-logo .year {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 48px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-glow);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 28px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    .btn-sm {
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+
+    .btn-icon {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: var(--radius-sm);
+    }
+
+    .login-error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      margin-bottom: 24px;
+      display: none;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .login-error.show {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .demo-section {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .demo-section h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .demo-accounts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .demo-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .demo-btn:hover {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.05);
+      transform: translateX(4px);
+    }
+
+    .demo-btn .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .demo-btn.admin .avatar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+
+    .demo-btn.user .avatar {
+      background: linear-gradient(135deg, var(--spiritual) 0%, var(--spiritual-light) 100%);
+    }
+
+    .demo-btn .info {
+      flex: 1;
+    }
+
+    .demo-btn .name {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .demo-btn .role {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .demo-btn .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .demo-btn.admin .badge {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .demo-btn.user .badge {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--spiritual);
+    }
+
+    /* ==========================================
+       APP LAYOUT
+    ========================================== */
+    .app {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .app.active {
+      display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: var(--transition-slow);
+    }
+
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .sidebar-logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .sidebar-title h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .sidebar-title p {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .nav-section {
+      margin-bottom: 24px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 12px;
+      font-weight: 600;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .nav-item .icon {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .nav-item.spiritual:not(.active):hover { background: rgba(139, 92, 246, 0.1); }
+    .nav-item.intellectual:not(.active):hover { background: rgba(59, 130, 246, 0.1); }
+    .nav-item.financial:not(.active):hover { background: rgba(16, 185, 129, 0.1); }
+    .nav-item.physical:not(.active):hover { background: rgba(239, 68, 68, 0.1); }
+    .nav-item.custom:not(.active):hover { background: rgba(249, 115, 22, 0.1); }
+
+    .nav-item .count {
+      margin-left: auto;
+      background: var(--bg);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-item.active .count {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .sidebar-footer {
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+
+    .user-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .user-avatar.admin {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    }
+
+    .user-avatar.user {
+      background: linear-gradient(135deg, var(--spiritual) 0%, var(--spiritual-light) 100%);
+    }
+
+    .user-info {
+      flex: 1;
+    }
+
+    .user-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .user-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .user-role .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-left: 4px;
+    }
+
+    .user-role .badge.admin {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--primary);
+    }
+
+    .settings-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .settings-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      font-family: inherit;
+    }
+
+    .settings-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+      border-color: var(--primary);
+    }
+
+    .settings-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .logout-btn {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .logout-btn:hover {
+      color: var(--danger);
+      border-color: var(--danger);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      min-height: 100vh;
+      transition: var(--transition-slow);
+    }
+
+    .main-header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+    }
+
+    .page-info h1 {
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .main-body {
+      padding: 32px;
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      z-index: 50;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-btn {
+      width: 44px;
+      height: 44px;
+      border: none;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .mobile-logo .icon {
+      font-size: 24px;
+    }
+
+    /* ==========================================
+       CARDS & COMPONENTS
+    ========================================== */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-12 { grid-column: span 12; }
+
+    /* Progress Ring */
+    .progress-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    .progress-ring-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 24px;
+    }
+
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 12;
+    }
+
+    .progress-ring-fill {
+      fill: none;
+      stroke: url(#progressGradient);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 502;
+      stroke-dashoffset: 502;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .progress-percent {
+      font-size: 56px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .progress-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .streak-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+
+    .streak-item {
+      text-align: center;
+    }
+
+    .streak-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .streak-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Domain Progress */
+    .domain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .domain-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .domain-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow);
+    }
+
+    .domain-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .domain-icon.spiritual { background: linear-gradient(135deg, var(--spiritual), var(--spiritual-light)); }
+    .domain-icon.intellectual { background: linear-gradient(135deg, var(--intellectual), var(--intellectual-light)); }
+    .domain-icon.financial { background: linear-gradient(135deg, var(--financial), var(--financial-light)); }
+    .domain-icon.physical { background: linear-gradient(135deg, var(--physical), var(--physical-light)); }
+
+    .domain-info {
+      flex: 1;
+    }
+
+    .domain-name {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .domain-percent {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .domain-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .domain-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .domain-bar-fill.spiritual { background: linear-gradient(90deg, var(--spiritual), var(--spiritual-light)); }
+    .domain-bar-fill.intellectual { background: linear-gradient(90deg, var(--intellectual), var(--intellectual-light)); }
+    .domain-bar-fill.financial { background: linear-gradient(90deg, var(--financial), var(--financial-light)); }
+    .domain-bar-fill.physical { background: linear-gradient(90deg, var(--physical), var(--physical-light)); }
+
+    /* Today Actions */
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .action-item:hover {
+      background: var(--bg-hover);
+    }
+
+    .action-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+      font-size: 14px;
+      color: white;
+    }
+
+    .action-item.completed .action-checkbox {
+      background: var(--success);
+      border-color: var(--success);
+    }
+
+    .action-text {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .action-item.completed .action-text {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    .action-tag {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .action-tag.spiritual { background: rgba(139, 92, 246, 0.15); color: var(--spiritual); }
+    .action-tag.intellectual { background: rgba(59, 130, 246, 0.15); color: var(--intellectual); }
+    .action-tag.financial { background: rgba(16, 185, 129, 0.15); color: var(--financial); }
+    .action-tag.physical { background: rgba(239, 68, 68, 0.15); color: var(--physical); }
+
+    /* AI Card */
+    .ai-card {
+      background: linear-gradient(135deg, var(--primary) 0%, #4338ca 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    }
+
+    .ai-card .card-header {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .ai-card .card-title {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .ai-message {
+      font-size: 15px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .ai-signature {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.7;
+      font-style: italic;
+    }
+
+    /* Goals Grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .goal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .goal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--goal-color, var(--primary));
+    }
+
+    .goal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .goal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .goal-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .goal-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .goal-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .goal-progress {
+      margin-bottom: 16px;
+    }
+
+    .goal-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .goal-progress-current {
+      font-weight: 600;
+    }
+
+    .goal-progress-target {
+      color: var(--text-secondary);
+    }
+
+    .goal-progress-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .goal-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+      background: var(--goal-color, var(--primary));
+    }
+
+    .goal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .goal-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .goal-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .goal-action-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: var(--bg);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .goal-action-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Module Header */
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .module-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      flex-shrink: 0;
+    }
+
+    .module-icon.spiritual { background: linear-gradient(135deg, var(--spiritual), var(--spiritual-light)); }
+    .module-icon.intellectual { background: linear-gradient(135deg, var(--intellectual), var(--intellectual-light)); }
+    .module-icon.financial { background: linear-gradient(135deg, var(--financial), var(--financial-light)); }
+    .module-icon.physical { background: linear-gradient(135deg, var(--physical), var(--physical-light)); }
+    .module-icon.custom { background: linear-gradient(135deg, var(--custom), var(--custom-light)); }
+
+    .module-info {
+      flex: 1;
+    }
+
+    .module-info h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .module-info p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .module-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .module-stat {
+      text-align: center;
+    }
+
+    .module-stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .module-stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-state .icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .empty-state h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 560px;
+      max-height: 85vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.9) translateY(20px);
+      transition: var(--transition);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .modal-close:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* Form Elements */
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .form-section {
+      margin-bottom: 24px;
+    }
+
+    .form-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    textarea.form-input {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    select.form-input {
+      cursor: pointer;
+    }
+
+    /* Stat Cards for Goals */
+    .goal-detail-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .goal-detail-stat {
+      background: var(--bg);
+      padding: 20px;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .goal-detail-stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .goal-detail-stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Alarms List */
+    .alarms-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .alarm-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg);
+      border-radius: var(--radius);
+    }
+
+    .alarm-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .alarm-info {
+      flex: 1;
+    }
+
+    .alarm-time {
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .alarm-message {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .alarm-days {
+      display: flex;
+      gap: 4px;
+    }
+
+    .alarm-day {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .alarm-day.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.success { border-left: 4px solid var(--success); }
+    .toast.error { border-left: 4px solid var(--danger); }
+    .toast.warning { border-left: 4px solid var(--warning); }
+
+    .toast-icon {
+      font-size: 24px;
+    }
+
+    .toast-message {
+      font-weight: 500;
+    }
+
+    /* Page Transitions */
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+
+      .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .main-header {
+        display: none;
+      }
+
+      .mobile-header {
+        display: flex;
+      }
+
+      .main-body {
+        padding: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .col-4, .col-6, .col-8, .col-12 {
+        grid-column: span 1;
+      }
+
+      .module-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .module-stats {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-logo-icon">🎯</div>
+        <h1>Plan d'Action</h1>
+        <div class="year">2026</div>
+        <p class="motto">Réalisation et Constance</p>
+      </div>
+
+      <div class="login-error" id="loginError">
+        <span>⚠️</span>
+        <span>Identifiants incorrects. Veuillez réessayer.</span>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Nom d'utilisateur</label>
+          <input type="text" class="form-input" id="username" placeholder="Entrez votre identifiant" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label>Mot de passe</label>
+          <input type="password" class="form-input" id="password" placeholder="Entrez votre mot de passe" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <span>🔐</span>
+          <span>Se connecter</span>
+        </button>
+      </form>
+
+      <div class="demo-section">
+        <h3>Comptes disponibles</h3>
+        <div class="demo-accounts">
+          <button type="button" class="demo-btn admin" onclick="quickLogin('fabien')">
+            <div class="avatar">👨‍💼</div>
+            <div class="info">
+              <div class="name">Fabien</div>
+              <div class="role">6 objectifs configurés</div>
+            </div>
+            <span class="badge">Admin</span>
+          </button>
+          <button type="button" class="demo-btn user" onclick="quickLogin('sandrine')">
+            <div class="avatar">👩‍💼</div>
+            <div class="info">
+              <div class="name">Sandrine</div>
+              <div class="role">10 objectifs configurés</div>
+            </div>
+            <span class="badge">User</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="app">
+    <!-- Sidebar Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <div class="mobile-logo">
+        <span class="icon">🎯</span>
+        <span>PA 2026</span>
+      </div>
+      <button class="menu-btn" onclick="toggleTheme()">🌙</button>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="sidebar-logo">🎯</div>
+          <div class="sidebar-title">
+            <h2>Plan d'Action</h2>
+            <p>2026</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Principal</div>
+          <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+            <span class="icon">📊</span>
+            <span>Tableau de bord</span>
+          </div>
+          <div class="nav-item" data-page="vision" onclick="showPage('vision')">
+            <span class="icon">🌟</span>
+            <span>Ma Vision 2026</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Modules</div>
+          <div class="nav-item spiritual" data-page="spiritual" onclick="showPage('spiritual')">
+            <span class="icon">🙏</span>
+            <span>Spirituel</span>
+            <span class="count" id="spiritualCount">0</span>
+          </div>
+          <div class="nav-item intellectual" data-page="intellectual" onclick="showPage('intellectual')">
+            <span class="icon">🧠</span>
+            <span>Intellectuel</span>
+            <span class="count" id="intellectualCount">0</span>
+          </div>
+          <div class="nav-item financial" data-page="financial" onclick="showPage('financial')">
+            <span class="icon">💰</span>
+            <span>Financier</span>
+            <span class="count" id="financialCount">0</span>
+          </div>
+          <div class="nav-item physical" data-page="physical" onclick="showPage('physical')">
+            <span class="icon">💪</span>
+            <span>Physique</span>
+            <span class="count" id="physicalCount">0</span>
+          </div>
+          <div class="nav-item custom" data-page="custom" onclick="showPage('custom')">
+            <span class="icon">✨</span>
+            <span>Personnalisé</span>
+            <span class="count" id="customCount">0</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Outils</div>
+          <div class="nav-item" data-page="evaluations" onclick="showPage('evaluations')">
+            <span class="icon">📋</span>
+            <span>Évaluations</span>
+          </div>
+          <div class="nav-item" data-page="rewards" onclick="showPage('rewards')">
+            <span class="icon">🏆</span>
+            <span>Récompenses</span>
+          </div>
+          <div class="nav-item" data-page="settings" onclick="showPage('settings')" id="navSettings" style="display:none;">
+            <span class="icon">⚙️</span>
+            <span>Administration</span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar" id="userAvatar">👤</div>
+          <div class="user-info">
+            <div class="user-name" id="userName">Utilisateur</div>
+            <div class="user-role">
+              <span id="userRole">Rôle</span>
+              <span class="badge" id="userBadge"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row">
+          <button class="settings-btn" id="themeLight" onclick="setTheme('light')">☀️ Clair</button>
+          <button class="settings-btn" id="themeDark" onclick="setTheme('dark')">🌙 Sombre</button>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">
+          <span>🚪</span>
+          <span>Déconnexion</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="main-header">
+        <div class="page-info">
+          <h1 id="pageTitle">📊 Tableau de bord</h1>
+          <p id="pageDate"></p>
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-secondary btn-sm" onclick="refreshData()">🔄 Actualiser</button>
+          <button class="btn btn-primary btn-sm" onclick="exportData()">📥 Exporter</button>
+        </div>
+      </header>
+
+      <div class="main-body">
+        <!-- Dashboard Page -->
+        <div class="page active" id="page-dashboard">
+          <div class="dashboard-grid">
+            <!-- Progress Ring -->
+            <div class="card col-4">
+              <div class="progress-card">
+                <div class="progress-ring-container">
+                  <svg class="progress-ring" width="200" height="200" viewBox="0 0 200 200">
+                    <defs>
+                      <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#6366f1"/>
+                        <stop offset="100%" style="stop-color:#818cf8"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="progress-ring-bg" cx="100" cy="100" r="80"/>
+                    <circle class="progress-ring-fill" id="progressRing" cx="100" cy="100" r="80"/>
+                  </svg>
+                  <div class="progress-value">
+                    <div class="progress-percent" id="progressPercent">0%</div>
+                    <div class="progress-label">Progression 2026</div>
+                  </div>
+                </div>
+                <div class="streak-row">
+                  <div class="streak-item">
+                    <div class="streak-value" id="currentStreak">0</div>
+                    <div class="streak-label">🔥 Série actuelle</div>
+                  </div>
+                  <div class="streak-item">
+                    <div class="streak-value" id="bestStreak">0</div>
+                    <div class="streak-label">🏆 Record</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Domains Progress -->
+            <div class="card col-8">
+              <div class="card-header">
+                <div class="card-title">📈 Progression par domaine</div>
+              </div>
+              <div class="card-body">
+                <div class="domain-list" id="domainList"></div>
+              </div>
+            </div>
+
+            <!-- Today Actions -->
+            <div class="card col-6">
+              <div class="card-header">
+                <div class="card-title">✅ Actions du jour</div>
+                <span id="actionsCount" style="font-size: 13px; color: var(--text-secondary);">0/0</span>
+              </div>
+              <div class="card-body">
+                <div class="action-list" id="actionList"></div>
+              </div>
+            </div>
+
+            <!-- AI Card -->
+            <div class="card col-6 ai-card">
+              <div class="card-header">
+                <div class="card-title">🤖 Conseil du jour</div>
+              </div>
+              <div class="card-body">
+                <div class="ai-message" id="aiMessage"></div>
+                <div class="ai-signature">— Votre assistant IA</div>
+              </div>
+            </div>
+
+            <!-- Goals Overview -->
+            <div class="card col-12">
+              <div class="card-header">
+                <div class="card-title">🎯 Objectifs prioritaires</div>
+                <button class="btn btn-secondary btn-sm" onclick="showAllGoals()">Voir tout</button>
+              </div>
+              <div class="card-body">
+                <div class="goals-grid" id="goalsOverview"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vision Page -->
+        <div class="page" id="page-vision">
+          <div class="module-header" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));">
+            <div class="module-icon" style="background: linear-gradient(135deg, var(--primary), var(--primary-light));">🌟</div>
+            <div class="module-info">
+              <h1>Ma Vision 2026</h1>
+              <p id="visionText" style="font-size: 18px; line-height: 1.8; margin-top: 16px; font-style: italic;"></p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📝 Modifier ma vision</div>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Ma vision pour 2026</label>
+                <textarea class="form-input" id="visionInput" placeholder="Décrivez votre vision pour 2026..."></textarea>
+              </div>
+              <button class="btn btn-primary" onclick="saveVision()">💾 Enregistrer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spiritual Page -->
+        <div class="page" id="page-spiritual">
+          <div class="module-header">
+            <div class="module-icon spiritual">🙏</div>
+            <div class="module-info">
+              <h1>Module Spirituel</h1>
+              <p>Lecture biblique, prière, méditation, étude et croissance spirituelle quotidienne</p>
+            </div>
+            <div class="module-stats">
+              <div class="module-stat">
+                <div class="module-stat-value" id="spiritualProgress">0%</div>
+                <div class="module-stat-label">Progression</div>
+              </div>
+              <div class="module-stat">
+                <div class="module-stat-value" id="spiritualGoalsCount">0</div>
+                <div class="module-stat-label">Objectifs</div>
+              </div>
+            </div>
+          </div>
+          <div class="goals-grid" id="spiritualGoals"></div>
+        </div>
+
+        <!-- Intellectual Page -->
+        <div class="page" id="page-intellectual">
+          <div class="module-header">
+            <div class="module-icon intellectual">🧠</div>
+            <div class="module-info">
+              <h1>Module Intellectuel</h1>
+              <p>Langues étrangères, musique, lecture, compétences techniques et culture générale</p>
+            </div>
+            <div class="module-stats">
+              <div class="module-stat">
+                <div class="module-stat-value" id="intellectualProgress">0%</div>
+                <div class="module-stat-label">Progression</div>
+              </div>
+              <div class="module-stat">
+                <div class="module-stat-value" id="intellectualGoalsCount">0</div>
+                <div class="module-stat-label">Objectifs</div>
+              </div>
+            </div>
+          </div>
+          <div class="goals-grid" id="intellectualGoals"></div>
+        </div>
+
+        <!-- Financial Page -->
+        <div class="page" id="page-financial">
+          <div class="module-header">
+            <div class="module-icon financial">💰</div>
+            <div class="module-info">
+              <h1>Module Financier</h1>
+              <p>Épargne, budget, investissements, projets business et gestion financière</p>
+            </div>
+            <div class="module-stats">
+              <div class="module-stat">
+                <div class="module-stat-value" id="financialProgress">0%</div>
+                <div class="module-stat-label">Progression</div>
+              </div>
+              <div class="module-stat">
+                <div class="module-stat-value" id="financialGoalsCount">0</div>
+                <div class="module-stat-label">Objectifs</div>
+              </div>
+            </div>
+          </div>
+          <div class="goals-grid" id="financialGoals"></div>
+        </div>
+
+        <!-- Physical Page -->
+        <div class="page" id="page-physical">
+          <div class="module-header">
+            <div class="module-icon physical">💪</div>
+            <div class="module-info">
+              <h1>Module Physique</h1>
+              <p>Sport, nutrition, sommeil, santé et habitudes de vie saines</p>
+            </div>
+            <div class="module-stats">
+              <div class="module-stat">
+                <div class="module-stat-value" id="physicalProgress">0%</div>
+                <div class="module-stat-label">Progression</div>
+              </div>
+              <div class="module-stat">
+                <div class="module-stat-value" id="physicalGoalsCount">0</div>
+                <div class="module-stat-label">Objectifs</div>
+              </div>
+            </div>
+          </div>
+          <div class="goals-grid" id="physicalGoals"></div>
+        </div>
+
+        <!-- Custom Page -->
+        <div class="page" id="page-custom">
+          <div class="module-header">
+            <div class="module-icon custom">✨</div>
+            <div class="module-info">
+              <h1>Module Personnalisé</h1>
+              <p>Créez vos propres objectifs sur-mesure adaptés à vos besoins spécifiques</p>
+            </div>
+            <div class="module-stats">
+              <div class="module-stat">
+                <div class="module-stat-value" id="customProgress">0%</div>
+                <div class="module-stat-label">Progression</div>
+              </div>
+              <div class="module-stat">
+                <div class="module-stat-value" id="customGoalsCount">0</div>
+                <div class="module-stat-label">Objectifs</div>
+              </div>
+            </div>
+          </div>
+          <div id="customGoalsContainer">
+            <button class="btn btn-primary" onclick="openCreateGoalModal()" style="margin-bottom: 24px;">
+              <span>➕</span>
+              <span>Créer un objectif personnalisé</span>
+            </button>
+            <div class="goals-grid" id="customGoals"></div>
+          </div>
+        </div>
+
+        <!-- Evaluations Page -->
+        <div class="page" id="page-evaluations">
+          <div class="module-header" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(59, 130, 246, 0.1));">
+            <div class="module-icon" style="background: linear-gradient(135deg, var(--primary), var(--intellectual));">📋</div>
+            <div class="module-info">
+              <h1>Évaluations</h1>
+              <p>Bilans mensuels, trimestriels, semestriels et synthèses IA personnalisées</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="empty-state">
+                <div class="icon">📋</div>
+                <h3>Évaluations à venir</h3>
+                <p>Vos évaluations seront disponibles à la fin de chaque période. Continuez à progresser vers vos objectifs !</p>
+                <button class="btn btn-secondary" onclick="showPage('dashboard')">Retour au tableau de bord</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rewards Page -->
+        <div class="page" id="page-rewards">
+          <div class="module-header" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(249, 115, 22, 0.1));">
+            <div class="module-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">🏆</div>
+            <div class="module-info">
+              <h1>Récompenses</h1>
+              <p>Célébrez vos accomplissements et débloquez des récompenses trimestrielles</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="empty-state">
+                <div class="icon">🏆</div>
+                <h3>Récompenses à débloquer</h3>
+                <p>Atteignez vos objectifs pour débloquer des récompenses. Chaque trimestre, vous pourrez célébrer vos accomplissements !</p>
+                <button class="btn btn-secondary" onclick="showPage('dashboard')">Voir mes objectifs</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Settings Page -->
+        <div class="page" id="page-settings">
+          <div class="module-header" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));">
+            <div class="module-icon" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">⚙️</div>
+            <div class="module-info">
+              <h1>Administration</h1>
+              <p>Gérez les utilisateurs et les paramètres de l'application</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">👥 Utilisateurs enregistrés</div>
+            </div>
+            <div class="card-body" id="usersListAdmin"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Goal Detail Modal -->
+  <div class="modal-overlay" id="goalModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalGoalTitle">
+          <span id="modalGoalIcon">🎯</span>
+          <span id="modalGoalName">Objectif</span>
+        </h2>
+        <button class="modal-close" onclick="closeGoalModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalGoalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeGoalModal()">Fermer</button>
+        <button class="btn btn-primary" onclick="addGoalEntry()">➕ Ajouter une entrée</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Entry Modal -->
+  <div class="modal-overlay" id="entryModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>➕ Nouvelle entrée</h2>
+        <button class="modal-close" onclick="closeEntryModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-input" id="entryDate">
+        </div>
+        <div class="form-group">
+          <label>Valeur / Progression</label>
+          <input type="number" class="form-input" id="entryValue" placeholder="Ex: 5">
+        </div>
+        <div class="form-group">
+          <label>Notes (optionnel)</label>
+          <textarea class="form-input" id="entryNotes" placeholder="Vos observations..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeEntryModal()">Annuler</button>
+        <button class="btn btn-primary" onclick="saveEntry()">💾 Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✓</span>
+    <span class="toast-message" id="toastMessage">Message</span>
+  </div>
+
+  <script>
+    // ==========================================
+    // DATABASE - Users & Goals
+    // ==========================================
+    const DB = {
+      users: {
+        fabien: {
+          id: 'fabien',
+          username: 'fabien',
+          password: 'Fabien2026!',
+          email: 'fabien@example.com',
+          firstName: 'Fabien',
+          avatar: '👨‍💼',
+          role: 'admin',
+          currency: 'XAF',
+          vision: "En 2026, je veux grandir spirituellement en lisant toute la Bible en anglais (NIV), développer mes compétences linguistiques pour atteindre le niveau B1 en anglais et HSK4 en chinois, atteindre mes objectifs financiers avec une épargne de 2 millions XAF et développer AQUACAM pour générer 5 millions XAF de chiffre d'affaires, tout en maintenant une bonne santé physique grâce aux journées de détox régulières.",
+          streak: { current: 0, best: 0 },
+          goals: [
+            // SPIRITUEL
+            {
+              id: 'fabien_bible_at',
+              domain: 'spiritual',
+              type: 'bible_reading',
+              icon: '📖',
+              title: 'Bible Ancien Testament NIV',
+              subtitle: '929 chapitres en anglais',
+              description: 'Lire l\'Ancien Testament complet en version NIV (anglais) en 12 mois avec audio, traduction parallèle et journal.',
+              color: 'var(--spiritual)',
+              target: 929,
+              current: 0,
+              unit: 'chapitres',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', min: 3 },
+              milestones: [
+                { target: 232, deadline: '2026-03-31', label: 'T1' },
+                { target: 464, deadline: '2026-06-30', label: 'T2' },
+                { target: 696, deadline: '2026-09-30', label: 'T3' },
+                { target: 929, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '06:30', days: ['L', 'Ma', 'Me', 'J', 'V'], message: '📖 Lecture Bible NIV' }
+              ],
+              entries: [],
+              evaluations: { monthly: true, quarterly: true, semiannual: true }
+            },
+            // INTELLECTUEL - Anglais
+            {
+              id: 'fabien_english',
+              domain: 'intellectual',
+              type: 'language',
+              icon: '🇬🇧',
+              title: 'Anglais niveau B1',
+              subtitle: 'De A1 à B1 avec Duolingo & Praktika',
+              description: 'Atteindre le niveau B1 en anglais en 12 mois avec Duolingo (5x/sem) et Praktika (3x/sem) pour la conversation.',
+              color: 'var(--intellectual)',
+              target: 100,
+              current: 0,
+              unit: '% niveau B1',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', min: 5 },
+              milestones: [
+                { target: 25, deadline: '2026-03-31', label: 'A2' },
+                { target: 50, deadline: '2026-06-30', label: 'A2+' },
+                { target: 75, deadline: '2026-09-30', label: 'B1-' },
+                { target: 100, deadline: '2026-12-31', label: 'B1' }
+              ],
+              alarms: [
+                { time: '07:30', days: ['L', 'Ma', 'Me', 'J', 'V'], message: '🇬🇧 15 min d\'anglais !' },
+                { time: '12:30', days: ['L', 'Ma', 'Me', 'J', 'V'], message: '🗣️ Praktika conversation' }
+              ],
+              entries: [],
+              evaluations: { monthly: true, quarterly: true, semiannual: true }
+            },
+            // INTELLECTUEL - Chinois
+            {
+              id: 'fabien_chinese',
+              domain: 'intellectual',
+              type: 'language_chinese',
+              icon: '🇨🇳',
+              title: 'Chinois niveau HSK4',
+              subtitle: 'De 0 à HSK4 avec HelloChinese',
+              description: 'Atteindre le niveau HSK4 (1200 mots, 1064 caractères) en partant de zéro avec HelloChinese.',
+              color: 'var(--intellectual)',
+              target: 100,
+              current: 0,
+              unit: '% HSK4',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', min: 5 },
+              milestones: [
+                { target: 25, deadline: '2026-03-31', label: 'HSK1' },
+                { target: 50, deadline: '2026-06-30', label: 'HSK2' },
+                { target: 75, deadline: '2026-09-30', label: 'HSK3' },
+                { target: 100, deadline: '2026-12-31', label: 'HSK4' }
+              ],
+              alarms: [
+                { time: '08:00', days: ['L', 'Ma', 'Me', 'J', 'V'], message: '🇨🇳 HelloChinese !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true, quarterly: true, semiannual: true }
+            },
+            // FINANCIER - Épargne
+            {
+              id: 'fabien_savings',
+              domain: 'financial',
+              type: 'savings',
+              icon: '💵',
+              title: 'Épargne 2 000 000 XAF',
+              subtitle: '~167 000 XAF/mois',
+              description: 'Épargner 2 millions XAF sur l\'année 2026 avec un minimum de 150 000 XAF par mois.',
+              color: 'var(--financial)',
+              target: 2000000,
+              current: 0,
+              unit: 'XAF',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'monthly', day: 5 },
+              milestones: [
+                { target: 500000, deadline: '2026-03-31', label: 'T1' },
+                { target: 1000000, deadline: '2026-06-30', label: 'T2' },
+                { target: 1500000, deadline: '2026-09-30', label: 'T3' },
+                { target: 2000000, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '09:00', days: ['5'], message: '💰 C\'est le jour d\'épargner !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true, quarterly: true, semiannual: true }
+            },
+            // FINANCIER - AQUACAM
+            {
+              id: 'fabien_aquacam',
+              domain: 'financial',
+              type: 'business',
+              icon: '🏢',
+              title: 'AQUACAM - CA 5M XAF',
+              subtitle: 'Développement Cameroun & Chine',
+              description: 'Renforcer la visibilité d\'AQUACAM et générer un chiffre d\'affaires de 5 millions XAF via les formations et certifications.',
+              color: 'var(--financial)',
+              target: 5000000,
+              current: 0,
+              unit: 'XAF CA',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly' },
+              milestones: [
+                { target: 1250000, deadline: '2026-03-31', label: 'T1' },
+                { target: 2500000, deadline: '2026-06-30', label: 'T2' },
+                { target: 3750000, deadline: '2026-09-30', label: 'T3' },
+                { target: 5000000, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '20:00', days: ['D'], message: '📱 Mise à jour stats AQUACAM' },
+                { time: '19:00', days: ['Fin mois'], message: '📊 Bilan mensuel AQUACAM' }
+              ],
+              entries: [],
+              evaluations: { monthly: true, quarterly: true, semiannual: true }
+            },
+            // PHYSIQUE - Détox
+            {
+              id: 'fabien_detox',
+              domain: 'physical',
+              type: 'detox',
+              icon: '🍃',
+              title: 'Détox alimentaire',
+              subtitle: '2 jours/mois → 1 jour/semaine',
+              description: 'Améliorer la santé générale par des journées de détox régulières (fruits ou légumes crus uniquement).',
+              color: 'var(--physical)',
+              target: 52,
+              current: 0,
+              unit: 'journées',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'progressive', start: '2j/mois', end: '1j/semaine' },
+              milestones: [
+                { target: 6, deadline: '2026-03-31', label: '2j/mois' },
+                { target: 12, deadline: '2026-06-30', label: '3j/mois' },
+                { target: 26, deadline: '2026-09-30', label: '1j/sem' },
+                { target: 52, deadline: '2026-12-31', label: '1j/sem' }
+              ],
+              alarms: [
+                { time: '20:00', days: ['Veille'], message: '🍃 Demain c\'est détox !' },
+                { time: '07:00', days: ['Jour'], message: '🍃 Journée détox - Courage !' }
+              ],
+              entries: [],
+              evaluations: { afterEach: true, monthly: true, quarterly: true }
+            }
+          ]
+        },
+        sandrine: {
+          id: 'sandrine',
+          username: 'sandrine',
+          password: 'Sandrine2026!',
+          email: 'sandrine@example.com',
+          firstName: 'Sandrine',
+          avatar: '👩‍💼',
+          role: 'user',
+          currency: 'XAF',
+          vision: "En 2026, je veux renforcer ma vie spirituelle avec une heure de prière quotidienne et une lecture biblique régulière, développer mes compétences intellectuelles (apprendre le piano, améliorer mon français et anglais, lire 2 livres), atteindre mes objectifs financiers avec une épargne répartie en 3 enveloppes pour ma famille, et améliorer ma santé physique (sport 2x/semaine, nutrition équilibrée, ponctualité au travail).",
+          streak: { current: 0, best: 0 },
+          goals: [
+            // SPIRITUEL - Prière
+            {
+              id: 'sandrine_prayer',
+              domain: 'spiritual',
+              type: 'prayer',
+              icon: '🙏',
+              title: 'Prière quotidienne 1h/jour',
+              subtitle: 'Louange, intercession, confession',
+              description: 'Consacrer 1 heure par jour à la prière : louange, intercession, confession et actions de grâce.',
+              color: 'var(--spiritual)',
+              target: 365,
+              current: 0,
+              unit: 'heures',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'daily', duration: 60 },
+              milestones: [
+                { target: 90, deadline: '2026-03-31', label: 'T1' },
+                { target: 180, deadline: '2026-06-30', label: 'T2' },
+                { target: 270, deadline: '2026-09-30', label: 'T3' },
+                { target: 365, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // SPIRITUEL - Bible
+            {
+              id: 'sandrine_bible',
+              domain: 'spiritual',
+              type: 'bible_reading',
+              icon: '📖',
+              title: 'Bible + Étude approfondie',
+              subtitle: '2 chapitres/jour + étude livre',
+              description: 'Lire 2 chapitres de la Bible par jour (LSG) et étudier en profondeur 1 livre biblique.',
+              color: 'var(--spiritual)',
+              target: 730,
+              current: 0,
+              unit: 'chapitres',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'daily', count: 2 },
+              milestones: [
+                { target: 180, deadline: '2026-03-31', label: 'T1' },
+                { target: 365, deadline: '2026-06-30', label: 'T2' },
+                { target: 548, deadline: '2026-09-30', label: 'T3' },
+                { target: 730, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // INTELLECTUEL - Piano
+            {
+              id: 'sandrine_piano',
+              domain: 'intellectual',
+              type: 'music',
+              icon: '🎹',
+              title: 'Apprendre le piano',
+              subtitle: 'Deadline: Février 2026',
+              description: 'Apprendre à jouer du piano avec Simply Piano, 2 séances de 30 minutes par semaine.',
+              color: 'var(--intellectual)',
+              target: 16,
+              current: 0,
+              unit: 'séances',
+              startDate: '2026-01-01',
+              endDate: '2026-02-28',
+              frequency: { type: 'weekly', count: 2, duration: 30 },
+              milestones: [
+                { target: 8, deadline: '2026-01-31', label: 'Mi-parcours' },
+                { target: 16, deadline: '2026-02-28', label: 'Objectif' }
+              ],
+              alarms: [
+                { time: '18:00', days: ['Ma', 'S'], message: '🎹 C\'est l\'heure du piano !' }
+              ],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // INTELLECTUEL - Français
+            {
+              id: 'sandrine_french',
+              domain: 'intellectual',
+              type: 'native_language',
+              icon: '🇫🇷',
+              title: 'Révision français',
+              subtitle: 'Grammaire, orthographe, conjugaison',
+              description: 'Réviser le français chaque dimanche pendant 30 minutes pour le contexte professionnel.',
+              color: 'var(--intellectual)',
+              target: 52,
+              current: 0,
+              unit: 'séances',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', day: 'D', duration: 30 },
+              milestones: [
+                { target: 13, deadline: '2026-03-31', label: 'T1' },
+                { target: 26, deadline: '2026-06-30', label: 'T2' },
+                { target: 39, deadline: '2026-09-30', label: 'T3' },
+                { target: 52, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '10:00', days: ['D'], message: '🇫🇷 Révision français' }
+              ],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // INTELLECTUEL - Anglais
+            {
+              id: 'sandrine_english',
+              domain: 'intellectual',
+              type: 'language',
+              icon: '🇬🇧',
+              title: 'Anglais Duolingo + chansons',
+              subtitle: '15 min/jour + 2 chansons/mois',
+              description: 'Pratiquer l\'anglais 15 minutes par jour sur Duolingo et traduire 2 chansons par mois.',
+              color: 'var(--intellectual)',
+              target: 365,
+              current: 0,
+              unit: 'jours',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'daily', duration: 15 },
+              milestones: [
+                { target: 90, deadline: '2026-03-31', label: 'T1' },
+                { target: 180, deadline: '2026-06-30', label: 'T2' },
+                { target: 270, deadline: '2026-09-30', label: 'T3' },
+                { target: 365, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '20:00', days: ['L', 'Ma', 'Me', 'J', 'V', 'S', 'D'], message: '🇬🇧 15 min Duolingo' }
+              ],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // INTELLECTUEL - Lecture
+            {
+              id: 'sandrine_reading',
+              domain: 'intellectual',
+              type: 'reading',
+              icon: '📚',
+              title: 'Lecture 2 livres/an',
+              subtitle: 'Conseils à l\'économe + 1 autre',
+              description: 'Lire 2 livres dans l\'année dont "Conseils à l\'économe" de Ellen G. White.',
+              color: 'var(--intellectual)',
+              target: 2,
+              current: 0,
+              unit: 'livres',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', chapters: '2-3' },
+              milestones: [
+                { target: 1, deadline: '2026-06-30', label: 'Livre 1' },
+                { target: 2, deadline: '2026-12-31', label: 'Livre 2' }
+              ],
+              alarms: [],
+              entries: [],
+              evaluations: { quarterly: true }
+            },
+            // FINANCIER - Épargne 3 enveloppes
+            {
+              id: 'sandrine_savings',
+              domain: 'financial',
+              type: 'savings_distributed',
+              icon: '💵',
+              title: 'Épargne 3 enveloppes',
+              subtitle: '200 000 XAF/mois répartis',
+              description: 'Épargner 200 000 XAF/mois répartis : 40% Maman (80K), 35% Investissements (70K), 25% Famille (50K).',
+              color: 'var(--financial)',
+              target: 2400000,
+              current: 0,
+              unit: 'XAF',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'monthly', day: 5 },
+              envelopes: [
+                { name: 'Soutien Maman', percent: 40, monthly: 80000, annual: 960000, icon: '❤️' },
+                { name: 'Investissements', percent: 35, monthly: 70000, annual: 840000, icon: '💼' },
+                { name: 'Frères & Sœurs', percent: 25, monthly: 50000, annual: 600000, icon: '👨‍👩‍👧‍👦' }
+              ],
+              milestones: [
+                { target: 600000, deadline: '2026-03-31', label: 'T1' },
+                { target: 1200000, deadline: '2026-06-30', label: 'T2' },
+                { target: 1800000, deadline: '2026-09-30', label: 'T3' },
+                { target: 2400000, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '09:00', days: ['5'], message: '💰 Jour d\'épargne !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true }
+            },
+            // PHYSIQUE - Sport
+            {
+              id: 'sandrine_sport',
+              domain: 'physical',
+              type: 'sport',
+              icon: '🏃',
+              title: 'Sport 2x/semaine',
+              subtitle: 'Samedi et Dimanche',
+              description: 'Faire du sport au moins 2 fois par semaine (samedi et dimanche), 30-60 minutes par séance.',
+              color: 'var(--physical)',
+              target: 104,
+              current: 0,
+              unit: 'séances',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', count: 2, days: ['S', 'D'] },
+              milestones: [
+                { target: 26, deadline: '2026-03-31', label: 'T1' },
+                { target: 52, deadline: '2026-06-30', label: 'T2' },
+                { target: 78, deadline: '2026-09-30', label: 'T3' },
+                { target: 104, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '14:30', days: ['S', 'D'], message: '🏃 C\'est l\'heure du sport !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true }
+            },
+            // PHYSIQUE - Nutrition
+            {
+              id: 'sandrine_nutrition',
+              domain: 'physical',
+              type: 'nutrition',
+              icon: '🍎',
+              title: 'Fruits petit-déjeuner',
+              subtitle: 'Lundi et Jeudi matin',
+              description: 'Manger des fruits au petit-déjeuner au moins 2 fois par semaine (lundi et jeudi).',
+              color: 'var(--physical)',
+              target: 104,
+              current: 0,
+              unit: 'jours',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'weekly', count: 2, days: ['L', 'J'] },
+              milestones: [
+                { target: 26, deadline: '2026-03-31', label: 'T1' },
+                { target: 52, deadline: '2026-06-30', label: 'T2' },
+                { target: 78, deadline: '2026-09-30', label: 'T3' },
+                { target: 104, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '06:30', days: ['L', 'J'], message: '🍎 N\'oublie pas tes fruits !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true }
+            },
+            // PHYSIQUE - Ponctualité
+            {
+              id: 'sandrine_punctuality',
+              domain: 'physical',
+              type: 'habit',
+              icon: '⏰',
+              title: 'Ponctualité au travail',
+              subtitle: 'Arriver 15-30 min en avance',
+              description: 'Arriver au travail entre 07h30 et 07h45 (15-30 min avant 08h00). Départ maison max 06h45.',
+              color: 'var(--physical)',
+              target: 260,
+              current: 0,
+              unit: 'jours',
+              startDate: '2026-01-01',
+              endDate: '2026-12-31',
+              frequency: { type: 'workdays', arrival: '07:30-07:45' },
+              milestones: [
+                { target: 65, deadline: '2026-03-31', label: 'T1' },
+                { target: 130, deadline: '2026-06-30', label: 'T2' },
+                { target: 195, deadline: '2026-09-30', label: 'T3' },
+                { target: 260, deadline: '2026-12-31', label: 'T4' }
+              ],
+              alarms: [
+                { time: '06:40', days: ['L', 'Ma', 'Me', 'J', 'V'], message: '⏰ Il est temps de partir !' }
+              ],
+              entries: [],
+              evaluations: { monthly: true }
+            }
+          ]
+        }
+      }
+    };
+
+    // AI Messages
+    const aiMessages = [
+      "Bienvenue dans votre nouvelle aventure 2026 ! 🚀 Tous vos objectifs sont initialisés et prêts. Commencez par une petite action aujourd'hui - chaque pas compte vers votre réussite.",
+      "C'est le début d'une belle année ! 🌟 Vous avez {goalCount} objectifs ambitieux. Conseil : concentrez-vous sur une action par jour pour créer une dynamique positive.",
+      "Prêt pour 2026 ? 💪 Vos objectifs sont configurés dans {domainCount} domaines. La clé du succès : la constance. Une action quotidienne vaut mieux qu'un effort intense sporadique.",
+      "Nouvelle année, nouvelles possibilités ! ✨ Avec {goalCount} objectifs bien définis, vous êtes sur la bonne voie. Astuce : célébrez chaque petite victoire pour maintenir votre motivation."
+    ];
+
+    // ==========================================
+    // APP STATE
+    // ==========================================
+    let currentUser = null;
+    let currentTheme = localStorage.getItem('pa2026_theme') || 'light';
+    let currentGoal = null;
+
+    // ==========================================
+    // INITIALIZATION
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
+      updateDate();
+      loadSavedData();
+      
+      // Check if user is logged in
+      const savedUserId = localStorage.getItem('pa2026_user');
+      if (savedUserId && DB.users[savedUserId]) {
+        currentUser = DB.users[savedUserId];
+        showApp();
+      }
+
+      // Set today's date for entry form
+      document.getElementById('entryDate').valueAsDate = new Date();
+    });
+
+    // ==========================================
+    // DATA PERSISTENCE
+    // ==========================================
+    function loadSavedData() {
+      const savedData = localStorage.getItem('pa2026_data');
+      if (savedData) {
+        try {
+          const data = JSON.parse(savedData);
+          // Merge saved data with default data
+          Object.keys(data.users || {}).forEach(userId => {
+            if (DB.users[userId]) {
+              DB.users[userId] = { ...DB.users[userId], ...data.users[userId] };
+            }
+          });
+        } catch (e) {
+          console.error('Error loading saved data:', e);
+        }
+      }
+    }
+
+    function saveData() {
+      const data = {
+        users: {},
+        savedAt: new Date().toISOString()
+      };
+      Object.keys(DB.users).forEach(userId => {
+        data.users[userId] = {
+          goals: DB.users[userId].goals,
+          streak: DB.users[userId].streak,
+          vision: DB.users[userId].vision
+        };
+      });
+      localStorage.setItem('pa2026_data', JSON.stringify(data));
+    }
+
+    // ==========================================
+    // AUTHENTICATION
+    // ==========================================
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.toLowerCase().trim();
+      const password = document.getElementById('password').value;
+
+      if (DB.users[username] && DB.users[username].password === password) {
+        currentUser = DB.users[username];
+        localStorage.setItem('pa2026_user', username);
+        showApp();
+      } else {
+        document.getElementById('loginError').classList.add('show');
+        setTimeout(() => {
+          document.getElementById('loginError').classList.remove('show');
+        }, 3000);
+      }
+    });
+
+    function quickLogin(username) {
+      if (DB.users[username]) {
+        currentUser = DB.users[username];
+        localStorage.setItem('pa2026_user', username);
+        showApp();
+      }
+    }
+
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('pa2026_user');
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('app').classList.remove('active');
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    function showApp() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').classList.add('active');
+      updateUI();
+    }
+
+    // ==========================================
+    // UI UPDATES
+    // ==========================================
+    function updateUI() {
+      if (!currentUser) return;
+
+      // User info
+      document.getElementById('userAvatar').textContent = currentUser.avatar;
+      document.getElementById('userAvatar').className = 'user-avatar ' + currentUser.role;
+      document.getElementById('userName').textContent = currentUser.firstName;
+      document.getElementById('userRole').textContent = currentUser.role === 'admin' ? 'Administrateur' : 'Utilisateur';
+      document.getElementById('userBadge').textContent = currentUser.role === 'admin' ? 'Admin' : '';
+      document.getElementById('userBadge').className = 'badge ' + currentUser.role;
+
+      // Admin section
+      document.getElementById('navSettings').style.display = currentUser.role === 'admin' ? 'flex' : 'none';
+
+      // Update all components
+      updateProgressRing();
+      updateDomains();
+      updateActions();
+      updateAIMessage();
+      updateGoalsOverview();
+      updateModulePages();
+      updateGoalCounts();
+      updateVision();
+
+      // Theme buttons
+      document.getElementById('themeLight').classList.toggle('active', currentTheme === 'light');
+      document.getElementById('themeDark').classList.toggle('active', currentTheme === 'dark');
+    }
+
+    function updateDate() {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const today = new Date().toLocaleDateString('fr-FR', options);
+      document.getElementById('pageDate').textContent = today.charAt(0).toUpperCase() + today.slice(1);
+    }
+
+    function calculateProgress(goal) {
+      if (!goal.target) return 0;
+      return Math.min(100, Math.round((goal.current / goal.target) * 100));
+    }
+
+    function calculateDomainProgress(domain) {
+      const goals = currentUser.goals.filter(g => g.domain === domain);
+      if (goals.length === 0) return 0;
+      const total = goals.reduce((sum, g) => sum + calculateProgress(g), 0);
+      return Math.round(total / goals.length);
+    }
+
+    function calculateTotalProgress() {
+      if (currentUser.goals.length === 0) return 0;
+      const total = currentUser.goals.reduce((sum, g) => sum + calculateProgress(g), 0);
+      return Math.round(total / currentUser.goals.length);
+    }
+
+    function updateProgressRing() {
+      const progress = calculateTotalProgress();
+      const ring = document.getElementById('progressRing');
+      const circumference = 2 * Math.PI * 80;
+      const offset = circumference - (progress / 100) * circumference;
+
+      setTimeout(() => {
+        ring.style.strokeDashoffset = offset;
+      }, 100);
+
+      document.getElementById('progressPercent').textContent = `${progress}%`;
+      document.getElementById('currentStreak').textContent = currentUser.streak.current;
+      document.getElementById('bestStreak').textContent = currentUser.streak.best;
+    }
+
+    function updateDomains() {
+      const domains = [
+        { id: 'spiritual', name: 'Spirituel', icon: '🙏' },
+        { id: 'intellectual', name: 'Intellectuel', icon: '🧠' },
+        { id: 'financial', name: 'Financier', icon: '💰' },
+        { id: 'physical', name: 'Physique', icon: '💪' }
+      ];
+
+      const container = document.getElementById('domainList');
+      container.innerHTML = domains.map(d => {
+        const progress = calculateDomainProgress(d.id);
+        const count = currentUser.goals.filter(g => g.domain === d.id).length;
+        return `
+          <div class="domain-item" onclick="showPage('${d.id}')">
+            <div class="domain-icon ${d.id}">${d.icon}</div>
+            <div class="domain-info">
+              <div class="domain-name">
+                <span>${d.name}</span>
+                <span class="domain-percent">${progress}% • ${count} objectif${count > 1 ? 's' : ''}</span>
+              </div>
+              <div class="domain-bar">
+                <div class="domain-bar-fill ${d.id}" style="width: ${progress}%"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateActions() {
+      const today = new Date();
+      const dayNames = ['D', 'L', 'Ma', 'Me', 'J', 'V', 'S'];
+      const todayName = dayNames[today.getDay()];
+
+      const actions = [];
+      currentUser.goals.forEach(goal => {
+        if (goal.alarms) {
+          goal.alarms.forEach(alarm => {
+            if (alarm.days && (alarm.days.includes(todayName) || alarm.days.includes('L-V') && today.getDay() >= 1 && today.getDay() <= 5)) {
+              actions.push({
+                text: goal.title,
+                domain: goal.domain,
+                completed: false,
+                goalId: goal.id
+              });
+            }
+          });
+        }
+      });
+
+      // If no actions from alarms, show first 4 goals
+      if (actions.length === 0) {
+        currentUser.goals.slice(0, 4).forEach(goal => {
+          actions.push({
+            text: goal.title,
+            domain: goal.domain,
+            completed: false,
+            goalId: goal.id
+          });
+        });
+      }
+
+      const container = document.getElementById('actionList');
+      const completedCount = actions.filter(a => a.completed).length;
+      document.getElementById('actionsCount').textContent = `${completedCount}/${actions.length}`;
+
+      container.innerHTML = actions.slice(0, 6).map((action, i) => `
+        <div class="action-item ${action.completed ? 'completed' : ''}" onclick="toggleAction(${i})">
+          <div class="action-checkbox">${action.completed ? '✓' : ''}</div>
+          <span class="action-text">${action.text}</span>
+          <span class="action-tag ${action.domain}">${action.domain.slice(0, 4)}</span>
+        </div>
+      `).join('');
+
+      // Store actions in memory for toggle
+      window.todayActions = actions;
+    }
+
+    function toggleAction(index) {
+      if (window.todayActions && window.todayActions[index]) {
+        window.todayActions[index].completed = !window.todayActions[index].completed;
+        updateActions();
+        showToast('Action mise à jour !', 'success');
+      }
+    }
+
+    function updateAIMessage() {
+      const goalCount = currentUser.goals.length;
+      const domains = new Set(currentUser.goals.map(g => g.domain)).size;
+      const message = aiMessages[Math.floor(Math.random() * aiMessages.length)]
+        .replace('{goalCount}', goalCount)
+        .replace('{domainCount}', domains);
+      document.getElementById('aiMessage').textContent = message;
+    }
+
+    function updateGoalsOverview() {
+      const container = document.getElementById('goalsOverview');
+      const goals = currentUser.goals.slice(0, 4);
+      container.innerHTML = goals.map(goal => createGoalCard(goal)).join('');
+    }
+
+    function createGoalCard(goal) {
+      const progress = calculateProgress(goal);
+      return `
+        <div class="goal-card" style="--goal-color: ${goal.color}" onclick="openGoalModal('${goal.id}')">
+          <div class="goal-header">
+            <div class="goal-icon" style="background: ${goal.color}20;">${goal.icon}</div>
+            <div>
+              <div class="goal-title">${goal.title}</div>
+              <div class="goal-subtitle">${goal.subtitle}</div>
+            </div>
+          </div>
+          <div class="goal-progress">
+            <div class="goal-progress-header">
+              <span class="goal-progress-current">${formatNumber(goal.current)} ${goal.unit}</span>
+              <span class="goal-progress-target">${progress}%</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-fill" style="width: ${progress}%"></div>
+            </div>
+          </div>
+          <div class="goal-footer">
+            <div class="goal-stat">🎯 Cible: ${formatNumber(goal.target)} ${goal.unit}</div>
+            <div class="goal-actions">
+              <button class="goal-action-btn" onclick="event.stopPropagation(); addQuickEntry('${goal.id}')" title="Ajouter">➕</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateModulePages() {
+      const domains = ['spiritual', 'intellectual', 'financial', 'physical', 'custom'];
+
+      domains.forEach(domain => {
+        const goals = currentUser.goals.filter(g => g.domain === domain);
+        const container = document.getElementById(`${domain}Goals`);
+        const progressEl = document.getElementById(`${domain}Progress`);
+        const countEl = document.getElementById(`${domain}GoalsCount`);
+
+        if (container) {
+          if (goals.length > 0) {
+            container.innerHTML = goals.map(goal => createGoalCard(goal)).join('');
+          } else {
+            container.innerHTML = `
+              <div class="empty-state" style="grid-column: 1/-1;">
+                <div class="icon">📭</div>
+                <h3>Aucun objectif dans ce domaine</h3>
+                <p>Créez votre premier objectif pour commencer votre progression.</p>
+              </div>
+            `;
+          }
+        }
+
+        if (progressEl) progressEl.textContent = calculateDomainProgress(domain) + '%';
+        if (countEl) countEl.textContent = goals.length;
+      });
+    }
+
+    function updateGoalCounts() {
+      const domains = ['spiritual', 'intellectual', 'financial', 'physical', 'custom'];
+      domains.forEach(domain => {
+        const count = currentUser.goals.filter(g => g.domain === domain).length;
+        const el = document.getElementById(`${domain}Count`);
+        if (el) el.textContent = count;
+      });
+    }
+
+    function updateVision() {
+      document.getElementById('visionText').textContent = currentUser.vision || 'Définissez votre vision pour 2026...';
+      document.getElementById('visionInput').value = currentUser.vision || '';
+    }
+
+    // ==========================================
+    // NAVIGATION
+    // ==========================================
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(`page-${pageId}`).classList.add('active');
+
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      const navItem = document.querySelector(`.nav-item[data-page="${pageId}"]`);
+      if (navItem) navItem.classList.add('active');
+
+      const titles = {
+        dashboard: '📊 Tableau de bord',
+        vision: '🌟 Ma Vision 2026',
+        spiritual: '🙏 Module Spirituel',
+        intellectual: '🧠 Module Intellectuel',
+        financial: '💰 Module Financier',
+        physical: '💪 Module Physique',
+        custom: '✨ Module Personnalisé',
+        evaluations: '📋 Évaluations',
+        rewards: '🏆 Récompenses',
+        settings: '⚙️ Administration'
+      };
+      document.getElementById('pageTitle').textContent = titles[pageId] || 'Page';
+
+      closeSidebar();
+
+      // Update admin page if needed
+      if (pageId === 'settings' && currentUser.role === 'admin') {
+        updateAdminPage();
+      }
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('active');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+
+    function showAllGoals() {
+      // Show first domain with goals
+      const domains = ['spiritual', 'intellectual', 'financial', 'physical'];
+      for (const domain of domains) {
+        if (currentUser.goals.filter(g => g.domain === domain).length > 0) {
+          showPage(domain);
+          return;
+        }
+      }
+    }
+
+    // ==========================================
+    // GOAL MODAL
+    // ==========================================
+    function openGoalModal(goalId) {
+      const goal = currentUser.goals.find(g => g.id === goalId);
+      if (!goal) return;
+
+      currentGoal = goal;
+      const progress = calculateProgress(goal);
+
+      document.getElementById('modalGoalIcon').textContent = goal.icon;
+      document.getElementById('modalGoalName').textContent = goal.title;
+
+      document.getElementById('modalGoalBody').innerHTML = `
+        <div style="text-align: center; margin-bottom: 24px;">
+          <p style="color: var(--text-secondary); margin-bottom: 16px;">${goal.description || goal.subtitle}</p>
+        </div>
+
+        <div class="goal-detail-stats">
+          <div class="goal-detail-stat">
+            <div class="goal-detail-stat-value">${formatNumber(goal.current)}</div>
+            <div class="goal-detail-stat-label">Actuel (${goal.unit})</div>
+          </div>
+          <div class="goal-detail-stat">
+            <div class="goal-detail-stat-value">${formatNumber(goal.target)}</div>
+            <div class="goal-detail-stat-label">Objectif (${goal.unit})</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 600;">Progression</span>
+            <span style="color: var(--primary); font-weight: 700;">${progress}%</span>
+          </div>
+          <div style="height: 12px; background: var(--border); border-radius: 6px; overflow: hidden;">
+            <div style="width: ${progress}%; height: 100%; background: ${goal.color}; border-radius: 6px; transition: width 0.5s;"></div>
+          </div>
+        </div>
+
+        ${goal.milestones ? `
+          <div class="form-section">
+            <div class="form-section-title">🏁 Jalons</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+              ${goal.milestones.map(m => {
+                const achieved = goal.current >= m.target;
+                return `
+                  <div style="text-align: center; padding: 12px; background: ${achieved ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg)'}; border-radius: 8px; border: 1px solid ${achieved ? 'var(--success)' : 'var(--border)'};">
+                    <div style="font-size: 18px; margin-bottom: 4px;">${achieved ? '✅' : '⏳'}</div>
+                    <div style="font-weight: 600; font-size: 13px;">${m.label}</div>
+                    <div style="font-size: 11px; color: var(--text-secondary);">${formatNumber(m.target)}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${goal.alarms && goal.alarms.length > 0 ? `
+          <div class="form-section">
+            <div class="form-section-title">⏰ Alarmes</div>
+            <div class="alarms-list">
+              ${goal.alarms.map(a => `
+                <div class="alarm-item">
+                  <div class="alarm-icon">🔔</div>
+                  <div class="alarm-info">
+                    <div class="alarm-time">${a.time}</div>
+                    <div class="alarm-message">${a.message}</div>
+                  </div>
+                  <div class="alarm-days">
+                    ${['L', 'Ma', 'Me', 'J', 'V', 'S', 'D'].map(d => `
+                      <div class="alarm-day ${a.days && a.days.includes(d) ? 'active' : ''}">${d}</div>
+                    `).join('')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${goal.entries && goal.entries.length > 0 ? `
+          <div class="form-section">
+            <div class="form-section-title">📝 Dernières entrées</div>
+            <div style="max-height: 200px; overflow-y: auto;">
+              ${goal.entries.slice(-5).reverse().map(e => `
+                <div style="padding: 12px; background: var(--bg); border-radius: 8px; margin-bottom: 8px;">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                    <span style="font-weight: 600;">+${e.value} ${goal.unit}</span>
+                    <span style="font-size: 12px; color: var(--text-secondary);">${e.date}</span>
+                  </div>
+                  ${e.notes ? `<p style="font-size: 13px; color: var(--text-secondary); margin: 0;">${e.notes}</p>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+      `;
+
+      document.getElementById('goalModal').classList.add('active');
+    }
+
+    function closeGoalModal() {
+      document.getElementById('goalModal').classList.remove('active');
+      currentGoal = null;
+    }
+
+    // ==========================================
+    // ENTRIES
+    // ==========================================
+    function addGoalEntry() {
+      if (!currentGoal) return;
+      closeGoalModal();
+      document.getElementById('entryModal').classList.add('active');
+    }
+
+    function addQuickEntry(goalId) {
+      currentGoal = currentUser.goals.find(g => g.id === goalId);
+      if (currentGoal) {
+        document.getElementById('entryModal').classList.add('active');
+      }
+    }
+
+    function closeEntryModal() {
+      document.getElementById('entryModal').classList.remove('active');
+      document.getElementById('entryValue').value = '';
+      document.getElementById('entryNotes').value = '';
+    }
+
+    function saveEntry() {
+      if (!currentGoal) return;
+
+      const value = parseFloat(document.getElementById('entryValue').value);
+      const date = document.getElementById('entryDate').value;
+      const notes = document.getElementById('entryNotes').value;
+
+      if (isNaN(value) || value <= 0) {
+        showToast('Veuillez entrer une valeur valide', 'error');
+        return;
+      }
+
+      const entry = {
+        id: Date.now(),
+        date: date,
+        value: value,
+        notes: notes,
+        createdAt: new Date().toISOString()
+      };
+
+      // Add entry
+      if (!currentGoal.entries) currentGoal.entries = [];
+      currentGoal.entries.push(entry);
+
+      // Update current progress
+      currentGoal.current = (currentGoal.current || 0) + value;
+
+      // Update streak
+      currentUser.streak.current++;
+      if (currentUser.streak.current > currentUser.streak.best) {
+        currentUser.streak.best = currentUser.streak.current;
+      }
+
+      // Save and update UI
+      saveData();
+      closeEntryModal();
+      updateUI();
+      showToast(`+${value} ${currentGoal.unit} ajouté ! 🎉`, 'success');
+    }
+
+    // ==========================================
+    // VISION
+    // ==========================================
+    function saveVision() {
+      const vision = document.getElementById('visionInput').value.trim();
+      if (vision) {
+        currentUser.vision = vision;
+        saveData();
+        updateVision();
+        showToast('Vision enregistrée !', 'success');
+      }
+    }
+
+    // ==========================================
+    // ADMIN
+    // ==========================================
+    function updateAdminPage() {
+      const container = document.getElementById('usersListAdmin');
+      container.innerHTML = Object.values(DB.users).map(user => `
+        <div style="display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg); border-radius: var(--radius); margin-bottom: 12px;">
+          <div class="user-avatar ${user.role}">${user.avatar}</div>
+          <div style="flex: 1;">
+            <div style="font-weight: 600;">${user.firstName}</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">${user.email}</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 13px; color: var(--text-secondary);">${user.goals.length} objectifs</div>
+            <span class="badge ${user.role}" style="margin-top: 4px; display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: ${user.role === 'admin' ? 'rgba(99, 102, 241, 0.1)' : 'rgba(139, 92, 246, 0.1)'}; color: ${user.role === 'admin' ? 'var(--primary)' : 'var(--spiritual)'};">${user.role}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ==========================================
+    // THEME
+    // ==========================================
+    function setTheme(theme) {
+      currentTheme = theme;
+      applyTheme(theme);
+      localStorage.setItem('pa2026_theme', theme);
+      document.getElementById('themeLight').classList.toggle('active', theme === 'light');
+      document.getElementById('themeDark').classList.toggle('active', theme === 'dark');
+    }
+
+    function toggleTheme() {
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    // ==========================================
+    // UTILITIES
+    // ==========================================
+    function formatNumber(num) {
+      if (num === null || num === undefined) return '0';
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      const msg = document.getElementById('toastMessage');
+
+      toast.className = 'toast ' + type;
+      icon.textContent = type === 'success' ? '✓' : type === 'error' ? '✕' : '⚠';
+      msg.textContent = message;
+
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function refreshData() {
+      loadSavedData();
+      updateUI();
+      showToast('Données actualisées', 'success');
+    }
+
+    function exportData() {
+      const data = {
+        user: currentUser.firstName,
+        exportDate: new Date().toISOString(),
+        vision: currentUser.vision,
+        goals: currentUser.goals.map(g => ({
+          title: g.title,
+          progress: calculateProgress(g),
+          current: g.current,
+          target: g.target,
+          unit: g.unit
+        }))
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `plan-action-2026-${currentUser.firstName.toLowerCase()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      showToast('Données exportées !', 'success');
+    }
+
+    function openCreateGoalModal() {
+      showToast('Fonctionnalité à venir : création d\'objectifs personnalisés', 'warning');
+    }
+
+    // Modal click outside to close
+    document.getElementById('goalModal').addEventListener('click', (e) => {
+      if (e.target.id === 'goalModal') closeGoalModal();
+    });
+
+    document.getElementById('entryModal').addEventListener('click', (e) => {
+      if (e.target.id === 'entryModal') closeEntryModal();
+    });
+  </script>
+</body>
+</html>
