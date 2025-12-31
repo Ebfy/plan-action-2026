@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="description" content="Plan d'Action 2026 - Réalisation et Constance">
+  <title>Plan d'Action 2026</title>
+  <link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;Plan d'Action 2026&quot;,&quot;short_name&quot;:&quot;PA2026&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;theme_color&quot;:&quot;#6366f1&quot;,&quot;background_color&quot;:&quot;#0f172a&quot;}">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --primary-dark: #4f46e5;
+      --spiritual: #8b5cf6;
+      --intellectual: #3b82f6;
+      --financial: #22c55e;
+      --physical: #ef4444;
+      --custom: #f97316;
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --text: #0f172a;
+      --text-secondary: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      --radius: 16px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-hover: #334155;
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --border: #334155;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      transition: var(--transition);
+    }
+    
+    /* Login Screen */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 20px;
+    }
+    
+    .login-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.5s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .login-logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .login-logo h1 {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    
+    .login-logo p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-style: italic;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+    
+    .login-error {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    
+    [data-theme="dark"] .login-error {
+      background: rgba(220, 38, 38, 0.1);
+    }
+    
+    .demo-accounts {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .demo-accounts h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    
+    .demo-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 8px;
+    }
+    
+    .demo-btn:hover {
+      border-color: var(--primary);
+      background: var(--bg-hover);
+    }
+    
+    .demo-btn .avatar {
+      font-size: 24px;
+    }
+    
+    .demo-btn .info {
+      text-align: left;
+    }
+    
+    .demo-btn .name {
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .demo-btn .role {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    /* App Layout */
+    .app {
+      display: none;
+    }
+    
+    .app.active {
+      display: block;
+    }
+    
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg-card);
+      border-right: 1px solid var(--border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: var(--transition);
+    }
+    
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    
+    .sidebar-logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    
+    .sidebar-title h2 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    .sidebar-title p {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    
+    .nav-section {
+      margin-bottom: 24px;
+    }
+    
+    .nav-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    
+    .nav-item:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+    }
+    
+    .nav-item.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+    
+    .nav-item .icon {
+      font-size: 20px;
+    }
+    
+    .nav-item.spiritual .icon { color: var(--spiritual); }
+    .nav-item.intellectual .icon { color: var(--intellectual); }
+    .nav-item.financial .icon { color: var(--financial); }
+    .nav-item.physical .icon { color: var(--physical); }
+    .nav-item.custom .icon { color: var(--custom); }
+    .nav-item.active .icon { color: white; }
+    
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+    
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .user-info .name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .user-info .role {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+    
+    .theme-toggle span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .toggle-switch {
+      width: 48px;
+      height: 26px;
+      background: var(--border);
+      border-radius: 13px;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    [data-theme="dark"] .toggle-switch {
+      background: var(--primary);
+    }
+    
+    [data-theme="dark"] .toggle-switch::after {
+      left: 25px;
+    }
+    
+    /* Main Content */
+    .main-content {
+      margin-left: 280px;
+      padding: 32px;
+      min-height: 100vh;
+    }
+    
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    
+    .page-title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .page-title .icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    
+    .page-title h1 {
+      font-size: 28px;
+      font-weight: 700;
+    }
+    
+    .page-title p {
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      color: var(--text);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+    
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Progress Ring */
+    .progress-card {
+      grid-column: span 4;
+      text-align: center;
+    }
+    
+    .progress-ring-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px;
+    }
+    
+    .progress-ring {
+      transform: rotate(-90deg);
+    }
+    
+    .progress-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 12;
+    }
+    
+    .progress-ring-fill {
+      fill: none;
+      stroke: url(#gradient);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 1s ease-out;
+    }
+    
+    .progress-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .progress-percent {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .progress-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .streak-info {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    
+    .streak-item {
+      text-align: center;
+    }
+    
+    .streak-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .streak-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    /* Domains Card */
+    .domains-card {
+      grid-column: span 8;
+    }
+    
+    .domain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .domain-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .domain-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    
+    .domain-icon.spiritual { background: rgba(139, 92, 246, 0.15); }
+    .domain-icon.intellectual { background: rgba(59, 130, 246, 0.15); }
+    .domain-icon.financial { background: rgba(34, 197, 94, 0.15); }
+    .domain-icon.physical { background: rgba(239, 68, 68, 0.15); }
+    
+    .domain-info {
+      flex: 1;
+    }
+    
+    .domain-name {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .domain-percent {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .domain-bar {
+      height: 10px;
+      background: var(--bg);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .domain-bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1s ease-out;
+    }
+    
+    .domain-bar-fill.spiritual { background: linear-gradient(90deg, var(--spiritual), #a78bfa); }
+    .domain-bar-fill.intellectual { background: linear-gradient(90deg, var(--intellectual), #60a5fa); }
+    .domain-bar-fill.financial { background: linear-gradient(90deg, var(--financial), #4ade80); }
+    .domain-bar-fill.physical { background: linear-gradient(90deg, var(--physical), #f87171); }
+    
+    /* Actions Card */
+    .actions-card {
+      grid-column: span 6;
+    }
+    
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .action-item:hover {
+      background: var(--bg-hover);
+    }
+    
+    .action-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    
+    .action-item.completed .action-checkbox {
+      background: var(--financial);
+      border-color: var(--financial);
+      color: white;
+    }
+    
+    .action-text {
+      flex: 1;
+      font-size: 14px;
+    }
+    
+    .action-item.completed .action-text {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+    
+    .action-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    .action-tag.spiritual { background: rgba(139, 92, 246, 0.15); color: var(--spiritual); }
+    .action-tag.intellectual { background: rgba(59, 130, 246, 0.15); color: var(--intellectual); }
+    .action-tag.financial { background: rgba(34, 197, 94, 0.15); color: var(--financial); }
+    .action-tag.physical { background: rgba(239, 68, 68, 0.15); color: var(--physical); }
+    
+    /* AI Message */
+    .ai-card {
+      grid-column: span 6;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+    }
+    
+    .ai-card .card-title {
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .ai-message {
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+    
+    .ai-signature {
+      margin-top: 16px;
+      font-size: 13px;
+      opacity: 0.7;
+      font-style: italic;
+    }
+    
+    /* Goals List */
+    .goals-card {
+      grid-column: span 12;
+    }
+    
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    
+    .goal-card {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+    
+    .goal-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .goal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .goal-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    
+    .goal-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .goal-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .goal-progress {
+      margin-bottom: 12px;
+    }
+    
+    .goal-progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    
+    .goal-progress-bar {
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .goal-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    .goal-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .goal-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    /* Module Pages */
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 32px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      margin-bottom: 32px;
+      border: 1px solid var(--border);
+    }
+    
+    .module-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+    
+    .module-icon.spiritual { background: linear-gradient(135deg, var(--spiritual), #a78bfa); }
+    .module-icon.intellectual { background: linear-gradient(135deg, var(--intellectual), #60a5fa); }
+    .module-icon.financial { background: linear-gradient(135deg, var(--financial), #4ade80); }
+    .module-icon.physical { background: linear-gradient(135deg, var(--physical), #f87171); }
+    .module-icon.custom { background: linear-gradient(135deg, var(--custom), #fb923c); }
+    
+    .module-info h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .module-info p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+    
+    .module-stats {
+      margin-left: auto;
+      display: flex;
+      gap: 32px;
+    }
+    
+    .module-stat {
+      text-align: center;
+    }
+    
+    .module-stat-value {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    
+    .module-stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    
+    .empty-state .icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+    
+    .empty-state h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    
+    .empty-state p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    
+    /* Goal Detail Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      transform: scale(0.9);
+      transition: var(--transition);
+    }
+    
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+    
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .modal-header h2 {
+      font-size: 20px;
+    }
+    
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--bg);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+    
+    .modal-close:hover {
+      background: var(--bg-hover);
+      color: var(--text);
+    }
+    
+    .modal-body {
+      padding: 24px;
+    }
+    
+    .modal-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+      
+      .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      
+      .menu-btn {
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: var(--bg);
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 24px;
+      }
+      
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .progress-card,
+      .domains-card,
+      .actions-card,
+      .ai-card,
+      .goals-card {
+        grid-column: span 1;
+      }
+    }
+    
+    @media (min-width: 1025px) {
+      .mobile-header {
+        display: none;
+      }
+    }
+    
+    /* Page transitions */
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Logout Button */
+    .logout-btn {
+      width: 100%;
+      margin-top: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .logout-btn:hover {
+      color: #dc2626;
+      border-color: #dc2626;
+      background: rgba(220, 38, 38, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">
+        <h1>🎯 Plan d'Action 2026</h1>
+        <p>Réalisation et Constance</p>
+      </div>
+      
+      <div class="login-error" id="loginError">
+        Identifiants incorrects. Veuillez réessayer.
+      </div>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Nom d'utilisateur</label>
+          <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label>Mot de passe</label>
+          <input type="password" id="password" placeholder="Entrez votre mot de passe" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Se connecter
+        </button>
+      </form>
+      
+      <div class="demo-accounts">
+        <h3>Comptes de démonstration</h3>
+        <button class="demo-btn" onclick="quickLogin('fabien', 'Fabien2026!')">
+          <span class="avatar">👨‍💼</span>
+          <div class="info">
+            <div class="name">Fabien</div>
+            <div class="role">Administrateur • 6 objectifs</div>
+          </div>
+        </button>
+        <button class="demo-btn" onclick="quickLogin('sandrine', 'Sandrine2026!')">
+          <span class="avatar">👩‍💼</span>
+          <div class="info">
+            <div class="name">Sandrine</div>
+            <div class="role">Utilisateur • 10 objectifs</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App -->
+  <div class="app" id="app">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <span style="font-weight: 700;">Plan d'Action 2026</span>
+      <div style="width: 44px;"></div>
+    </div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">🎯</div>
+        <div class="sidebar-title">
+          <h2>PA 2026</h2>
+          <p>Réalisation et Constance</p>
+        </div>
+      </div>
+      
+      <nav>
+        <div class="nav-section">
+          <div class="nav-section-title">Principal</div>
+          <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard')">
+            <span class="icon">📊</span>
+            <span>Tableau de bord</span>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Modules</div>
+          <div class="nav-item spiritual" data-page="spiritual" onclick="showPage('spiritual')">
+            <span class="icon">🙏</span>
+            <span>Spirituel</span>
+          </div>
+          <div class="nav-item intellectual" data-page="intellectual" onclick="showPage('intellectual')">
+            <span class="icon">🧠</span>
+            <span>Intellectuel</span>
+          </div>
+          <div class="nav-item financial" data-page="financial" onclick="showPage('financial')">
+            <span class="icon">💰</span>
+            <span>Financier</span>
+          </div>
+          <div class="nav-item physical" data-page="physical" onclick="showPage('physical')">
+            <span class="icon">💪</span>
+            <span>Physique</span>
+          </div>
+          <div class="nav-item custom" data-page="custom" onclick="showPage('custom')">
+            <span class="icon">✨</span>
+            <span>Personnalisé</span>
+          </div>
+        </div>
+        
+        <div class="nav-section">
+          <div class="nav-section-title">Outils</div>
+          <div class="nav-item" data-page="evaluations" onclick="showPage('evaluations')">
+            <span class="icon">📋</span>
+            <span>Évaluations</span>
+          </div>
+          <div class="nav-item" data-page="rewards" onclick="showPage('rewards')">
+            <span class="icon">🏆</span>
+            <span>Récompenses</span>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar" id="userAvatar">👤</div>
+          <div class="user-info">
+            <div class="name" id="userName">Utilisateur</div>
+            <div class="role" id="userRole">Rôle</div>
+          </div>
+        </div>
+        
+        <div class="theme-toggle" onclick="toggleTheme()">
+          <span>🌙 Mode sombre</span>
+          <div class="toggle-switch"></div>
+        </div>
+        
+        <button class="logout-btn" onclick="logout()">
+          🚪 Déconnexion
+        </button>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Page -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div class="page-title">
+            <div class="icon">📊</div>
+            <div>
+              <h1 id="welcomeTitle">Bonjour !</h1>
+              <p id="currentDate"></p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" onclick="exportPDF()">📥 Export PDF</button>
+          </div>
+        </div>
+        
+        <div class="dashboard-grid">
+          <!-- Progress Ring -->
+          <div class="card progress-card">
+            <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#6366f1"/>
+                  <stop offset="100%" style="stop-color:#818cf8"/>
+                </linearGradient>
+              </defs>
+              <circle class="progress-ring-bg" cx="90" cy="90" r="70"/>
+              <circle class="progress-ring-fill" id="progressRing" cx="90" cy="90" r="70"/>
+            </svg>
+            <div class="progress-value">
+              <div class="progress-percent" id="progressPercent">0%</div>
+              <div class="progress-label">Progression globale</div>
+            </div>
+            <div class="streak-info">
+              <div class="streak-item">
+                <div class="streak-value" id="currentStreak">0</div>
+                <div class="streak-label">🔥 Série actuelle</div>
+              </div>
+              <div class="streak-item">
+                <div class="streak-value" id="bestStreak">0</div>
+                <div class="streak-label">🏆 Meilleure</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Domains -->
+          <div class="card domains-card">
+            <div class="card-header">
+              <div class="card-title">📈 Progression par domaine</div>
+            </div>
+            <div class="domain-list" id="domainList"></div>
+          </div>
+          
+          <!-- Actions -->
+          <div class="card actions-card">
+            <div class="card-header">
+              <div class="card-title">✅ Actions du jour</div>
+            </div>
+            <div class="action-list" id="actionList"></div>
+          </div>
+          
+          <!-- AI Message -->
+          <div class="card ai-card">
+            <div class="card-header">
+              <div class="card-title">🤖 Message du jour</div>
+            </div>
+            <div class="ai-message" id="aiMessage"></div>
+            <div class="ai-signature">— Votre assistant IA</div>
+          </div>
+          
+          <!-- Goals Overview -->
+          <div class="card goals-card">
+            <div class="card-header">
+              <div class="card-title">🎯 Mes objectifs prioritaires</div>
+            </div>
+            <div class="goals-grid" id="goalsGrid"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Spiritual Page -->
+      <div class="page" id="page-spiritual">
+        <div class="module-header">
+          <div class="module-icon spiritual">🙏</div>
+          <div class="module-info">
+            <h1>Spirituel</h1>
+            <p>Lecture biblique, prière, méditation et croissance spirituelle</p>
+          </div>
+          <div class="module-stats">
+            <div class="module-stat">
+              <div class="module-stat-value" id="spiritualProgress">0%</div>
+              <div class="module-stat-label">Progression</div>
+            </div>
+            <div class="module-stat">
+              <div class="module-stat-value" id="spiritualGoals">0</div>
+              <div class="module-stat-label">Objectifs</div>
+            </div>
+          </div>
+        </div>
+        <div class="goals-grid" id="spiritualGoalsGrid"></div>
+      </div>
+      
+      <!-- Intellectual Page -->
+      <div class="page" id="page-intellectual">
+        <div class="module-header">
+          <div class="module-icon intellectual">🧠</div>
+          <div class="module-info">
+            <h1>Intellectuel</h1>
+            <p>Langues, musique, lecture et développement des compétences</p>
+          </div>
+          <div class="module-stats">
+            <div class="module-stat">
+              <div class="module-stat-value" id="intellectualProgress">0%</div>
+              <div class="module-stat-label">Progression</div>
+            </div>
+            <div class="module-stat">
+              <div class="module-stat-value" id="intellectualGoals">0</div>
+              <div class="module-stat-label">Objectifs</div>
+            </div>
+          </div>
+        </div>
+        <div class="goals-grid" id="intellectualGoalsGrid"></div>
+      </div>
+      
+      <!-- Financial Page -->
+      <div class="page" id="page-financial">
+        <div class="module-header">
+          <div class="module-icon financial">💰</div>
+          <div class="module-info">
+            <h1>Financier</h1>
+            <p>Épargne, budget, investissements et projets business</p>
+          </div>
+          <div class="module-stats">
+            <div class="module-stat">
+              <div class="module-stat-value" id="financialProgress">0%</div>
+              <div class="module-stat-label">Progression</div>
+            </div>
+            <div class="module-stat">
+              <div class="module-stat-value" id="financialGoals">0</div>
+              <div class="module-stat-label">Objectifs</div>
+            </div>
+          </div>
+        </div>
+        <div class="goals-grid" id="financialGoalsGrid"></div>
+      </div>
+      
+      <!-- Physical Page -->
+      <div class="page" id="page-physical">
+        <div class="module-header">
+          <div class="module-icon physical">💪</div>
+          <div class="module-info">
+            <h1>Physique</h1>
+            <p>Sport, nutrition, sommeil et habitudes de vie</p>
+          </div>
+          <div class="module-stats">
+            <div class="module-stat">
+              <div class="module-stat-value" id="physicalProgress">0%</div>
+              <div class="module-stat-label">Progression</div>
+            </div>
+            <div class="module-stat">
+              <div class="module-stat-value" id="physicalGoals">0</div>
+              <div class="module-stat-label">Objectifs</div>
+            </div>
+          </div>
+        </div>
+        <div class="goals-grid" id="physicalGoalsGrid"></div>
+      </div>
+      
+      <!-- Custom Page -->
+      <div class="page" id="page-custom">
+        <div class="module-header">
+          <div class="module-icon custom">✨</div>
+          <div class="module-info">
+            <h1>Personnalisé</h1>
+            <p>Objectifs sur-mesure pour tous vos projets personnels</p>
+          </div>
+          <div class="module-stats">
+            <div class="module-stat">
+              <div class="module-stat-value" id="customProgress">0%</div>
+              <div class="module-stat-label">Progression</div>
+            </div>
+            <div class="module-stat">
+              <div class="module-stat-value" id="customGoals">0</div>
+              <div class="module-stat-label">Objectifs</div>
+            </div>
+          </div>
+        </div>
+        <div id="customGoalsGrid">
+          <div class="empty-state">
+            <div class="icon">✨</div>
+            <h3>Aucun objectif personnalisé</h3>
+            <p>Créez votre premier objectif sur-mesure</p>
+            <button class="btn btn-primary" onclick="createCustomGoal()">+ Créer un objectif</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Evaluations Page -->
+      <div class="page" id="page-evaluations">
+        <div class="module-header">
+          <div class="module-icon" style="background: linear-gradient(135deg, #6366f1, #818cf8);">📋</div>
+          <div class="module-info">
+            <h1>Évaluations</h1>
+            <p>Bilans mensuels, trimestriels et synthèses IA</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="empty-state">
+            <div class="icon">📋</div>
+            <h3>Évaluations à venir</h3>
+            <p>Vos évaluations apparaîtront ici à la fin de chaque période</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Rewards Page -->
+      <div class="page" id="page-rewards">
+        <div class="module-header">
+          <div class="module-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">🏆</div>
+          <div class="module-info">
+            <h1>Récompenses</h1>
+            <p>Célébrez vos accomplissements trimestriels</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="empty-state">
+            <div class="icon">🏆</div>
+            <h3>Récompenses à débloquer</h3>
+            <p>Atteignez vos objectifs pour débloquer des récompenses</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Goal Detail Modal -->
+  <div class="modal-overlay" id="goalModal" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2 id="modalTitle">Détail de l'objectif</h2>
+        <button class="modal-close" onclick="closeGoalModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content dynamically loaded -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeGoalModal()">Fermer</button>
+        <button class="btn btn-primary" onclick="addEntry()">+ Ajouter une entrée</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================
+    // DATA - Users
+    // =========================================
+    const users = {
+      fabien: {
+        id: 'user_fabien',
+        username: 'fabien',
+        password: 'Fabien2026!',
+        avatar: '👨‍💼',
+        firstName: 'Fabien',
+        role: 'Administrateur',
+        vision: 'Grandir spirituellement, développer mes compétences linguistiques, atteindre mes objectifs financiers.',
+        domains: {
+          spiritual: { progress: 62, goals: 1 },
+          intellectual: { progress: 78, goals: 2 },
+          financial: { progress: 85, goals: 2 },
+          physical: { progress: 80, goals: 1 }
+        },
+        streak: { current: 12, best: 18 },
+        goals: [
+          {
+            id: 'goal_bible_at',
+            domain: 'spiritual',
+            icon: '📖',
+            title: 'Bible AT NIV',
+            subtitle: '929 chapitres en anglais',
+            progress: 62,
+            current: 576,
+            target: 929,
+            unit: 'chapitres',
+            color: 'var(--spiritual)'
+          },
+          {
+            id: 'goal_english_b1',
+            domain: 'intellectual',
+            icon: '🇬🇧',
+            title: 'Anglais niveau B1',
+            subtitle: 'Duolingo + Praktika',
+            progress: 75,
+            current: 'A2+',
+            target: 'B1',
+            unit: 'niveau',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_chinese_hsk4',
+            domain: 'intellectual',
+            icon: '🇨🇳',
+            title: 'Chinois HSK4',
+            subtitle: 'HelloChinese',
+            progress: 42,
+            current: 'HSK2',
+            target: 'HSK4',
+            unit: 'niveau',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_savings_2026',
+            domain: 'financial',
+            icon: '💵',
+            title: 'Épargne 2M XAF',
+            subtitle: 'Épargne annuelle',
+            progress: 85,
+            current: '1 700 000',
+            target: '2 000 000',
+            unit: 'XAF',
+            color: 'var(--financial)'
+          },
+          {
+            id: 'goal_aquacam',
+            domain: 'financial',
+            icon: '🏢',
+            title: 'AQUACAM',
+            subtitle: 'CA 5M XAF',
+            progress: 68,
+            current: '3 400 000',
+            target: '5 000 000',
+            unit: 'XAF',
+            color: 'var(--financial)'
+          },
+          {
+            id: 'goal_detox',
+            domain: 'physical',
+            icon: '🍃',
+            title: 'Détox alimentaire',
+            subtitle: '2j/mois → 1j/semaine',
+            progress: 80,
+            current: 16,
+            target: 20,
+            unit: 'journées',
+            color: 'var(--physical)'
+          }
+        ],
+        todayActions: [
+          { text: 'Lecture Bible - Exode 15-16', domain: 'spiritual', completed: false },
+          { text: 'Duolingo 10 min', domain: 'intellectual', completed: true },
+          { text: 'HelloChinese 10 min', domain: 'intellectual', completed: false },
+          { text: 'Mise à jour stats AQUACAM', domain: 'financial', completed: false }
+        ]
+      },
+      sandrine: {
+        id: 'user_sandrine',
+        username: 'sandrine',
+        password: 'Sandrine2026!',
+        avatar: '👩‍💼',
+        firstName: 'Sandrine',
+        role: 'Utilisateur',
+        vision: 'Renforcer ma vie spirituelle, développer mes compétences, atteindre mes objectifs financiers et améliorer ma santé.',
+        domains: {
+          spiritual: { progress: 55, goals: 2 },
+          intellectual: { progress: 65, goals: 4 },
+          financial: { progress: 90, goals: 1 },
+          physical: { progress: 85, goals: 3 }
+        },
+        streak: { current: 8, best: 12 },
+        goals: [
+          {
+            id: 'goal_prayer',
+            domain: 'spiritual',
+            icon: '🙏',
+            title: 'Prière 1h/jour',
+            subtitle: 'Quotidien',
+            progress: 52,
+            current: 45,
+            target: 60,
+            unit: 'min/jour',
+            color: 'var(--spiritual)'
+          },
+          {
+            id: 'goal_bible_reading',
+            domain: 'spiritual',
+            icon: '📖',
+            title: 'Bible + Étude',
+            subtitle: '2 chapitres/jour',
+            progress: 58,
+            current: 420,
+            target: 730,
+            unit: 'chapitres',
+            color: 'var(--spiritual)'
+          },
+          {
+            id: 'goal_piano',
+            domain: 'intellectual',
+            icon: '🎹',
+            title: 'Piano',
+            subtitle: 'Deadline: Février 2026',
+            progress: 85,
+            current: 12,
+            target: 16,
+            unit: 'séances',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_french',
+            domain: 'intellectual',
+            icon: '🇫🇷',
+            title: 'Français',
+            subtitle: 'Grammaire & orthographe',
+            progress: 60,
+            current: 24,
+            target: 40,
+            unit: 'règles',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_english',
+            domain: 'intellectual',
+            icon: '🇬🇧',
+            title: 'Anglais Duolingo',
+            subtitle: '15 min/jour + chansons',
+            progress: 72,
+            current: 264,
+            target: 365,
+            unit: 'jours',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_reading',
+            domain: 'intellectual',
+            icon: '📚',
+            title: '2 livres/an',
+            subtitle: 'Conseils à l\'économe',
+            progress: 45,
+            current: 0.9,
+            target: 2,
+            unit: 'livres',
+            color: 'var(--intellectual)'
+          },
+          {
+            id: 'goal_savings_envelopes',
+            domain: 'financial',
+            icon: '💵',
+            title: 'Épargne 3 enveloppes',
+            subtitle: '200 000 XAF/mois',
+            progress: 90,
+            current: '2 160 000',
+            target: '2 400 000',
+            unit: 'XAF',
+            color: 'var(--financial)'
+          },
+          {
+            id: 'goal_sport',
+            domain: 'physical',
+            icon: '🏃',
+            title: 'Sport 2x/semaine',
+            subtitle: 'Sam & Dim',
+            progress: 87,
+            current: 84,
+            target: 96,
+            unit: 'séances',
+            color: 'var(--physical)'
+          },
+          {
+            id: 'goal_nutrition',
+            domain: 'physical',
+            icon: '🍎',
+            title: 'Fruits petit-déj',
+            subtitle: 'Lun & Jeu',
+            progress: 82,
+            current: 78,
+            target: 96,
+            unit: 'jours',
+            color: 'var(--physical)'
+          },
+          {
+            id: 'goal_punctuality',
+            domain: 'physical',
+            icon: '⏰',
+            title: 'Ponctualité travail',
+            subtitle: 'Arriver 15-30 min avance',
+            progress: 85,
+            current: 198,
+            target: 232,
+            unit: 'jours',
+            color: 'var(--physical)'
+          }
+        ],
+        todayActions: [
+          { text: 'Prière 1h', domain: 'spiritual', completed: false },
+          { text: 'Bible 2 chapitres', domain: 'spiritual', completed: true },
+          { text: 'Duolingo 15 min', domain: 'intellectual', completed: false },
+          { text: 'Arrivée travail (+22 min)', domain: 'physical', completed: true }
+        ]
+      }
+    };
+    
+    const aiMessages = [
+      "Bravo pour votre régularité ! Votre série de {streak} jours montre une vraie discipline. Continuez ainsi, vous êtes sur la bonne voie pour atteindre vos objectifs 2026. 💪",
+      "Excellent travail ce mois-ci ! Votre progression globale de {progress}% est impressionnante. N'oubliez pas de célébrer chaque petite victoire. 🎉",
+      "Vous avez fait des progrès remarquables dans le domaine {topDomain}. Gardez ce momentum et concentrez-vous sur {weakDomain} pour un équilibre parfait. ⚖️",
+      "La constance est la clé du succès. Avec {streak} jours consécutifs, vous construisez des habitudes durables. Vous êtes en train de devenir la meilleure version de vous-même ! 🌟"
+    ];
+    
+    // =========================================
+    // APP STATE
+    // =========================================
+    let currentUser = null;
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // =========================================
+    // INITIALIZATION
+    // =========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
+      updateDate();
+      
+      // Check if user is already logged in
+      const savedUser = localStorage.getItem('currentUser');
+      if (savedUser && users[savedUser]) {
+        login(savedUser);
+      }
+    });
+    
+    // =========================================
+    // AUTH FUNCTIONS
+    // =========================================
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.toLowerCase();
+      const password = document.getElementById('password').value;
+      
+      if (users[username] && users[username].password === password) {
+        login(username);
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('loginError').style.display = 'none';
+        }, 3000);
+      }
+    });
+    
+    function quickLogin(username, password) {
+      document.getElementById('username').value = username;
+      document.getElementById('password').value = password;
+      login(username);
+    }
+    
+    function login(username) {
+      currentUser = users[username];
+      localStorage.setItem('currentUser', username);
+      
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('app').classList.add('active');
+      
+      updateUI();
+    }
+    
+    function logout() {
+      currentUser = null;
+      localStorage.removeItem('currentUser');
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('app').classList.remove('active');
+      document.getElementById('username').value = '';
+      document.getElementById('password').value = '';
+    }
+    
+    // =========================================
+    // UI FUNCTIONS
+    // =========================================
+    function updateUI() {
+      if (!currentUser) return;
+      
+      // Update user info
+      document.getElementById('userAvatar').textContent = currentUser.avatar;
+      document.getElementById('userName').textContent = currentUser.firstName;
+      document.getElementById('userRole').textContent = currentUser.role;
+      document.getElementById('welcomeTitle').textContent = `Bonjour ${currentUser.firstName} !`;
+      
+      // Update progress ring
+      const totalProgress = calculateTotalProgress();
+      updateProgressRing(totalProgress);
+      
+      // Update streaks
+      document.getElementById('currentStreak').textContent = currentUser.streak.current;
+      document.getElementById('bestStreak').textContent = currentUser.streak.best;
+      
+      // Update domains
+      renderDomains();
+      
+      // Update actions
+      renderActions();
+      
+      // Update AI message
+      renderAIMessage();
+      
+      // Update goals
+      renderGoals();
+      
+      // Update module pages
+      renderModulePages();
+    }
+    
+    function calculateTotalProgress() {
+      const domains = currentUser.domains;
+      const total = Object.values(domains).reduce((sum, d) => sum + d.progress, 0);
+      return Math.round(total / Object.keys(domains).length);
+    }
+    
+    function updateProgressRing(progress) {
+      const ring = document.getElementById('progressRing');
+      const circumference = 2 * Math.PI * 70;
+      const offset = circumference - (progress / 100) * circumference;
+      
+      setTimeout(() => {
+        ring.style.strokeDashoffset = offset;
+      }, 100);
+      
+      document.getElementById('progressPercent').textContent = `${progress}%`;
+    }
+    
+    function renderDomains() {
+      const container = document.getElementById('domainList');
+      const domainConfig = {
+        spiritual: { name: 'Spirituel', icon: '🙏' },
+        intellectual: { name: 'Intellectuel', icon: '🧠' },
+        financial: { name: 'Financier', icon: '💰' },
+        physical: { name: 'Physique', icon: '💪' }
+      };
+      
+      container.innerHTML = Object.entries(currentUser.domains).map(([key, data]) => `
+        <div class="domain-item">
+          <div class="domain-icon ${key}">${domainConfig[key].icon}</div>
+          <div class="domain-info">
+            <div class="domain-name">
+              <span>${domainConfig[key].name}</span>
+              <span class="domain-percent">${data.progress}%</span>
+            </div>
+            <div class="domain-bar">
+              <div class="domain-bar-fill ${key}" style="width: ${data.progress}%"></div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function renderActions() {
+      const container = document.getElementById('actionList');
+      container.innerHTML = currentUser.todayActions.map((action, i) => `
+        <div class="action-item ${action.completed ? 'completed' : ''}" onclick="toggleAction(${i})">
+          <div class="action-checkbox">${action.completed ? '✓' : ''}</div>
+          <span class="action-text">${action.text}</span>
+          <span class="action-tag ${action.domain}">${action.domain}</span>
+        </div>
+      `).join('');
+    }
+    
+    function toggleAction(index) {
+      currentUser.todayActions[index].completed = !currentUser.todayActions[index].completed;
+      renderActions();
+    }
+    
+    function renderAIMessage() {
+      const message = aiMessages[Math.floor(Math.random() * aiMessages.length)]
+        .replace('{streak}', currentUser.streak.current)
+        .replace('{progress}', calculateTotalProgress())
+        .replace('{topDomain}', getTopDomain())
+        .replace('{weakDomain}', getWeakDomain());
+      
+      document.getElementById('aiMessage').textContent = message;
+    }
+    
+    function getTopDomain() {
+      const domains = currentUser.domains;
+      let top = { name: '', progress: 0 };
+      for (const [name, data] of Object.entries(domains)) {
+        if (data.progress > top.progress) {
+          top = { name, progress: data.progress };
+        }
+      }
+      const names = { spiritual: 'Spirituel', intellectual: 'Intellectuel', financial: 'Financier', physical: 'Physique' };
+      return names[top.name];
+    }
+    
+    function getWeakDomain() {
+      const domains = currentUser.domains;
+      let weak = { name: '', progress: 100 };
+      for (const [name, data] of Object.entries(domains)) {
+        if (data.progress < weak.progress) {
+          weak = { name, progress: data.progress };
+        }
+      }
+      const names = { spiritual: 'Spirituel', intellectual: 'Intellectuel', financial: 'Financier', physical: 'Physique' };
+      return names[weak.name];
+    }
+    
+    function renderGoals() {
+      const container = document.getElementById('goalsGrid');
+      const priorityGoals = currentUser.goals.slice(0, 4);
+      
+      container.innerHTML = priorityGoals.map(goal => createGoalCard(goal)).join('');
+    }
+    
+    function createGoalCard(goal) {
+      return `
+        <div class="goal-card" onclick="openGoalModal('${goal.id}')">
+          <div class="goal-header">
+            <div class="goal-icon" style="background: ${goal.color}20;">${goal.icon}</div>
+            <div>
+              <div class="goal-title">${goal.title}</div>
+              <div class="goal-subtitle">${goal.subtitle}</div>
+            </div>
+          </div>
+          <div class="goal-progress">
+            <div class="goal-progress-header">
+              <span>${goal.current} ${goal.unit}</span>
+              <span style="color: var(--text-secondary)">${goal.progress}%</span>
+            </div>
+            <div class="goal-progress-bar">
+              <div class="goal-progress-fill" style="width: ${goal.progress}%; background: ${goal.color}"></div>
+            </div>
+          </div>
+          <div class="goal-stats">
+            <div class="goal-stat">🎯 Cible: ${goal.target}</div>
+          </div>
+        </div>
+      `;
+    }
+    
+    function renderModulePages() {
+      const domains = ['spiritual', 'intellectual', 'financial', 'physical'];
+      
+      domains.forEach(domain => {
+        const goals = currentUser.goals.filter(g => g.domain === domain);
+        const container = document.getElementById(`${domain}GoalsGrid`);
+        const progressEl = document.getElementById(`${domain}Progress`);
+        const goalsCountEl = document.getElementById(`${domain}Goals`);
+        
+        if (container) {
+          if (goals.length > 0) {
+            container.innerHTML = goals.map(goal => createGoalCard(goal)).join('');
+            container.classList.add('goals-grid');
+          } else {
+            container.innerHTML = `
+              <div class="empty-state">
+                <div class="icon">📭</div>
+                <h3>Aucun objectif</h3>
+                <p>Créez votre premier objectif dans ce domaine</p>
+              </div>
+            `;
+          }
+        }
+        
+        if (progressEl) progressEl.textContent = currentUser.domains[domain].progress + '%';
+        if (goalsCountEl) goalsCountEl.textContent = goals.length;
+      });
+    }
+    
+    // =========================================
+    // NAVIGATION
+    // =========================================
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(`page-${pageId}`).classList.add('active');
+      
+      // Update nav
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector(`.nav-item[data-page="${pageId}"]`).classList.add('active');
+      
+      // Close sidebar on mobile
+      if (window.innerWidth <= 1024) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+    
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+    
+    // =========================================
+    // THEME
+    // =========================================
+    function toggleTheme() {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(currentTheme);
+      localStorage.setItem('theme', currentTheme);
+    }
+    
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    
+    // =========================================
+    // MODAL
+    // =========================================
+    function openGoalModal(goalId) {
+      const goal = currentUser.goals.find(g => g.id === goalId);
+      if (!goal) return;
+      
+      document.getElementById('modalTitle').textContent = goal.title;
+      document.getElementById('modalBody').innerHTML = `
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div style="font-size: 64px; margin-bottom: 16px;">${goal.icon}</div>
+          <h3 style="margin-bottom: 8px;">${goal.title}</h3>
+          <p style="color: var(--text-secondary);">${goal.subtitle}</p>
+        </div>
+        
+        <div style="background: var(--bg); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+            <span>Progression</span>
+            <strong>${goal.progress}%</strong>
+          </div>
+          <div style="height: 12px; background: var(--border); border-radius: 6px; overflow: hidden;">
+            <div style="width: ${goal.progress}%; height: 100%; background: ${goal.color}; border-radius: 6px;"></div>
+          </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="background: var(--bg); padding: 16px; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 700;">${goal.current}</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">Actuel</div>
+          </div>
+          <div style="background: var(--bg); padding: 16px; border-radius: 12px; text-align: center;">
+            <div style="font-size: 24px; font-weight: 700;">${goal.target}</div>
+            <div style="font-size: 13px; color: var(--text-secondary);">Objectif</div>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('goalModal').classList.add('active');
+    }
+    
+    function closeGoalModal() {
+      document.getElementById('goalModal').classList.remove('active');
+    }
+    
+    function closeModal(event) {
+      if (event.target.classList.contains('modal-overlay')) {
+        closeGoalModal();
+      }
+    }
+    
+    function addEntry() {
+      alert('Fonctionnalité à venir : Ajouter une entrée');
+    }
+    
+    function createCustomGoal() {
+      alert('Fonctionnalité à venir : Créer un objectif personnalisé');
+    }
+    
+    function exportPDF() {
+      alert('Fonctionnalité à venir : Export PDF');
+    }
+    
+    // =========================================
+    // UTILITIES
+    // =========================================
+    function updateDate() {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const today = new Date().toLocaleDateString('fr-FR', options);
+      document.getElementById('currentDate').textContent = today.charAt(0).toUpperCase() + today.slice(1);
+    }
+  </script>
+</body>
+</html>
