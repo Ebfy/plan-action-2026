@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Plan d'Action 2026 - Réalisation et Constance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d0d1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #252545;
+            --bg-card: #1e1e38;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b5;
+            --text-muted: #6a6a85;
+            --accent: #7c3aed;
+            --accent-light: #a855f7;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --border: rgba(255,255,255,0.08);
+            --spiritual: #8b5cf6;
+            --intellectual: #3b82f6;
+            --financial: #10b981;
+            --physical: #f59e0b;
+            --custom: #ec4899;
+        }
+        [data-theme="light"] {
+            --bg-primary: #f8f9fc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #eef1f6;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --text-muted: #8a8aa5;
+            --border: rgba(0,0,0,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .animate-in { animation: fadeIn 0.4s ease-out; }
+
+        /* Login */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+        }
+        .login-screen::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.15;
+            top: -200px;
+            right: -200px;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .login-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+        }
+        .login-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .login-logo-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .login-logo h1 {
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .login-logo p { color: var(--text-muted); font-size: 14px; font-style: italic; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-secondary); font-size: 14px; }
+        .input-wrapper { position: relative; }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .form-input:focus { outline: none; border-color: var(--accent); }
+        .form-input::placeholder { color: var(--text-muted); }
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            width: 100%;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,58,237,0.3); }
+        .btn-secondary { background: var(--bg-tertiary); color: var(--text-primary); }
+        .btn-sm { padding: 8px 16px; font-size: 14px; }
+        
+        .login-error {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            display: none;
+        }
+        .login-error.show { display: block; }
+
+        /* App Container */
+        .app-container { display: none; min-height: 100vh; }
+        .app-container.active { display: block; }
+
+        /* Header */
+        .app-header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-logo { display: flex; align-items: center; gap: 10px; }
+        .header-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .header-title { font-size: 18px; }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .user-avatar { font-size: 22px; }
+        .user-name { font-weight: 600; font-size: 14px; }
+        .user-role { font-size: 11px; color: var(--text-muted); }
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            overflow-x: auto;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 4px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .nav-item:hover { color: var(--text-primary); background: var(--bg-tertiary); }
+        .nav-item.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .nav-icon { font-size: 18px; }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+        .page-header { margin-bottom: 24px; }
+        .page-title { font-size: 28px; margin-bottom: 6px; }
+        .page-subtitle { color: var(--text-secondary); font-size: 15px; }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        .stat-icon.spiritual { background: rgba(139,92,246,0.15); }
+        .stat-icon.intellectual { background: rgba(59,130,246,0.15); }
+        .stat-icon.financial { background: rgba(16,185,129,0.15); }
+        .stat-icon.physical { background: rgba(245,158,11,0.15); }
+        .stat-icon.custom { background: rgba(236,72,153,0.15); }
+        .stat-value { font-size: 26px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .stat-label { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+
+        /* Goals Grid */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .section-title { font-size: 20px; display: flex; align-items: center; gap: 10px; }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        /* Goal Card */
+        .goal-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        .goal-card.spiritual::before { background: var(--spiritual); }
+        .goal-card.intellectual::before { background: var(--intellectual); }
+        .goal-card.financial::before { background: var(--financial); }
+        .goal-card.physical::before { background: var(--physical); }
+        .goal-card.custom::before { background: var(--custom); }
+        .goal-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+        .goal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+        .goal-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .goal-icon.spiritual { background: rgba(139,92,246,0.15); }
+        .goal-icon.intellectual { background: rgba(59,130,246,0.15); }
+        .goal-icon.financial { background: rgba(16,185,129,0.15); }
+        .goal-icon.physical { background: rgba(245,158,11,0.15); }
+        .goal-icon.custom { background: rgba(236,72,153,0.15); }
+        .goal-badge {
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .goal-badge.spiritual { background: rgba(139,92,246,0.2); color: var(--spiritual); }
+        .goal-badge.intellectual { background: rgba(59,130,246,0.2); color: var(--intellectual); }
+        .goal-badge.financial { background: rgba(16,185,129,0.2); color: var(--financial); }
+        .goal-badge.physical { background: rgba(245,158,11,0.2); color: var(--physical); }
+        .goal-badge.custom { background: rgba(236,72,153,0.2); color: var(--custom); }
+        .goal-title { font-size: 17px; margin-bottom: 6px; }
+        .goal-description { color: var(--text-secondary); font-size: 13px; margin-bottom: 16px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Progress Bar */
+        .progress-container { margin-bottom: 12px; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; }
+        .progress-label { color: var(--text-secondary); }
+        .progress-value { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .progress-bar { height: 6px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .progress-fill.spiritual { background: var(--spiritual); }
+        .progress-fill.intellectual { background: var(--intellectual); }
+        .progress-fill.financial { background: var(--financial); }
+        .progress-fill.physical { background: var(--physical); }
+        .progress-fill.custom { background: var(--custom); }
+        .goal-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+        .goal-meta-item { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-muted); }
+
+        /* Module Pages */
+        .module-page { display: none; }
+        .module-page.active { display: block; animation: fadeIn 0.4s ease-out; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-card);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 550px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+        }
+        .modal-title { font-size: 18px; }
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-tertiary);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+        .modal-close:hover { background: var(--danger); color: white; }
+        .modal-body { padding: 24px; }
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-tertiary);
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .tab:hover { color: var(--text-primary); }
+        .tab.active { background: var(--bg-card); color: var(--accent); }
+
+        /* Form Elements */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .form-select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .form-select:focus { outline: none; border-color: var(--accent); }
+        .form-textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-textarea:focus { outline: none; border-color: var(--accent); }
+
+        /* Checkbox Group */
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 14px;
+        }
+        .checkbox-item:hover { background: var(--bg-secondary); }
+        .checkbox-item.selected { border-color: var(--accent); background: rgba(124,58,237,0.1); }
+        .checkbox-item input { display: none; }
+
+        /* Entry List */
+        .entry-card {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .entry-date { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        .entry-value { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600; }
+
+        /* Alarm Card */
+        .alarm-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .alarm-info { display: flex; align-items: center; gap: 14px; }
+        .alarm-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .alarm-time { font-size: 18px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .alarm-label { font-size: 13px; color: var(--text-secondary); }
+        .alarm-days { display: flex; gap: 4px; margin-top: 4px; }
+        .alarm-day {
+            width: 22px;
+            height: 22px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .alarm-day.active { background: var(--accent); color: white; }
+        .alarm-toggle {
+            width: 48px;
+            height: 26px;
+            background: var(--bg-card);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .alarm-toggle.active { background: var(--success); }
+        .alarm-toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s;
+        }
+        .alarm-toggle.active::after { left: 25px; }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 280px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .toast.success { border-left: 4px solid var(--success); }
+        .toast.error { border-left: 4px solid var(--danger); }
+        .toast-icon { font-size: 22px; }
+        .toast-title { font-weight: 600; font-size: 14px; }
+        .toast-message { font-size: 13px; color: var(--text-secondary); }
+
+        /* Envelopes */
+        .envelope-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .envelope-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .envelope-name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .envelope-priority { padding: 4px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+        .envelope-priority.high { background: rgba(239,68,68,0.2); color: var(--danger); }
+        .envelope-priority.medium { background: rgba(245,158,11,0.2); color: var(--warning); }
+        .envelope-priority.normal { background: rgba(16,185,129,0.2); color: var(--success); }
+        .envelope-amounts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center; margin-top: 12px; }
+        .envelope-amount { padding: 10px; background: var(--bg-card); border-radius: 8px; }
+        .envelope-amount-value { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .envelope-amount-label { font-size: 11px; color: var(--text-muted); }
+
+        /* Transaction */
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .transaction-item:last-child { border-bottom: none; }
+        .transaction-left { display: flex; align-items: center; gap: 12px; }
+        .transaction-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .transaction-icon.income { background: rgba(16,185,129,0.15); }
+        .transaction-icon.expense { background: rgba(239,68,68,0.15); }
+        .transaction-info h4 { font-size: 13px; font-weight: 600; }
+        .transaction-info span { font-size: 11px; color: var(--text-muted); }
+        .transaction-amount { font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .transaction-amount.income { color: var(--success); }
+        .transaction-amount.expense { color: var(--danger); }
+
+        /* Milestones */
+        .milestone-list { position: relative; padding-left: 20px; }
+        .milestone-list::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .milestone-item { position: relative; padding: 12px 0 12px 16px; }
+        .milestone-item::before {
+            content: '';
+            position: absolute;
+            left: -18px;
+            top: 16px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+        }
+        .milestone-item.completed::before { background: var(--success); border-color: var(--success); }
+        .milestone-item.current::before { background: var(--accent); border-color: var(--accent); }
+        .milestone-date { font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        .milestone-title { font-weight: 600; font-size: 14px; }
+        .milestone-progress { font-size: 12px; color: var(--text-secondary); }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: 50px 20px; }
+        .empty-state-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.5; }
+        .empty-state-title { font-size: 18px; margin-bottom: 6px; }
+        .empty-state-text { color: var(--text-secondary); margin-bottom: 20px; }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .admin-title { font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .admin-title .badge { padding: 3px 8px; background: var(--danger); color: white; border-radius: 10px; font-size: 10px; font-weight: 600; }
+        .user-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .user-row-left { display: flex; align-items: center; gap: 10px; }
+        .user-row-avatar { font-size: 28px; }
+        .user-row-info h4 { font-weight: 600; font-size: 14px; }
+        .user-row-info span { font-size: 12px; color: var(--text-muted); }
+        .user-row-password { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-secondary); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title { display: none; }
+            .nav-label { display: none; }
+            .goals-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .user-name, .user-role { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-logo">
+                    <div class="login-logo-icon">🎯</div>
+                    <h1>Plan d'Action 2026</h1>
+                    <p>« Réalisation et Constance »</p>
+                </div>
+                <div class="login-error" id="loginError">Identifiants incorrects</div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Nom d'utilisateur</label>
+                        <input type="text" id="username" class="form-input" placeholder="Entrez votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" class="form-input" placeholder="Entrez votre mot de passe" required>
+                            <button type="button" class="password-toggle" id="passwordToggle">👁️</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Se connecter →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app-container" id="appContainer">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="header-logo">
+                        <div class="header-logo-icon">🎯</div>
+                        <h1 class="header-title">Plan d'Action 2026</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="themeToggle">🌙</button>
+                    <div class="user-menu">
+                        <span class="user-avatar" id="userAvatar">👤</span>
+                        <div>
+                            <div class="user-name" id="userNameDisplay">User</div>
+                            <div class="user-role" id="userRoleDisplay">user</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" id="logoutBtn">Déconnexion</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <div class="nav-content">
+                <div class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span><span class="nav-label">Accueil</span></div>
+                <div class="nav-item" data-page="spiritual"><span class="nav-icon">🙏</span><span class="nav-label">Spirituel</span></div>
+                <div class="nav-item" data-page="intellectual"><span class="nav-icon">🧠</span><span class="nav-label">Intellectuel</span></div>
+                <div class="nav-item" data-page="financial"><span class="nav-icon">💰</span><span class="nav-label">Financier</span></div>
+                <div class="nav-item" data-page="physical"><span class="nav-icon">💪</span><span class="nav-label">Physique</span></div>
+                <div class="nav-item" data-page="custom"><span class="nav-icon">⭐</span><span class="nav-label">Personnalisé</span></div>
+                <div class="nav-item" data-page="alarms"><span class="nav-icon">⏰</span><span class="nav-label">Alarmes</span></div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <!-- Dashboard -->
+            <div class="module-page active" id="page-dashboard">
+                <div class="page-header">
+                    <h1 class="page-title">Tableau de bord</h1>
+                    <p class="page-subtitle">Vue d'ensemble de vos objectifs 2026</p>
+                </div>
+                <div class="admin-panel" id="adminPanel" style="display:none;">
+                    <h3 class="admin-title">🔐 Panneau Admin <span class="badge">ADMIN</span></h3>
+                    <div id="adminUserList"></div>
+                </div>
+                <div class="stats-grid" id="dashboardStats"></div>
+                <div class="section-header">
+                    <h2 class="section-title">📋 Mes Objectifs</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal()">+ Nouvel objectif</button>
+                </div>
+                <div class="goals-grid" id="goalsOverview"></div>
+            </div>
+
+            <!-- Spiritual -->
+            <div class="module-page" id="page-spiritual">
+                <div class="page-header">
+                    <h1 class="page-title">🙏 Module Spirituel</h1>
+                    <p class="page-subtitle">Lecture biblique, prière, méditation</p>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Objectifs spirituels</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal('spiritual')">+ Ajouter</button>
+                </div>
+                <div class="goals-grid" id="spiritualGoals"></div>
+            </div>
+
+            <!-- Intellectual -->
+            <div class="module-page" id="page-intellectual">
+                <div class="page-header">
+                    <h1 class="page-title">🧠 Module Intellectuel</h1>
+                    <p class="page-subtitle">Langues, musique, lecture</p>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Objectifs intellectuels</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal('intellectual')">+ Ajouter</button>
+                </div>
+                <div class="goals-grid" id="intellectualGoals"></div>
+            </div>
+
+            <!-- Financial -->
+            <div class="module-page" id="page-financial">
+                <div class="page-header">
+                    <h1 class="page-title">💰 Module Financier</h1>
+                    <p class="page-subtitle">Épargne, investissements, business</p>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Objectifs financiers</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal('financial')">+ Ajouter</button>
+                </div>
+                <div class="goals-grid" id="financialGoals"></div>
+                <div id="envelopesSection" style="margin-top:24px;"></div>
+                <div style="background:var(--bg-card);border-radius:16px;padding:20px;border:1px solid var(--border);margin-top:20px;">
+                    <h3 style="margin-bottom:16px;font-size:16px;">💳 Transactions récentes</h3>
+                    <div id="transactionsList"></div>
+                    <button class="btn btn-secondary btn-sm" onclick="openTransactionModal()" style="margin-top:12px;width:100%;">+ Nouvelle transaction</button>
+                </div>
+            </div>
+
+            <!-- Physical -->
+            <div class="module-page" id="page-physical">
+                <div class="page-header">
+                    <h1 class="page-title">💪 Module Physique</h1>
+                    <p class="page-subtitle">Sport, nutrition, santé</p>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Objectifs physiques</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal('physical')">+ Ajouter</button>
+                </div>
+                <div class="goals-grid" id="physicalGoals"></div>
+            </div>
+
+            <!-- Custom -->
+            <div class="module-page" id="page-custom">
+                <div class="page-header">
+                    <h1 class="page-title">⭐ Module Personnalisé</h1>
+                    <p class="page-subtitle">Vos objectifs sur-mesure</p>
+                </div>
+                <div class="section-header">
+                    <h2 class="section-title">Objectifs personnalisés</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddGoalModal('custom')">+ Ajouter</button>
+                </div>
+                <div class="goals-grid" id="customGoals"></div>
+            </div>
+
+            <!-- Alarms -->
+            <div class="module-page" id="page-alarms">
+                <div class="page-header">
+                    <h1 class="page-title">⏰ Alarmes & Rappels</h1>
+                    <p class="page-subtitle">Gérez vos notifications</p>
+                </div>
+                <div id="alarmsList"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Goal Detail Modal -->
+    <div class="modal-overlay" id="goalDetailModal">
+        <div class="modal" style="max-width:650px;">
+            <div class="modal-header">
+                <h2 class="modal-title" id="goalDetailTitle">Détail</h2>
+                <button class="modal-close" onclick="closeModal('goalDetailModal')">×</button>
+            </div>
+            <div class="modal-body" id="goalDetailContent"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('goalDetailModal')">Fermer</button>
+                <button class="btn btn-primary" id="addEntryBtn">+ Ajouter une entrée</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Entry Modal -->
+    <div class="modal-overlay" id="addEntryModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Ajouter une entrée</h2>
+                <button class="modal-close" onclick="closeModal('addEntryModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" class="form-input" id="entryDate">
+                </div>
+                <div class="form-group">
+                    <label>Valeur</label>
+                    <input type="number" class="form-input" id="entryValue" placeholder="Ex: 3">
+                </div>
+                <div class="form-group">
+                    <label>Notes</label>
+                    <textarea class="form-textarea" id="entryNotes" placeholder="Commentaires..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addEntryModal')">Annuler</button>
+                <button class="btn btn-primary" onclick="saveEntry()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Goal Modal -->
+    <div class="modal-overlay" id="addGoalModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Créer un objectif</h2>
+                <button class="modal-close" onclick="closeModal('addGoalModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Titre *</label>
+                    <input type="text" class="form-input" id="newGoalTitle" placeholder="Ex: Lire la Bible">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-textarea" id="newGoalDesc" placeholder="Décrivez votre objectif..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Module</label>
+                        <select class="form-select" id="newGoalModule">
+                            <option value="spiritual">🙏 Spirituel</option>
+                            <option value="intellectual">🧠 Intellectuel</option>
+                            <option value="financial">💰 Financier</option>
+                            <option value="physical">💪 Physique</option>
+                            <option value="custom">⭐ Personnalisé</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Objectif cible</label>
+                        <input type="number" class="form-input" id="newGoalTarget" placeholder="Ex: 929">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Unité</label>
+                        <input type="text" class="form-input" id="newGoalUnit" placeholder="Ex: chapitres">
+                    </div>
+                    <div class="form-group">
+                        <label>Date limite</label>
+                        <input type="date" class="form-input" id="newGoalDeadline">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Icône</label>
+                    <div class="checkbox-group" id="iconPicker">
+                        <div class="checkbox-item selected" data-icon="📖">📖</div>
+                        <div class="checkbox-item" data-icon="🙏">🙏</div>
+                        <div class="checkbox-item" data-icon="🇬🇧">🇬🇧</div>
+                        <div class="checkbox-item" data-icon="🇨🇳">🇨🇳</div>
+                        <div class="checkbox-item" data-icon="💰">💰</div>
+                        <div class="checkbox-item" data-icon="🏊">🏊</div>
+                        <div class="checkbox-item" data-icon="🏃">🏃</div>
+                        <div class="checkbox-item" data-icon="🍃">🍃</div>
+                        <div class="checkbox-item" data-icon="🎹">🎹</div>
+                        <div class="checkbox-item" data-icon="📚">📚</div>
+                        <div class="checkbox-item" data-icon="🍎">🍎</div>
+                        <div class="checkbox-item" data-icon="⏰">⏰</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('addGoalModal')">Annuler</button>
+                <button class="btn btn-primary" onclick="saveNewGoal()">Créer l'objectif</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div class="modal-overlay" id="transactionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Nouvelle transaction</h2>
+                <button class="modal-close" onclick="closeModal('transactionModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Type</label>
+                    <div class="tabs">
+                        <button class="tab active" data-type="deposit">💰 Dépôt</button>
+                        <button class="tab" data-type="withdrawal">💸 Retrait</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Montant (XAF)</label>
+                    <input type="number" class="form-input" id="transAmount" placeholder="Ex: 150000">
+                </div>
+                <div class="form-group">
+                    <label>Motif *</label>
+                    <input type="text" class="form-input" id="transReason" placeholder="Ex: Épargne janvier">
+                </div>
+                <div class="form-group">
+                    <label>Objectif lié</label>
+                    <select class="form-select" id="transGoal"></select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('transactionModal')">Annuler</button>
+                <button class="btn btn-primary" onclick="saveTransaction()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // ============================================
+        // APPLICATION DATA
+        // ============================================
+        
+        const APP = {
+            currentUser: null,
+            currentPage: 'dashboard',
+            currentGoal: null,
+            theme: localStorage.getItem('theme') || 'dark',
+            selectedIcon: '📖',
+            transactionType: 'deposit'
+        };
+
+        const USERS = {
+            fabien: {
+                id: 'fabien', username: 'fabien', password: 'Fabien2026!', email: 'fabien@example.com',
+                role: 'admin', avatar: '👨‍💼',
+                goals: [
+                    { id: 'g1', module: 'spiritual', title: 'Bible AT NIV', description: 'Lire l\'Ancien Testament en anglais (NIV)', icon: '📖', target: 929, current: 45, unit: 'chapitres', deadline: '2026-12-31', alarms: [{time:'06:30', days:[1,2,3,4,5], message:'📖 Lecture Bible NIV', enabled:true}], entries: [{date:'2026-01-02',value:3,notes:'Genèse 1-3'},{date:'2026-01-03',value:3,notes:'Genèse 4-6'}] },
+                    { id: 'g2', module: 'intellectual', title: 'Anglais A1→B1', description: 'Atteindre le niveau B1 avec Duolingo et Praktika', icon: '🇬🇧', measureType: 'scale', startLevel: 'A1', targetLevel: 'B1', current: 'A1+', deadline: '2026-12-31', alarms: [{time:'07:30', days:[1,2,3,4,5], message:'🇬🇧 15 min anglais!', enabled:true}], entries: [] },
+                    { id: 'g3', module: 'intellectual', title: 'Chinois 0→HSK4', description: 'Apprendre le chinois jusqu\'au HSK4 avec HelloChinese', icon: '🇨🇳', measureType: 'milestones', milestones: [{id:1,title:'HSK1',deadline:'2026-03-31',weight:20,completed:false},{id:2,title:'HSK2',deadline:'2026-06-30',weight:25,completed:false},{id:3,title:'HSK3',deadline:'2026-09-30',weight:25,completed:false},{id:4,title:'HSK4',deadline:'2026-12-31',weight:30,completed:false}], target: 1200, current: 0, unit: 'mots', deadline: '2026-12-31', alarms: [{time:'08:00', days:[1,2,3,4,5], message:'🇨🇳 HelloChinese!', enabled:true}], entries: [] },
+                    { id: 'g4', module: 'financial', title: 'Épargne 2M XAF', description: 'Épargner 2 000 000 XAF sur l\'année', icon: '💰', target: 2000000, current: 150000, unit: 'XAF', deadline: '2026-12-31', alarms: [{time:'09:00', days:[5], message:'💰 Jour d\'épargne!', enabled:true}], transactions: [{id:1,date:'2026-01-05',type:'deposit',amount:150000,reason:'Épargne janvier'}], entries: [] },
+                    { id: 'g5', module: 'financial', title: 'AQUACAM', description: 'Développer AQUACAM: 5M XAF CA annuel', icon: '🏊', target: 5000000, current: 0, unit: 'XAF CA', deadline: '2026-12-31', alarms: [{time:'20:00', days:[0], message:'📱 Stats AQUACAM', enabled:true}], entries: [] },
+                    { id: 'g6', module: 'physical', title: 'Détox alimentaire', description: 'Passer de 2j/mois à 1j/semaine de détox', icon: '🍃', measureType: 'frequency', frequency: {current:2,target:4,period:'month'}, alarms: [{time:'07:00', days:[], message:'🍃 Journée détox!', enabled:true}], entries: [] }
+                ]
+            },
+            sandrine: {
+                id: 'sandrine', username: 'sandrine', password: 'Sandrine2026!', email: 'sandrine@example.com',
+                role: 'user', avatar: '👩‍💼',
+                goals: [
+                    { id: 's1', module: 'spiritual', title: 'Prière 1h/jour', description: 'Consacrer 1 heure par jour à la prière', icon: '🙏', measureType: 'duration', target: 60, current: 45, unit: 'min/jour', alarms: [{time:'05:30', days:[0,1,2,3,4,5,6], message:'🙏 Temps de prière', enabled:true}], entries: [{date:'2026-01-02',value:45,notes:'Louange'},{date:'2026-01-03',value:60,notes:'Prière complète'}] },
+                    { id: 's2', module: 'spiritual', title: 'Bible 2ch/jour', description: 'Lecture quotidienne + étude approfondie', icon: '📖', measureType: 'frequency', target: 2, unit: 'chapitres/jour', alarms: [{time:'06:00', days:[0,1,2,3,4,5,6], message:'📖 Lecture biblique', enabled:true}], entries: [] },
+                    { id: 's3', module: 'intellectual', title: 'Piano débutant', description: 'Apprendre le piano d\'ici février 2026', icon: '🎹', measureType: 'scale', deadline: '2026-02-28', alarms: [{time:'18:00', days:[2,6], message:'🎹 Heure du piano!', enabled:true}], entries: [] },
+                    { id: 's4', module: 'intellectual', title: 'Français', description: 'Améliorer grammaire et orthographe', icon: '🇫🇷', measureType: 'frequency', target: 1, unit: 'séance/semaine', alarms: [{time:'10:00', days:[0], message:'🇫🇷 Révision français', enabled:true}], entries: [] },
+                    { id: 's5', module: 'intellectual', title: 'Anglais Duolingo', description: '15 min/jour + 2 chansons/mois', icon: '🇬🇧', measureType: 'frequency', target: 7, unit: 'séances/semaine', alarms: [{time:'20:00', days:[0,1,2,3,4,5,6], message:'🇬🇧 15 min Duolingo', enabled:true}], entries: [] },
+                    { id: 's6', module: 'intellectual', title: '2 livres/an', description: 'Conseils à l\'économe + 1 autre', icon: '📚', measureType: 'milestones', milestones: [{id:1,title:'Conseils à l\'économe',deadline:'2026-06-30',weight:50,completed:false},{id:2,title:'Livre 2',deadline:'2026-12-31',weight:50,completed:false}], entries: [] },
+                    { id: 's7', module: 'financial', title: 'Épargne 200K/mois', description: '3 enveloppes: Maman, Investissements, Famille', icon: '💰', target: 2400000, current: 0, unit: 'XAF', envelopes: [{id:1,name:'Soutien Maman',icon:'❤️',percentage:40,monthlyAmount:80000,annualTarget:960000,current:0,priority:'high'},{id:2,name:'Investissements',icon:'💼',percentage:35,monthlyAmount:70000,annualTarget:840000,current:0,priority:'medium'},{id:3,name:'Soutien famille',icon:'👨‍👩‍👧‍👦',percentage:25,monthlyAmount:50000,annualTarget:600000,current:0,priority:'normal'}], alarms: [{time:'09:00', days:[5], message:'💰 Jour d\'épargne!', enabled:true}], transactions: [], entries: [] },
+                    { id: 's8', module: 'physical', title: 'Sport 2x/semaine', description: 'Samedi et dimanche, 30-60 min', icon: '🏃', measureType: 'frequency', target: 2, unit: 'séances/semaine', alarms: [{time:'14:30', days:[6,0], message:'🏃 Heure du sport!', enabled:true}], entries: [] },
+                    { id: 's9', module: 'physical', title: 'Fruits petit-déj', description: 'Lundi et jeudi matin', icon: '🍎', measureType: 'frequency', target: 2, unit: 'jours/semaine', alarms: [{time:'06:30', days:[1,4], message:'🍎 N\'oublie pas tes fruits!', enabled:true}], entries: [] },
+                    { id: 's10', module: 'physical', title: 'Ponctualité travail', description: 'Arriver 15-30 min en avance', icon: '⏰', measureType: 'frequency', target: 5, unit: 'jours/semaine', alarms: [{time:'06:40', days:[1,2,3,4,5], message:'⏰ Temps de partir!', enabled:true}], entries: [] }
+                ]
+            }
+        };
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initLogin();
+            initNavigation();
+            initModals();
+            checkAutoLogin();
+        });
+
+        function initTheme() {
+            document.documentElement.setAttribute('data-theme', APP.theme);
+            document.getElementById('themeToggle').textContent = APP.theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            APP.theme = APP.theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', APP.theme);
+            localStorage.setItem('theme', APP.theme);
+            document.getElementById('themeToggle').textContent = APP.theme === 'dark' ? '☀️' : '🌙';
+        });
+
+        function checkAutoLogin() {
+            const saved = localStorage.getItem('currentUser');
+            if (saved && USERS[saved]) loginUser(saved);
+        }
+
+        // ============================================
+        // LOGIN
+        // ============================================
+
+        function initLogin() {
+            const form = document.getElementById('loginForm');
+            const toggle = document.getElementById('passwordToggle');
+            const pwd = document.getElementById('password');
+
+            toggle.addEventListener('click', () => {
+                pwd.type = pwd.type === 'password' ? 'text' : 'password';
+                toggle.textContent = pwd.type === 'password' ? '👁️' : '🙈';
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const u = document.getElementById('username').value.toLowerCase();
+                const p = document.getElementById('password').value;
+                if (USERS[u] && USERS[u].password === p) {
+                    loginUser(u);
+                } else {
+                    document.getElementById('loginError').classList.add('show');
+                    setTimeout(() => document.getElementById('loginError').classList.remove('show'), 3000);
+                }
+            });
+        }
+
+        function loginUser(username) {
+            APP.currentUser = USERS[username];
+            localStorage.setItem('currentUser', username);
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+            updateUserDisplay();
+            renderDashboard();
+            showToast('success', 'Bienvenue ' + APP.currentUser.username + '!');
+        }
+
+        function logout() {
+            APP.currentUser = null;
+            localStorage.removeItem('currentUser');
+            document.getElementById('appContainer').classList.remove('active');
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+
+        function updateUserDisplay() {
+            document.getElementById('userAvatar').textContent = APP.currentUser.avatar;
+            document.getElementById('userNameDisplay').textContent = APP.currentUser.username;
+            document.getElementById('userRoleDisplay').textContent = APP.currentUser.role === 'admin' ? 'Admin' : 'User';
+            
+            if (APP.currentUser.role === 'admin') {
+                document.getElementById('adminPanel').style.display = 'block';
+                let html = '';
+                Object.values(USERS).forEach(u => {
+                    html += `<div class="user-row"><div class="user-row-left"><span class="user-row-avatar">${u.avatar}</span><div class="user-row-info"><h4>${u.username}</h4><span>${u.email} • ${u.role}</span></div></div><div class="user-row-password">🔑 ${u.password}</div></div>`;
+                });
+                document.getElementById('adminUserList').innerHTML = html;
+            } else {
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        }
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+
+        function initNavigation() {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => navigateTo(item.dataset.page));
+            });
+        }
+
+        function navigateTo(page) {
+            APP.currentPage = page;
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
+            document.querySelectorAll('.module-page').forEach(p => p.classList.toggle('active', p.id === `page-${page}`));
+            
+            switch(page) {
+                case 'dashboard': renderDashboard(); break;
+                case 'spiritual': renderModuleGoals('spiritual', 'spiritualGoals'); break;
+                case 'intellectual': renderModuleGoals('intellectual', 'intellectualGoals'); break;
+                case 'financial': renderFinancialPage(); break;
+                case 'physical': renderModuleGoals('physical', 'physicalGoals'); break;
+                case 'custom': renderModuleGoals('custom', 'customGoals'); break;
+                case 'alarms': renderAlarmsPage(); break;
+            }
+        }
+
+        // ============================================
+        // RENDERING
+        // ============================================
+
+        function renderDashboard() {
+            const goals = APP.currentUser.goals;
+            const modules = { spiritual: {icon:'🙏',count:0,progress:0}, intellectual: {icon:'🧠',count:0,progress:0}, financial: {icon:'💰',count:0,progress:0}, physical: {icon:'💪',count:0,progress:0}, custom: {icon:'⭐',count:0,progress:0} };
+            
+            goals.forEach(g => {
+                if (modules[g.module]) {
+                    modules[g.module].count++;
+                    modules[g.module].progress += calcProgress(g);
+                }
+            });
+
+            let statsHtml = `<div class="stat-card"><div class="stat-icon" style="background:linear-gradient(135deg,var(--accent),var(--accent-light));">🎯</div><div class="stat-value">${Math.round(goals.reduce((s,g)=>s+calcProgress(g),0)/goals.length)}%</div><div class="stat-label">Progression globale</div></div>`;
+            
+            Object.entries(modules).forEach(([k,v]) => {
+                if (v.count > 0) {
+                    statsHtml += `<div class="stat-card" onclick="navigateTo('${k}')"><div class="stat-icon ${k}">${v.icon}</div><div class="stat-value">${Math.round(v.progress/v.count)}%</div><div class="stat-label">${getModuleName(k)} (${v.count})</div></div>`;
+                }
+            });
+            
+            document.getElementById('dashboardStats').innerHTML = statsHtml;
+
+            let goalsHtml = '';
+            goals.forEach(g => goalsHtml += createGoalCard(g));
+            document.getElementById('goalsOverview').innerHTML = goalsHtml;
+            attachGoalEvents();
+        }
+
+        function renderModuleGoals(module, containerId) {
+            const goals = APP.currentUser.goals.filter(g => g.module === module);
+            let html = '';
+            if (goals.length === 0) {
+                html = `<div class="empty-state"><div class="empty-state-icon">📭</div><h3 class="empty-state-title">Aucun objectif</h3><p class="empty-state-text">Créez votre premier objectif ${getModuleName(module)}</p><button class="btn btn-primary" onclick="openAddGoalModal('${module}')">+ Créer</button></div>`;
+            } else {
+                goals.forEach(g => html += createGoalCard(g));
+            }
+            document.getElementById(containerId).innerHTML = html;
+            attachGoalEvents();
+        }
+
+        function renderFinancialPage() {
+            renderModuleGoals('financial', 'financialGoals');
+            renderEnvelopes();
+            renderTransactions();
+        }
+
+        function renderEnvelopes() {
+            const goal = APP.currentUser.goals.find(g => g.envelopes);
+            if (!goal) { document.getElementById('envelopesSection').innerHTML = ''; return; }
+
+            let html = '<h3 style="margin-bottom:16px;font-size:16px;">📨 Enveloppes budgétaires</h3>';
+            goal.envelopes.forEach(e => {
+                const pct = Math.round((e.current/e.annualTarget)*100);
+                html += `<div class="envelope-card"><div class="envelope-header"><span class="envelope-name">${e.icon} ${e.name}</span><span class="envelope-priority ${e.priority}">${e.priority==='high'?'Haute':e.priority==='medium'?'Moyenne':'Normale'}</span></div><div class="progress-container"><div class="progress-header"><span class="progress-label">${e.percentage}%</span><span class="progress-value">${pct}%</span></div><div class="progress-bar"><div class="progress-fill financial" style="width:${pct}%;"></div></div></div><div class="envelope-amounts"><div class="envelope-amount"><div class="envelope-amount-value">${formatCurrency(e.current)}</div><div class="envelope-amount-label">Actuel</div></div><div class="envelope-amount"><div class="envelope-amount-value">${formatCurrency(e.monthlyAmount)}</div><div class="envelope-amount-label">Mensuel</div></div><div class="envelope-amount"><div class="envelope-amount-value">${formatCurrency(e.annualTarget)}</div><div class="envelope-amount-label">Annuel</div></div></div></div>`;
+            });
+            document.getElementById('envelopesSection').innerHTML = html;
+        }
+
+        function renderTransactions() {
+            const goals = APP.currentUser.goals.filter(g => g.module === 'financial');
+            let all = [];
+            goals.forEach(g => { if (g.transactions) g.transactions.forEach(t => all.push({...t, goal: g.title})); });
+            all.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+            if (all.length === 0) {
+                document.getElementById('transactionsList').innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">Aucune transaction</p>';
+                return;
+            }
+
+            let html = '';
+            all.slice(0,5).forEach(t => {
+                const isIncome = t.type === 'deposit';
+                html += `<div class="transaction-item"><div class="transaction-left"><div class="transaction-icon ${isIncome?'income':'expense'}">${isIncome?'💰':'💸'}</div><div class="transaction-info"><h4>${t.reason}</h4><span>${new Date(t.date).toLocaleDateString('fr-FR')} • ${t.goal}</span></div></div><div class="transaction-amount ${isIncome?'income':'expense'}">${isIncome?'+':'-'}${formatCurrency(t.amount)}</div></div>`;
+            });
+            document.getElementById('transactionsList').innerHTML = html;
+        }
+
+        function renderAlarmsPage() {
+            let all = [];
+            APP.currentUser.goals.forEach(g => {
+                if (g.alarms) g.alarms.forEach(a => all.push({...a, goalTitle: g.title, goalIcon: g.icon}));
+            });
+            all.sort((a,b) => a.time.localeCompare(b.time));
+
+            if (all.length === 0) {
+                document.getElementById('alarmsList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">⏰</div><h3 class="empty-state-title">Aucune alarme</h3></div>';
+                return;
+            }
+
+            const dayLetters = ['D','L','M','M','J','V','S'];
+            let html = '';
+            all.forEach((a,i) => {
+                const days = a.days || [];
+                html += `<div class="alarm-card"><div class="alarm-info"><div class="alarm-icon">${a.goalIcon}</div><div><div class="alarm-time">${a.time}</div><div class="alarm-label">${a.message}</div><div class="alarm-days">${dayLetters.map((d,j)=>`<span class="alarm-day ${days.includes(j)?'active':''}">${d}</span>`).join('')}</div></div></div><div class="alarm-toggle ${a.enabled?'active':''}" onclick="this.classList.toggle('active')"></div></div>`;
+            });
+            document.getElementById('alarmsList').innerHTML = html;
+        }
+
+        function createGoalCard(g) {
+            const progress = calcProgress(g);
+            const deadline = g.deadline ? new Date(g.deadline).toLocaleDateString('fr-FR') : 'Continu';
+            return `<div class="goal-card ${g.module}" data-goal-id="${g.id}"><div class="goal-header"><div class="goal-icon ${g.module}">${g.icon}</div><span class="goal-badge ${g.module}">${getModuleName(g.module)}</span></div><h3 class="goal-title">${g.title}</h3><p class="goal-description">${g.description}</p><div class="progress-container"><div class="progress-header"><span class="progress-label">Progression</span><span class="progress-value">${progress}%</span></div><div class="progress-bar"><div class="progress-fill ${g.module}" style="width:${progress}%;"></div></div></div><div class="goal-meta"><span class="goal-meta-item">📅 ${deadline}</span><span class="goal-meta-item">📝 ${(g.entries||[]).length}</span></div></div>`;
+        }
+
+        function attachGoalEvents() {
+            document.querySelectorAll('.goal-card').forEach(c => {
+                c.addEventListener('click', () => openGoalDetail(c.dataset.goalId));
+            });
+        }
+
+        // ============================================
+        // GOAL DETAIL
+        // ============================================
+
+        function openGoalDetail(id) {
+            const g = APP.currentUser.goals.find(x => x.id === id);
+            if (!g) return;
+            APP.currentGoal = g;
+
+            const progress = calcProgress(g);
+            document.getElementById('goalDetailTitle').textContent = `${g.icon} ${g.title}`;
+
+            let html = `<div class="goal-card ${g.module}" style="cursor:default;margin-bottom:20px;"><div class="goal-header"><div class="goal-icon ${g.module}">${g.icon}</div><span class="goal-badge ${g.module}">${getModuleName(g.module)}</span></div><p class="goal-description">${g.description}</p><div class="progress-container"><div class="progress-header"><span class="progress-label">Progression</span><span class="progress-value">${progress}%</span></div><div class="progress-bar"><div class="progress-fill ${g.module}" style="width:${progress}%;"></div></div></div></div>`;
+
+            if (g.milestones) {
+                html += `<h4 style="margin-bottom:12px;">🏁 Jalons</h4><div class="milestone-list">`;
+                g.milestones.forEach((m,i) => {
+                    const status = m.completed ? 'completed' : (i===0 || g.milestones[i-1].completed) ? 'current' : '';
+                    html += `<div class="milestone-item ${status}"><div class="milestone-date">${new Date(m.deadline).toLocaleDateString('fr-FR')}</div><div class="milestone-title">${m.title}</div><div class="milestone-progress">${m.weight}%</div></div>`;
+                });
+                html += `</div>`;
+            }
+
+            html += `<h4 style="margin:20px 0 12px;">📝 Entrées</h4>`;
+            if (g.entries && g.entries.length > 0) {
+                g.entries.slice().reverse().forEach(e => {
+                    html += `<div class="entry-card"><div><span class="entry-date">${new Date(e.date).toLocaleDateString('fr-FR')}</span> <span class="entry-value">${e.value} ${g.unit||''}</span></div><div style="color:var(--text-secondary);font-size:13px;">${e.notes||''}</div></div>`;
+                });
+            } else {
+                html += `<p style="color:var(--text-muted);text-align:center;padding:16px;">Aucune entrée</p>`;
+            }
+
+            document.getElementById('goalDetailContent').innerHTML = html;
+            document.getElementById('addEntryBtn').onclick = () => { closeModal('goalDetailModal'); openAddEntryModal(); };
+            openModal('goalDetailModal');
+        }
+
+        function openAddEntryModal() {
+            document.getElementById('entryDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('entryValue').value = '';
+            document.getElementById('entryNotes').value = '';
+            openModal('addEntryModal');
+        }
+
+        function saveEntry() {
+            if (!APP.currentGoal) return;
+            const entry = {
+                date: document.getElementById('entryDate').value,
+                value: parseFloat(document.getElementById('entryValue').value) || 0,
+                notes: document.getElementById('entryNotes').value
+            };
+            if (!APP.currentGoal.entries) APP.currentGoal.entries = [];
+            APP.currentGoal.entries.push(entry);
+            if (APP.currentGoal.target && APP.currentGoal.current !== undefined) {
+                APP.currentGoal.current += entry.value;
+            }
+            closeModal('addEntryModal');
+            showToast('success', 'Entrée ajoutée!');
+            openGoalDetail(APP.currentGoal.id);
+        }
+
+        // ============================================
+        // ADD GOAL
+        // ============================================
+
+        function openAddGoalModal(module = 'spiritual') {
+            document.getElementById('newGoalModule').value = module;
+            document.getElementById('newGoalTitle').value = '';
+            document.getElementById('newGoalDesc').value = '';
+            document.getElementById('newGoalTarget').value = '';
+            document.getElementById('newGoalUnit').value = '';
+            document.getElementById('newGoalDeadline').value = '2026-12-31';
+            APP.selectedIcon = '📖';
+            document.querySelectorAll('#iconPicker .checkbox-item').forEach(i => i.classList.remove('selected'));
+            document.querySelector('#iconPicker .checkbox-item').classList.add('selected');
+            openModal('addGoalModal');
+        }
+
+        document.querySelectorAll('#iconPicker .checkbox-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('#iconPicker .checkbox-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                APP.selectedIcon = item.dataset.icon;
+            });
+        });
+
+        function saveNewGoal() {
+            const title = document.getElementById('newGoalTitle').value;
+            if (!title) { showToast('error', 'Titre requis'); return; }
+
+            const goal = {
+                id: 'g_' + Date.now(),
+                module: document.getElementById('newGoalModule').value,
+                title: title,
+                description: document.getElementById('newGoalDesc').value || '',
+                icon: APP.selectedIcon,
+                target: parseFloat(document.getElementById('newGoalTarget').value) || 0,
+                current: 0,
+                unit: document.getElementById('newGoalUnit').value || '',
+                deadline: document.getElementById('newGoalDeadline').value,
+                alarms: [],
+                entries: []
+            };
+
+            APP.currentUser.goals.push(goal);
+            closeModal('addGoalModal');
+            showToast('success', 'Objectif créé!');
+            navigateTo(APP.currentPage);
+        }
+
+        // ============================================
+        // TRANSACTIONS
+        // ============================================
+
+        function openTransactionModal() {
+            const goals = APP.currentUser.goals.filter(g => g.module === 'financial');
+            document.getElementById('transGoal').innerHTML = goals.map(g => `<option value="${g.id}">${g.icon} ${g.title}</option>`).join('');
+            document.getElementById('transAmount').value = '';
+            document.getElementById('transReason').value = '';
+            APP.transactionType = 'deposit';
+            
+            document.querySelectorAll('#transactionModal .tab').forEach(t => {
+                t.classList.toggle('active', t.dataset.type === 'deposit');
+                t.addEventListener('click', () => {
+                    document.querySelectorAll('#transactionModal .tab').forEach(x => x.classList.remove('active'));
+                    t.classList.add('active');
+                    APP.transactionType = t.dataset.type;
+                });
+            });
+            openModal('transactionModal');
+        }
+
+        function saveTransaction() {
+            const goalId = document.getElementById('transGoal').value;
+            const goal = APP.currentUser.goals.find(g => g.id === goalId);
+            if (!goal) return;
+
+            const amount = parseFloat(document.getElementById('transAmount').value);
+            const reason = document.getElementById('transReason').value;
+            if (!amount || !reason) { showToast('error', 'Champs requis'); return; }
+
+            if (!goal.transactions) goal.transactions = [];
+            goal.transactions.push({
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                type: APP.transactionType,
+                amount: amount,
+                reason: reason
+            });
+
+            if (APP.transactionType === 'deposit') {
+                goal.current = (goal.current || 0) + amount;
+            } else {
+                goal.current = (goal.current || 0) - amount;
+            }
+
+            closeModal('transactionModal');
+            showToast('success', 'Transaction enregistrée!');
+            renderFinancialPage();
+        }
+
+        // ============================================
+        // MODALS
+        // ============================================
+
+        function initModals() {
+            document.querySelectorAll('.modal-overlay').forEach(o => {
+                o.addEventListener('click', (e) => { if (e.target === o) o.classList.remove('active'); });
+            });
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // ============================================
+        // UTILITIES
+        // ============================================
+
+        function calcProgress(g) {
+            if (g.target && g.current !== undefined) return Math.min(100, Math.round((g.current / g.target) * 100));
+            if (g.milestones) {
+                const done = g.milestones.filter(m => m.completed).length;
+                return Math.round((done / g.milestones.length) * 100);
+            }
+            if (g.entries && g.entries.length > 0) return Math.min(100, g.entries.length * 5);
+            return 0;
+        }
+
+        function getModuleName(m) {
+            return { spiritual: 'Spirituel', intellectual: 'Intellectuel', financial: 'Financier', physical: 'Physique', custom: 'Personnalisé' }[m] || m;
+        }
+
+        function formatCurrency(n) { return new Intl.NumberFormat('fr-FR').format(n) + ' XAF'; }
+
+        function showToast(type, msg) {
+            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span class="toast-icon">${icons[type]}</span><div><div class="toast-title">${msg}</div></div>`;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        // PWA & Notifications
+        if ('Notification' in window) Notification.requestPermission();
+    </script>
+</body>
+</html>
